@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "_StartEndDatePicker";
+}
+
+<div id="DateTimeSelectionPart" class="option" style="align-items: baseline; ">
+    <h4 class="sub-title">
+        日期範圍：
+    </h4>
+    <div class="datePickerGroup-container">
+        <div class="datePickerGroup">
+            <span class="title">開始時間</span>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                @Html.Editor("StartDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "StartDate", @class = "form-control", @autocomplete = "off" } })
+            </div>
+        </div>
+        <div class="datePickerGroup">
+            <span class="title">結束時間</span>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                @Html.Editor("EndDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "EndDate", @class = "form-control", @autocomplete = "off" } })
+            </div>
+        </div>
+    </div>
+</div>
+

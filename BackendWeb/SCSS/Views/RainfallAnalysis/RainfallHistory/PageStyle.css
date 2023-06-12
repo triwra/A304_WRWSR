@@ -1,0 +1,43 @@
+﻿.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+.icon .info.fas {
+  color: #17629f;
+  font-size: 16px;
+}
+.icon .info.fas .clickable {
+  cursor: pointer;
+}
+
+#datatable td.dataVal {
+  min-width: 50px !important;
+}
+
+.bootstrap-table.bootstrap4 .fixed-columns-right, .bootstrap-table.bootstrap4 .fixed-columns {
+  transition-duration: 0.3s;
+}
+.bootstrap-table.bootstrap4 .fixed-columns.scroll-now {
+  box-shadow: 1px 0px 5px 0px #c1c1c1;
+}
+.bootstrap-table.bootstrap4 .fixed-columns-right.scroll-now {
+  box-shadow: -1px 0px 5px 0px #c1c1c1;
+}
+
+#QuerySection .datePickerGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: row;
+}
+
+#RainfallHistoryChart .datePickerGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: row;
+}

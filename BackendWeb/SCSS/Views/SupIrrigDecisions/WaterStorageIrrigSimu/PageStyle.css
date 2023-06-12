@@ -1,0 +1,769 @@
+﻿@charset "UTF-8";
+.light {
+  --switch-color: rgb(216, 216, 216);
+  --background-color-alternate: rgb(30,30,30);
+}
+
+.dark {
+  --switch-color: rgb(68, 68, 68);
+  --background-color-alternate: rgb(245, 245, 245);
+}
+
+.SwitchControl {
+  border-radius: 10px;
+  background: #30b079;
+  width: 130px;
+  height: 60px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  padding: 10px;
+  justify-content: space-evenly;
+}
+
+.SwitchControl .SwitchControl--slider {
+  z-index: 1;
+  width: 130px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  /* left: calc(50% - 250px); */
+  transition: all 0.3s cubic-bezier(0.56, 0.045, 0, 1) !important;
+}
+
+.SwitchControl .SwitchControl--slider .SwitchControl--knob {
+  width: 65px;
+  height: 55px;
+  background: rgba(112, 112, 112, 0.7098039216);
+  position: absolute;
+  left: calc(50% - 50px);
+  top: 0;
+  border-radius: 10px;
+  margin: 2px;
+}
+
+/*.SwitchControl .SwitchControl--slider .SwitchControl--icon_left, .SwitchControl .SwitchControl--slider .SwitchControl--icon_right {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 25px;
+}*/
+/*.SwitchControl .SwitchControl--slider .SwitchControl--icon_left *, .SwitchControl .SwitchControl--slider .SwitchControl--icon_right * {
+    fill: var(--background-color-alternate) !important;
+}*/
+/*.SwitchControl .SwitchControl--slider .SwitchControl--icon_left {
+    left: 90px;
+}
+
+.SwitchControl .SwitchControl--slider .SwitchControl--icon_right {
+    right: 90px;
+}*/
+.SwitchControl.on .SwitchControl--slider {
+  transform: translateX(45px);
+}
+
+.SwitchControl.off .SwitchControl--slider {
+  transform: translateX(-13px);
+}
+
+.SwitchControl--icon_left {
+  fill: white;
+  z-index: 9;
+}
+
+.SwitchControl--icon_right {
+  fill: white;
+  z-index: 9;
+  margin-left: 15px;
+}
+
+.SimuCaseSettingPanelArea *,
+.SimuCaseSettingPanelArea *:before,
+.SimuCaseSettingPanelArea *:after {
+  box-sizing: border-box;
+}
+.SimuCaseSettingPanelArea body {
+  font-family: -apple-system, ".SFNSText-Regular", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+}
+.SimuCaseSettingPanelArea .toggle {
+  cursor: pointer;
+  display: inline-block;
+}
+.SimuCaseSettingPanelArea .toggle-switch {
+  display: inline-block;
+  background: #ccc;
+  border-radius: 16px;
+  width: 58px;
+  height: 32px;
+  position: relative;
+  vertical-align: middle;
+  transition: background 0.25s;
+}
+.SimuCaseSettingPanelArea .toggle-switch:before, .SimuCaseSettingPanelArea .toggle-switch:after {
+  content: "";
+}
+.SimuCaseSettingPanelArea .toggle-switch:before {
+  display: block;
+  background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: left 0.25s;
+}
+.SimuCaseSettingPanelArea .toggle:hover .toggle-switch:before {
+  background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.SimuCaseSettingPanelArea .toggle-checkbox:checked + .toggle-switch {
+  background: #56c080;
+}
+.SimuCaseSettingPanelArea .toggle-checkbox:checked + .toggle-switch:before {
+  left: 30px;
+}
+.SimuCaseSettingPanelArea .toggle-checkbox {
+  position: absolute;
+  visibility: hidden;
+}
+.SimuCaseSettingPanelArea .toggle-label {
+  margin-left: 5px;
+  position: relative;
+  top: 2px;
+}
+
+main {
+  width: 100%;
+  max-width: 50em;
+  margin: 1.5em auto;
+}
+main .selection {
+  background: rgba(46, 115, 252, 0.11);
+  border-radius: 0.1em;
+  border: 2px solid rgba(98, 155, 255, 0.81);
+}
+main section.demo {
+  /*width: 710px;*/
+  /*.boxes.blue {
+      div.selected {
+          background: #7fa0eb;
+          border: 2px solid rgba(0, 0, 0, 0.075);
+      }
+  }*/
+}
+main section.demo .box-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 2px solid rgba(66, 68, 90, 0.075);
+  border-radius: 0.15em;
+  /*padding: 1em 0;*/
+}
+main section.demo .box-wrap::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+main section.demo .boxes div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.42em;
+  width: 3.42em;
+  margin: 0.2em;
+  background: rgba(66, 68, 90, 0.075);
+  border: 2px solid transparent;
+  border-radius: 0.15em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+main section.demo .boxes div.zero-position, main section.demo .boxes div.x-header, main section.demo .boxes div.y-header {
+  height: auto;
+  text-align: center;
+  pointer-events: none;
+  font-weight: 800;
+  font-family: 微軟正黑體;
+}
+main section.demo .boxes div.y-header {
+  width: 27px !important;
+}
+main section.demo .boxes.green div.selected {
+  background: #7febc2;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q95 {
+  background: #E94560;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q90 {
+  background: #EE6D82;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q85 {
+  background: #F291A2;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q80 {
+  background: #FAAF35;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q75 {
+  background: #FBBF60;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q70 {
+  background: #FCCF88;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q60 {
+  background: #4279F0;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q50 {
+  background: #114ED5;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.red div.selected {
+  background: #eb8181;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+
+@media only screen and (max-width: 1000px) {
+  main .boxes {
+    margin: 0 0.5em;
+  }
+  main .boxes div {
+    height: 1.75em;
+    width: 1.75em;
+  }
+}
+/* details */
+/*main section.demo .box-wrap.green,
+main section.demo .box-wrap.blue {
+    margin-bottom: 3em;
+}*/
+/*main section.demo .box-wrap.red {
+    display: grid;
+    grid-template-columns: repeat(28, 1fr);
+    grid-gap: 0.4em;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-height: 25em;
+    overflow: auto;
+    padding: 0.5em;
+    margin-bottom: 3em;
+}*/
+/*main section.demo .box-wrap.red > div {
+    margin: 0;
+}*/
+.cardMain {
+  height: 960px;
+}
+
+.initialCondiSettingSection {
+  /*padding: 9rem 8.25rem;*/
+  padding: 10%;
+}
+.initialCondiSettingSection *:focus {
+  box-shadow: none;
+  background-color: white;
+  border-color: #2ca06e;
+}
+.initialCondiSettingSection *:focus + span svg.icon {
+  color: #2ca06e;
+}
+.initialCondiSettingSection *:disabled {
+  background-color: #dedede;
+}
+.initialCondiSettingSection .card .card-header {
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  background: #2CA06E;
+  color: white;
+  border: none;
+}
+.initialCondiSettingSection .card .card-body .setting-part {
+  padding: 2.5rem 4rem 1rem 4rem;
+  font-size: 20px;
+}
+.initialCondiSettingSection .card .card-body .setting-part select, .initialCondiSettingSection .card .card-body .setting-part input {
+  font-size: 20px;
+}
+.initialCondiSettingSection .card .card-body .setting-part select:required:invalid {
+  color: gray;
+}
+.initialCondiSettingSection .card .card-body .setting-part option[value=""][disabled] {
+  display: none;
+}
+.initialCondiSettingSection .card .card-body .setting-part option {
+  color: black;
+}
+.initialCondiSettingSection .card .card-body .btn-part.xl {
+  padding: 0rem 5rem 4rem 5rem;
+}
+.initialCondiSettingSection .card .card-body .btn-part .btn {
+  transition: initial;
+  transition-duration: 0.2s !important;
+  transition-timing-function: ease-in-out;
+}
+.initialCondiSettingSection .card .card-body .btn-part #startSimu.btn {
+  background: #30B079;
+  border-radius: 8px;
+  border: none;
+  padding: 1rem 1.25rem;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+}
+.initialCondiSettingSection .card .card-body .btn-part #settingToday.form-selectgroup-input + .form-selectgroup-label {
+  font-size: 20px;
+}
+.initialCondiSettingSection .card .card-body .btn-part #settingToday.form-selectgroup-input:hover + .form-selectgroup-label {
+  z-index: 2;
+  color: #2ca06e;
+  border-color: #2ca06e;
+  box-shadow: none;
+}
+.initialCondiSettingSection .card .card-body .btn-part #settingToday.form-selectgroup-input:focus + .form-selectgroup-label {
+  z-index: 2;
+  color: none;
+  border-color: none;
+  box-shadow: none;
+}
+.initialCondiSettingSection .card .card-body .btn-part #settingToday.form-selectgroup-input:checked + .form-selectgroup-label {
+  color: #ffffff;
+  background: rgb(44, 160, 110);
+  border-color: #2ca06e;
+}
+.initialCondiSettingSection .bootstrap-table .fixed-table-container .fixed-table-body {
+  height: 173px;
+}
+.initialCondiSettingSection .bootstrap-table .table thead th {
+  background-color: #2ca06e;
+}
+.initialCondiSettingSection .bootstrap-table .fixed-table-container .table tr {
+  cursor: pointer;
+}
+.initialCondiSettingSection .dropdown-menu.show {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.resultChartSection .caseBtnPart {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: center;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(1) {
+  margin: 0;
+  border-radius: 8px 0px 0px 8px;
+  font-size: 20px;
+  background: white;
+  color: black;
+  font-weight: 700;
+  font-family: system-ui;
+  border-top: 1px solid #BAB4B4;
+  border-left: 1px solid #BAB4B4;
+  border-bottom: 1px solid #BAB4B4;
+  border-right: 0px;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(1):focus, .resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(1):active, .resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(1):focus-visible, .resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(1):hover {
+  box-shadow: none;
+  border-right: none;
+  outline: none;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(2) {
+  margin: 0;
+  width: 34%;
+  border: none;
+  padding: 0.75rem 0.5rem;
+  border-radius: 0px 8px 8px 0px;
+  border-top: 1px solid #BAB4B4;
+  border-right: 1px solid #BAB4B4;
+  border-bottom: 1px solid #BAB4B4;
+  border-left: 0px;
+  background: white;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(2) svg path:nth-of-type(1) {
+  fill: none;
+  stroke: #BAB4B4;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(2) svg path:nth-of-type(2) {
+  stroke: #BAB4B4;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(2):hover svg path:nth-of-type(1) {
+  fill: red;
+  stroke: #BAB4B4;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(2):hover svg path:nth-of-type(2) {
+  stroke: white;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(2):hover svg path {
+  transition-duration: 0.3s;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(2):focus, .resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(2):active, .resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(2):focus-visible, .resultChartSection .caseBtnPart .caseBtnGroup[state=compt] button:nth-of-type(2):hover {
+  box-shadow: none;
+  border-left: none;
+  outline: none;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] .btn-divider {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #BAB4B4;
+  border-bottom: 1px solid #BAB4B4;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=compt] .btn-divider svg {
+  fill: #BAB4B4;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=new] button:nth-of-type(1):focus, .resultChartSection .caseBtnPart .caseBtnGroup[state=new] button:nth-of-type(1):active, .resultChartSection .caseBtnPart .caseBtnGroup[state=new] button:nth-of-type(1):focus-visible, .resultChartSection .caseBtnPart .caseBtnGroup[state=new] button:nth-of-type(1):hover {
+  box-shadow: none;
+  border-right: none;
+  outline: none;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=new] button:nth-of-type(2) {
+  display: none;
+}
+.resultChartSection .caseBtnPart .caseBtnGroup[state=new] .btn-divider {
+  display: none;
+}
+.resultChartSection .caseBtnPart .btn {
+  background: #30B079;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  padding: 1rem 1.25rem;
+  margin-right: 0.5rem;
+}
+.resultChartSection .modifyInitSettingBtnPart {
+  display: flex;
+  justify-content: flex-end;
+}
+.resultChartSection .modifyInitSettingBtnPart .btn {
+  background: #ffffff;
+  border-radius: 8px;
+  color: #30b079;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  padding: 1rem 1.25rem;
+  margin-right: 0.5rem;
+  border: 5px solid #30b079;
+}
+
+.caseSettingSection {
+  background-color: #F5F5F5;
+}
+.caseSettingSection .mask {
+  -webkit-mask-image: radial-gradient(circle, black 0%, rgba(0, 0, 0, 0.5) 0%);
+  mask-image: radial-gradient(circle, black 50%, rgba(0, 0, 0, 0.5) 50%);
+  pointer-events: none;
+}
+.caseSettingSection *:not([type=checkbox]):focus {
+  box-shadow: none;
+  background-color: white;
+  border-color: #2ca06e;
+}
+.caseSettingSection *:not([type=checkbox]):focus + span svg.icon {
+  color: #2ca06e;
+}
+.caseSettingSection *:disabled {
+  background-color: #dedede;
+}
+.caseSettingSection .form-check-input:checked {
+  background-color: #39a771;
+}
+.caseSettingSection .form-check-input:checked[type=radio] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8.5l2.5 2.5l5.5 -5.5'/%3e%3c/svg%3e");
+}
+.caseSettingSection .card-body {
+  margin-top: 4rem;
+  min-height: 640px;
+  max-height: 640px;
+  overflow-y: scroll;
+}
+.caseSettingSection .setting-top-title {
+  font-weight: 600;
+  font-size: 170%;
+  line-height: 28px;
+  color: #30b079;
+}
+.caseSettingSection .setting-leading-title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 23px;
+  color: #000;
+  margin-left: 0px;
+  /* padding-left: inherit; */
+  padding-left: calc(var(--tblr-gutter-x) * 0.2);
+}
+.caseSettingSection .setting-normal-text {
+  font-size: 120%;
+}
+.caseSettingSection .setting-part.left-part, .caseSettingSection .setting-part.right-part {
+  width: 47%;
+  margin: 0 auto;
+}
+.caseSettingSection .setting-part .setting-group-container {
+  background: #e8e8e8;
+  padding: 1rem 1rem;
+  border-radius: 15px;
+}
+.caseSettingSection .setting-part .hide {
+  display: none;
+}
+.caseSettingSection .setting-part .show {
+  display: block;
+}
+.caseSettingSection .setting-part .common input:not([type=checkbox]):not([type=radio]), .caseSettingSection .setting-part .pro input:not([type=checkbox]):not([type=radio]), .caseSettingSection .setting-part .general input:not([type=checkbox]):not([type=radio]) {
+  background: #FFFFFF;
+  /* 預設文字 */
+  border: 2px solid #BAB4B4;
+  border-radius: 8px;
+  font-size: 120%;
+}
+.caseSettingSection .setting-part .common .case-name-input-part .input-icon {
+  height: 100%;
+}
+.caseSettingSection .setting-part .common .case-name-input-part .input-icon input {
+  height: inherit;
+  font-weight: 400;
+  font-size: 170%;
+  line-height: 38px;
+}
+.caseSettingSection .setting-part .common .query-part .btn-part a {
+  background: #30B079;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 170%;
+  line-height: 38px;
+  /* identical to box height */
+  /* 白 */
+  width: 100%;
+  color: #FFFFFF;
+}
+.caseSettingSection .setting-part .common .switch-setting-btn-part {
+  text-align: end;
+}
+.caseSettingSection .setting-part .common .switch-setting-btn-part a {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+}
+.caseSettingSection .setting-part .common .Q-radio-part .form-selectgroup-item .form-selectgroup-input:hover + .form-selectgroup-label {
+  color: #39A771;
+  background: transparent;
+  border: 2px solid #39A771;
+}
+.caseSettingSection .setting-part .common .Q-radio-part .form-selectgroup-item .form-selectgroup-input:checked + .form-selectgroup-label {
+  color: #fff;
+  background: #39A771;
+  border: 2px solid #39A771;
+}
+.caseSettingSection .setting-part .common .Q-radio-part .form-selectgroup-item .form-selectgroup-label {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  color: #bab4b4;
+  background: #f5f5f5;
+  border: 2px solid #bab4b4;
+  border-radius: 8px;
+}
+.caseSettingSection .setting-part .common .irrig-water-setting-part.row {
+  align-items: center;
+  align-content: center;
+}
+.caseSettingSection .setting-part .common .irrig-water-setting-part select {
+  border: 1px solid #BAB4B4;
+  border-radius: 4px;
+  font-size: 120%;
+}
+.caseSettingSection .setting-part .common .irrig-water-setting-part input {
+  margin-right: 5px;
+  border: 1px solid #BAB4B4;
+  /*border-radius: 4px;*/
+  text-align: center;
+}
+.caseSettingSection .setting-part .common .irrig-water-setting-part input :not([type=checkbox]):not([type=radio]) {
+  background: #FFFFFF;
+}
+.caseSettingSection .setting-part .general .irrig-water-setting-part.row {
+  align-items: center;
+  align-content: center;
+}
+.caseSettingSection .setting-part .general .irrig-water-setting-part select {
+  border: 1px solid #BAB4B4;
+  border-radius: 4px;
+  font-size: 20px;
+}
+.caseSettingSection .setting-part .general .irrig-water-setting-part input {
+  margin-right: 5px;
+  border: 1px solid #BAB4B4;
+  border-radius: 4px;
+  text-align: center;
+}
+.caseSettingSection .setting-part .general .irrig-water-setting-part input :not([type=checkbox]):not([type=radio]) {
+  background: #FFFFFF;
+}
+.caseSettingSection .setting-part .pro main section.demo {
+  overflow-x: auto;
+}
+.caseSettingSection .setting-part .pro main section.demo .boxes {
+  width: 615px;
+}
+.caseSettingSection .setting-part .pro main section.demo .boxes div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.02em;
+  width: 3.02em;
+  margin: 0.2em;
+  border: 2px solid transparent;
+  border-radius: 0.15em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.caseSettingSection .setting-part .pro .pro-Q-radio-part .form-selectgroup-item .form-selectgroup-input:hover + .form-selectgroup-label {
+  color: #39A771;
+  background: transparent;
+  border: 2px solid #39A771;
+}
+.caseSettingSection .setting-part .pro .pro-Q-radio-part .form-selectgroup-item .form-selectgroup-input:checked + .form-selectgroup-label {
+  color: #fff;
+  background: #39A771;
+  border: 2px solid #39A771;
+}
+.caseSettingSection .setting-part .pro .pro-Q-radio-part .form-selectgroup-item .form-selectgroup-label {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  color: #bab4b4;
+  background: #f5f5f5;
+  border: 2px solid #bab4b4;
+  border-radius: 8px;
+}
+.caseSettingSection .setting-part .pro [id^=InflowTableSelection] .bootstrap-table .fixed-table-container .fixed-table-body {
+  height: 450px;
+}
+.caseSettingSection .setting-part .pro [id^=InflowTableSelection] .bootstrap-table .table thead th {
+  background-color: #2ca06e;
+}
+.caseSettingSection .setting-part .pro [id^=InflowTableSelection] .bootstrap-table .fixed-table-container .table tr {
+  cursor: pointer;
+}
+.caseSettingSection .setting-part .pro div[id^=SuspendedIrrigationArea] .form-selectgroup-input:checked + .form-selectgroup-label {
+  z-index: 1;
+  color: #ffffff;
+  background: rgb(57, 167, 113);
+  border-color: #39a771;
+}
+.caseSettingSection .setting-part .pro div[id^=SuspendedIrrigationArea] .form-selectgroup-input:focus + .form-selectgroup-label {
+  z-index: 2;
+  color: none;
+  border-color: none;
+  box-shadow: none;
+}
+.caseSettingSection .setting-part .result-switch-toggle-part .SwitchControl {
+  border-radius: 10px;
+  background: #30b079;
+  width: 110px;
+  height: 60px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  /* padding: 10px; */
+  justify-content: space-evenly;
+}
+.caseSettingSection .setting-part .result-switch-toggle-part .SwitchControl.on .SwitchControl--slider {
+  transform: translateX(35px);
+}
+.caseSettingSection .setting-part .result-switch-toggle-part .SwitchControl.off .SwitchControl--slider {
+  transform: translateX(-13px);
+}
+.caseSettingSection .setting-part .result-switch-toggle-part .SwitchControl .SwitchControl--slider {
+  z-index: 1;
+  width: 110px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: all 0.3s cubic-bezier(0.56, 0.045, 0, 1) !important;
+}
+.caseSettingSection .setting-part .result-switch-toggle-part .SwitchControl .SwitchControl--slider .SwitchControl--knob {
+  width: 53px;
+  height: 53px;
+  background: #ffffff;
+  position: absolute;
+  left: calc(50% - 39px);
+  top: 1px;
+  border-radius: 10px;
+  margin: 2px;
+}
+.caseSettingSection .sumi-result-table-part {
+  width: 100%;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill-available;
+}
+.caseSettingSection .sumi-result-table-part.hide {
+  z-index: -1;
+  position: absolute;
+  visibility: hidden;
+}
+.caseSettingSection .sumi-result-table-part.show {
+  display: block;
+}
+
+.wrwsr-simu-modal.show {
+  display: flex !important;
+  align-items: center;
+}
+.wrwsr-simu-modal .modal-dialog .modal-content {
+  box-shadow: 0px 16px 32px rgba(153, 153, 153, 0.3);
+  border-radius: 30px;
+}
+.wrwsr-simu-modal .modal-dialog .modal-content .wrwsr-modal-title {
+  text-align: center;
+}
+.wrwsr-simu-modal .modal-dialog .modal-content .wrwsr-modal-footer .caseBtnPart {
+  text-align: center;
+}
+
+.wrwsr .cricle-icon-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 70px;
+  border-color: transparent;
+  background: white;
+}
+.wrwsr .cricle-icon-btn svg {
+  fill: #525252;
+}

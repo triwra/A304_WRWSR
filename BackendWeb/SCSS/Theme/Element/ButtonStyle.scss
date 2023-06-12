@@ -1,0 +1,52 @@
+﻿//只覆寫 btn-green 的預設背景顏色
+.btn-green {
+    background: #39a771;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    /* 白 */
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.btn-ghost-lime.active {
+    background: #d1e7ca;
+    color: #000000;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 23px;
+    text-align: center;
+}
+
+//toggle
+.toggle.android {
+}
+
+.toggle.android .toggle-handle {
+    background-color: #d1e7ca;
+}
+
+.btn-lime2 {
+    background: #5e975d;
+    color: #ffffff;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+
+    &:hover {
+        background: #5e975d;
+        color: #ffffff;
+    }
+}
+
+.cndss {
+}

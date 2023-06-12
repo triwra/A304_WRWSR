@@ -1,0 +1,53 @@
+﻿.card {
+    border-radius: 5px;
+    box-shadow: 0 10px 20px 0 rgba(69,90,100,.08), 10px 10px 16px 6px rgba(69,90,100,.08);
+    margin-bottom: 30px;
+    border: 1px solid #e6e6e6;
+
+    .header-part {
+        .card-header {
+            display: flex;
+            background-color: #707070;
+
+            .title-part {
+                flex-grow: 1;
+                line-height: 1.5;
+
+                .title {
+                    font-size: 20px;
+                    font-family: 微軟正黑體;
+                    margin-right: 0px;
+                }
+            }
+
+            .header-part {
+                flex-grow: 1;
+
+                .card-title {
+                }
+            }
+
+            .card-header-right {
+                align-self: center;
+            }
+        }
+    }
+
+    &.full-card {
+        .card-block {
+            height:100%;
+            div.svg-container {
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                height: 100%;
+
+                svg {
+                    align-self: center;
+                    /* width: 100vw; */
+                    height: calc(100vmin - 126px);
+                }
+            }
+        }
+    }
+}

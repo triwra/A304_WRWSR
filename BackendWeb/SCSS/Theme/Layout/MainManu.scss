@@ -1,0 +1,190 @@
+﻿.page-body {
+    //padding: 16px 0px 0px 0px;
+    margin-top: 16px;
+    margin-bottom: 1.25rem;
+}
+
+.theme-light {
+
+    .navbar.navbar-expand-md {
+        border-radius: 10px;
+        background-color: #f3f5f7;
+
+        h1.navbar-brand {
+            padding: 0.5rem 0 0 34px;
+        }
+
+        .navbar-brand-image {
+            height: 3rem;
+        }
+
+        li.user-profile {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+
+    .navbar-expand-md {
+        .navbar-collapse {
+            .navbar.navbar-light {
+                background-color: #F3F5F7;
+            }
+        }
+    }
+
+    .navbar-nav {
+        .nav-item {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 24px;
+            color: #39A771;
+
+            .dropdown-toggle:after {
+                //color: var(--tblr-white);
+                color: #39A771;
+            }
+
+            .nav-link-title {
+                //color: var(--tblr-white);
+                color: #39A771;
+            }
+
+            &:hover {
+                .nav-link-title {
+                    //color: #ffc457;   //大標題的變色
+                }
+            }
+
+            .dropdown-item:hover {
+                //Mouse 移動的選單變色
+                color: #F3F5F7;
+                background-color: #39A771;
+            }
+
+            &.dropdown {
+                .dropdown-menu {
+                    top: 155%;
+                    border-radius: 10px;
+                }
+            }
+
+            a.dropdown-item {
+                //font-size: 16px;
+                font-size: 20px;
+                font-weight: 600;
+                //padding: 0.9rem var(--tblr-dropdown-item-padding-x);
+                color: #39A771; //下拉選單的文字顏色
+
+                &.dropdown-toggle + .dropdown-menu {
+                    top: 0%;
+                }
+            }
+
+            a.dropdown-item:after {
+                //color: black;
+                color: #39A771;
+            }
+
+            a.dropdown-item:hover:after {
+                //Mouse 移動的選單變色
+                color: #F3F5F7;
+                background-color: #39A771;
+            }
+
+            a.disabled {
+                color: #BAB4B4;
+            }
+            //功能表主項目下的顏色標示
+            &.dropdown.active::after {
+                bottom: -1.5rem;
+                border: 0 solid #39A771;
+                border-bottom-width: 5px;
+            }
+        }
+    }
+}
+
+.LogoTitle {
+    width: 112px;
+    height: 32px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    // 綠/預設
+    color: #39A771;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.Breadcrumbs {
+    //height: 19px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    /* 灰/預設 */
+    color: #BAB4B4;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.BreadcrumbsTitle {
+    //height: 29px;
+    width: 85%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000; //黑
+    display: inline-block;
+}
+
+.BreadcrumbsICON {
+    padding: 3px 0px 0px 4px;
+    height: 32px;
+    width: 32px;
+    font-size: 24px;
+    color: white;
+    background: #39A771; //綠
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.query-field-title {
+    height: 23px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    color: #000000;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.query-field-select {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    text-align: center;
+    /* 黑 */
+    color: #000000;
+
+}

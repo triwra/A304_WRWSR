@@ -1,0 +1,35 @@
+﻿#pcoded {
+    .pcoded-container {
+        .navbar.header-navbar {
+        }
+
+        .pcoded-main-container {
+            background: linear-gradient(135deg, #fff 21px, #f9f9f9 22px, #f9f9f9 24px, rgba(0,0,0,0) 24px, rgba(0,0,0,0) 67px, #f9f9f9 67px, #f9f9f9 69px,rgba(0,0,0,0) 69px), linear-gradient(225deg, #fff 21px, #f9f9f9 22px, #f9f9f9 24px, rgba(0,0,0,0) 24px, rgba(0,0,0,0) 67px, #f9f9f9 67px, #f0f0f0 69px, rgba(0,0,0,0) 69px) 0 64px;
+            background-color: #fff;
+            background-size: 64px 128px;
+
+            .pcoded-content {
+                .pcoded-inner-content{
+                    padding:1rem;
+                }
+            }
+        }
+    }
+}
+#pcoded[pcoded-device-type="phone"] {
+    .pcoded-container {
+        .navbar.header-navbar {
+            .navbar-wrapper {
+                .navbar-logo {
+                    .mobile-menu{
+                        text-align:left;
+                        right:unset;
+                    } 
+                    .mobile-options {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}

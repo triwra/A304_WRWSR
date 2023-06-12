@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/JSLib/VerticalProgressBar/style.min.css" rel="stylesheet" />
+<link href="~/SCSS/Widget/_ReservoirInfo/WidgetStyle.min.css" rel="stylesheet" />
+<style>
+    .wrwsr-panel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+    }
+
+        .wrwsr-panel.sty1 .widget.e4 {
+            background: white;
+            width: 100%;
+            min-height: 345px;
+            border-radius: 10px;
+            box-shadow: 0px 12px 20px rgba(14, 31, 53, 0.12);
+        }
+</style>
+
+<div class="wrwsr-panel sty1 mb-3">
+    <div class="widget e4 p-3 p-lg-3 ">
+        <div class="wrwsr-container">
+            <div class="wrwsr-header flex-wrap d-flex col-12  mt-3">
+                <div class="title-part mb-3 d-flex flex-grow-1 flex-md-grow-0">
+                    <div class="icon-part pe-1 ps-1">
+                        @Html.Partial("~/Views/Partial/SVG/_ClockIcon.cshtml")
+                    </div>
+                    <div class="text-part">
+                        <div class="main-title">水庫水情</div>
+                        <div id="updatetime" class="sub-title">更新時間：<span></span></div>
+                    </div>
+
+                </div>
+                <div class="overview-part info-part ms0 me-3 flex-grow-0 flex-sm-grow-1 mobile-off d-sm-flex justify-content-sm-end" style=" height: auto;">
+                    @*<div class="info-group pt-3 pb-3 ms-3 me-3" style="width:90%">
+                            <div class="info-block mb-3">
+                                <div class="block-title mb-3">規線</div>
+                                <div class="block-value mb-1"><span>下限</span><span>1</span><span>座</span></div>
+                                <div class="block-value mb-1"><span>嚴重下限</span><span>3</span><span>座</span></div>
+                            </div>
+                        </div>*@
+                </div>
+                <div class="link-part">
+                    <a href="/WaterSituation/RealtimeReservoirInformation" class="link-btn">
+                        @Html.Partial("~/Views/Partial/SVG/_OutLink.cshtml")
+                    </a>
+                </div>
+            </div>
+            <div class="wrwsr-body d-flex">
+                <div class="content-part flex-column flex-md-row">
+                    <div class="col-12 col-md-12">
+                        <div class="bar-group-part info-part p-1 pt-sm-3 pt-sm-4 ms-1 me-3 mt-3 mt-sm-0" style="height: 100%; min-height: 210px;">
+                            <div class=" bar-yaix-part">
+                                <div class=" bar-group mb-3">
+                                    <ul class="section_score_wrapper">
+                                        <li class="section_score act-blue">
+                                            <div class="wrwsr_label section_title"></div>
+                                            <div class="wrwsr_label section_val">有效蓄水量<br>(萬噸)</div>
+                                            <div class="wrwsr_label section_divider">50%</div>
+                                            <div class="wrwsr_label section_pct">100%</div>
+                                            <div class="section_score_bar">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class=" bar-part ms-1 me-1">
+                                <div class=" bar-group mb-3">
+                                    <ul class="section_score_wrapper">
+                                        <li class="section_score act-blue">
+                                            <div class="wrwsr_label section_title"></div>
+                                            <div class="wrwsr_label section_val"></div>
+                                            <div class="wrwsr_label section_divider">@Html.Partial("~/Views/Partial/SVG/_ProgressBarDivider.cshtml")</div>
+                                            <div class="wrwsr_label section_pct"></div>
+                                            <div class="section_score_bar">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class=" bar-part ms-1 me-1">
+                                <div class=" bar-group mb-3">
+                                    <ul class="section_score_wrapper">
+                                        <li class="section_score act-blue">
+                                            <div class="wrwsr_label section_title"></div>
+                                            <div class="wrwsr_label section_val"></div>
+                                            <div class="wrwsr_label section_divider">@Html.Partial("~/Views/Partial/SVG/_ProgressBarDivider.cshtml")</div>
+                                            <div class="wrwsr_label section_pct"></div>
+                                            <div class="section_score_bar">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class=" bar-part ms-1 me-1">
+                                <div class=" bar-group mb-3">
+                                    <ul class="section_score_wrapper">
+                                        <li class="section_score act-blue">
+                                            <div class="wrwsr_label section_title"></div>
+                                            <div class="wrwsr_label section_val"></div>
+                                            <div class="wrwsr_label section_divider">@Html.Partial("~/Views/Partial/SVG/_ProgressBarDivider.cshtml")</div>
+                                            <div class="wrwsr_label section_pct"></div>
+                                            <div class="section_score_bar">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class=" bar-part ms-1 me-1">
+                                <div class=" bar-group mb-3">
+                                    <ul class="section_score_wrapper">
+                                        <li class="section_score act-blue">
+                                            <div class="wrwsr_label section_title"></div>
+                                            <div class="wrwsr_label section_val"></div>
+                                            <div class="wrwsr_label section_divider">@Html.Partial("~/Views/Partial/SVG/_ProgressBarDivider.cshtml")</div>
+                                            <div class="wrwsr_label section_pct"></div>
+                                            <div class="section_score_bar">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class=" bar-part ms-1 me-1">
+                                <div class=" bar-group mb-3">
+                                    <ul class="section_score_wrapper">
+                                        <li class="section_score act-blue">
+                                            <div class="wrwsr_label section_title"></div>
+                                            <div class="wrwsr_label section_val"></div>
+                                            <div class="wrwsr_label section_divider">@Html.Partial("~/Views/Partial/SVG/_ProgressBarDivider.cshtml")</div>
+                                            <div class="wrwsr_label section_pct"></div>
+                                            <div class="section_score_bar">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class=" bar-part ms-1 me-1">
+                                <div class=" bar-group mb-3">
+                                    <ul class="section_score_wrapper">
+                                        <li class="section_score act-blue">
+                                            <div class="wrwsr_label section_title"></div>
+                                            <div class="wrwsr_label section_val"></div>
+                                            <div class="wrwsr_label section_divider">@Html.Partial("~/Views/Partial/SVG/_ProgressBarDivider.cshtml")</div>
+                                            <div class="wrwsr_label section_pct"></div>
+                                            <div class="section_score_bar">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class=" bar-part ms-1 me-1">
+                                <div class=" bar-group mb-3">
+                                    <ul class="section_score_wrapper">
+                                        <li class="section_score act-blue">
+                                            <div class="wrwsr_label section_title"></div>
+                                            <div class="wrwsr_label section_val"></div>
+                                            <div class="wrwsr_label section_divider">@Html.Partial("~/Views/Partial/SVG/_ProgressBarDivider.cshtml")</div>
+                                            <div class="wrwsr_label section_pct"></div>
+                                            <div class="section_score_bar">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overview-part info-part ms0 me-3 mt-3 p-2 mobile-on-flex" style=" height: auto; display:none;">
+                            @*<div class="info-group pt-3 pb-3 ms-3 me-3" style="width:90%">
+                                    <div class="info-block mb-3">
+                                        <div class="block-title mb-3">規線</div>
+                                        <div class="block-value mb-1"><span>下限</span><span>1</span><span>座</span></div>
+                                        <div class="block-value mb-1"><span>嚴重下限</span><span>3</span><span>座</span></div>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                    @*<div class="col-1  mobile-off">
+                            <div class="link-part">
+                                <a href="/WaterSituation/RealtimeReservoirInformation" class="link-btn">
+                                    @Html.Partial("~/Views/Partial/SVG/_OutLink.cshtml")
+                                </a>
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+            <div class="wrwsr-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<script src="~/JSLib/VerticalProgressBar/main.js"></script>*@
+<script src="~/Scripts/Widget/_ReservoirInfo/WidgetScript.js?20230203"></script>
+

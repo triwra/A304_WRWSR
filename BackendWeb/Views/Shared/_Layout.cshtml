@@ -1,0 +1,158 @@
+﻿@using Microsoft.AspNet.Identity
+@using BackendWeb.Helper
+
+<!doctype html>
+<!--
+* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
+* #version 1.0.0-beta11
+* #link https://tabler.io
+* Copyright 2018-2022 The Tabler Authors
+* Copyright 2018-2022 codecalm.net Paweł Kuna
+* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
+-->
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>@ViewBag.Title - 農業水資源智慧決策支援平台</title>
+    <!-- CSS files -->
+    @*<link href="~/Content/Tabler/dist/css/tabler.min.css" rel="stylesheet" />
+        <link href="~/Content/Tabler/dist/css/tabler-flags.min.css" rel="stylesheet" />
+        <link href="~/Content/Tabler/dist/css/tabler-payments.min.css" rel="stylesheet" />
+        <link href="~/Content/Tabler/dist/css/tabler-vendors.min.css" rel="stylesheet" />
+        <link href="~/Content/Tabler/dist/css/demo.min.css" rel="stylesheet" />*@
+
+    @Styles.Render("~/Content/css")
+    @RenderSection("header", required: false)
+
+</head>
+<body>
+    <div class="page-body">
+        <div class="container-xl">
+            <div class="box">
+
+                <div class="mb-3">
+                    <header class="navbar navbar-expand-md navbar-light d-print-none">
+                        <div class="container-xl">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbar-menu">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3"
+                                style="height:88px;">
+                                <a href="/">
+                                    <img src="~/Img/WRWSR_LOGO_Only.svg" class="navbar-brand-image" />
+                                </a>
+                                <span class="LogoTitle">
+                                    農業水資源<br />智慧決策支援平台
+                                </span>
+                            </h1>
+
+                            <div class="navbar-nav flex-row order-md-last">
+
+                                <!--使用者個人相關功能區塊-->
+                                @if (Request.IsAuthenticated)
+                                {
+                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <ul class="navbar-nav">
+                                            <li id="MenuID0" class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle"
+                                                   data-bs-toggle="dropdown" aria-label="Open user menu">
+
+                                                    <span class="nav-link-title">
+                                                        <i class="ti ti-user-circle"></i>
+                                                    </span>
+                                                    <span class="nav-link-title d-none d-xl-block ps-2">
+                                                        @if (Request.IsAuthenticated)
+                                                        {
+                                                            @Html.Raw(CommonHelper.GetUserRealNameById(User.Identity.GetUserId()))
+                                                        }
+                                                    </span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    @if (User.IsInRole(CommonHelper.RoleAdmin))
+                                                    {
+                                                        @Html.ActionLink("使用者管理", "Index", "User", null, new { @class = "dropdown-item" })
+                                                        @Html.ActionLink("使用者鎖定管理", "LockoutList", "User", null, new { @class = "dropdown-item" })
+                                                        @Html.ActionLink("群組管理", "Index", "Role", null, new { @class = "dropdown-item" })
+                                                        @Html.ActionLink("單位管理", "Index", "Unit", null, new { @class = "dropdown-item" })
+                                                        @Html.ActionLink("存取記錄查詢", "Index", "ActionLog", null, new { @class = "dropdown-item" })
+                                                        <a class="dropdown-item" href="@(CommonHelper.GetSiteUrl(Url) + "twelmah")" target="_blank">Elmah Error Log</a>
+                                                    }
+
+                                                    @Html.ActionLink("變更密碼", "ChangePassword", "Manage", null, new { @class = "dropdown-item" })
+                                                    <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">登出</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    }
+                                }
+                                else
+                                {
+                                    <ul class="navbar-nav">
+                                        <li id="MenuID0" class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle"
+                                               data-bs-toggle="dropdown" aria-label="Open user menu">
+                                                <span class="nav-link-title">
+                                                    <i class="ti ti-user-circle"></i>
+                                                </span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                @Html.ActionLink("登入", "Login", "Account", routeValues: null,
+                                                    htmlAttributes: new { id = "loginLink", @class = "dropdown-item" })
+                                            </div>
+                                        </li>
+                                    </ul>
+                                }
+
+                            </div>
+
+                            @*<div class="navbar-nav flex-row">*@
+                            <!--Main Menu Start-->
+                            @if (Request.IsAuthenticated)
+                            {
+                                <div class="collapse navbar-collapse" id="navbar-menu">
+                                    <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
+
+                                        @Html.Raw(CommonHelper.GetRoleMenuHtmlByUser(User.Identity.GetUserId()))
+
+                                        @{ var action = ViewContext.RouteData.Values["action"].ToString(); ;
+                                            var controller = ViewContext.RouteData.Values["controller"].ToString();
+                                        }
+                                        <input type="hidden" id="RootMenuID" value="@CommonHelper.GetActionRootMenuID(controller,action)" />
+                                    </div>
+                                </div>
+                            }
+                            <!-- Main Menu End -->
+                            @*</div>*@
+                        </div>
+                    </header>
+                </div>
+
+                @*<div class="page-wrapper">*@
+                <div class="cardMain  pt-3 p-0 p-lg-4">
+                    <!-- Breadcrumb 及頁面中文名稱-->
+                    @Html.Partial("~/Views/Partial/TablerElement/Demo/_DemoPageHeaderTitlePart.cshtml")
+                    @RenderBody()
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div id="twBlockUI" class="tw-loading invisible"><img src="~/Images/loading.gif" /></div>
+    @*<div id="twScrollTop" class="invisible" onclick="TW.scrollTop();">
+            <span class="ti ti-arrow-big-top" style="font-size:40px;"></span>
+        </div>*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

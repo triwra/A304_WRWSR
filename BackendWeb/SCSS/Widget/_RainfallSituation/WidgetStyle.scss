@@ -1,0 +1,100 @@
+﻿.widget.e1 {
+    .wrwsr-header {
+        .option-part {
+            .option-btn-group {
+                height: 100%;
+                background: #F3F5F7;
+                border-radius: 10px;
+
+                .selected {
+                    color: #39a771;
+                    font-weight: 700;
+                }
+
+                .opt-title {
+                    font-family: 'Inter';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: #39A771;
+                }
+
+                .wrwsr-btn {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .wrwsr-body {
+        .content-part {
+            .info-part {
+                background: #F3F5F7;
+                border-radius: 10px;
+
+                .info-group {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+
+                    .info-title {
+                        font-weight: 700;
+                        font-size: 156%;
+                        line-height: 25px;
+                        min-height: 50px;
+                        color: #000000;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .info-block {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+
+                        .block-title {
+                            font-weight: 500;
+                            font-size: 115%;
+                            line-height: 1.5;
+                            color: #757681;
+                            align-self: flex-start;
+                        }
+
+                        .block-value {
+                            align-self: center;
+                            font-size: 18px;
+
+                            span:nth-of-type(1) {
+                                font-weight: 700;
+                            }
+
+                            span:nth-of-type(2) {
+                                font-size: 16px;
+                                line-height: 19px;
+                                color: #000000;
+                                align-self: end;
+                            }
+                        }
+
+                        .block-value2 {
+                            align-self: flex-end;
+                            font-size: 16px;
+                            padding-right: 8px;
+
+                            span:nth-of-type(1) {
+                                font-size: 16px;
+                                line-height: 19px;
+                                color: #000000;
+                                align-self: end;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

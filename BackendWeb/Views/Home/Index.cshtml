@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "首頁";
+}
+
+
+@section header {
+    <link href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@1.1.1/dist/gridstack.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="~/SCSS/Views/Home/index/PageStyle.min.css?v=1.0.1" rel="stylesheet" />
+    <link href="~/SCSS/Widget/common.css" rel="stylesheet" />
+    @*<link href="~/SCSS/Widget/MngRegionAvgRainMap/MngRegionAvgRain.css" rel="stylesheet" />*@
+
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+
+    <script>
+        dataTool = new MyDataTool();
+        dateTool = new MyDateTool();
+    </script>
+}
+<div class="row">
+    <div class="col-xl-7 col-md-12 col-sm-12">
+        @Html.Partial("~/Views/Partial/Widget/_RainfallSituation/_View.cshtml")
+        @Html.Partial("~/Views/Partial/Widget/_ReservoirInfo/_View.cshtml")
+    </div>
+    <div class="col-xl-5 col-md-12 col-sm-12">
+        @Html.Partial("~/Views/Partial/Widget/_ImpoundingInfo/_View.cshtml")
+        @Html.Partial("~/Views/Partial/Widget/_DroughtMonitoring/_View.cshtml")
+        @Html.Partial("~/Views/Partial/Widget/_IrrigationSituation/_View.cshtml")
+    </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gridstack@1.1.1/dist/gridstack.all.js"></script>
+@section Scripts {
+
+
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+    <script src="~/JSLib/liquidFillGauge2.js"></script>
+    <script src="~/JSLib/LINQ/JSLINQ.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <!---------------------------------------------------------------------------------------->
+    <script type="text/javascript">
+        var griasdasdd = GridStack.init();
+    </script>
+}

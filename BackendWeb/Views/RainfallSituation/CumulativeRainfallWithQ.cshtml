@@ -1,0 +1,170 @@
+﻿@using DBClassLibrary.UserDomainLayer.UserInterfaceModel
+@{
+    ViewBag.Title = "Index";
+    var ReservoirOptList = ViewBag.ReservoirOptList;
+    var IAOptList = ViewBag.IAOptList;
+    var WorkStationOptList = ViewBag.WorkStationOptList;
+}
+
+@section header {
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin="" />
+    <link href="~/JSLib/datepicker-master/datepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
+          integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link href="~/SCSS/Views/RainfallSituation/DroughtMonitoring/PageStyle.min.css?@DateTime.Now.Ticks" rel="stylesheet" />
+    <style>
+        #map {
+            height: 750px;
+        }
+    </style>
+}
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <!--PageContent-->
+            <!--設定-->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="d-flex align-items-center font-weight-bold">
+                            <h3 class="card-title">設定</h3>
+                        </div>
+
+
+                        <div class="row g-2 align-items-center mb-3">
+                            <div class="col-12 col-xl-1 w-auto font-weight-bold">區域選擇</div>
+                            <div class="col-12 col-xl-2 ">
+                                <select id="BoundaryType" class="form-select">
+                                    <option value="1">水庫</option>
+                                    <option value="3">管理處</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-xl-2 ">
+                                <select id="BoundaryID" class="form-select">
+                                    @foreach (SelectOption option in ReservoirOptList)
+                                    {
+                                        <option value="@option.Value">@option.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 col-xl-2 hide-theme-light">
+                                <select id="WorkStationID" class="form-select">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row g-2 align-items-center mb-3">
+                            <div class="col-12 col-xl-1 w-auto font-weight-bold">統計範圍</div>
+                            <div class="col-12 col-xl-1 col-sm-4 col-md-2 col-xl">
+                                <div class="input-icon">
+                                    <input class="form-control" placeholder="Select a date" id="StartYMDate" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-1 ">
+                                <select id="StartTenDaysNo" class="form-select">
+                                    <option value="1">上旬</option>
+                                    <option value="2">中旬</option>
+                                    <option value="3">下旬</option>
+                                </select>
+                            </div>
+                            <span class="w-4" style="text-align:center;">至</span>
+                            <div class="col-12 col-xl-1 col-sm-4 col-md-2 col-xl">
+                                <div class="input-icon">
+                                    <input class="form-control " placeholder="Select a date" id="EndYMDate" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-1 ">
+                                <select id="EndTenDaysNo" class="form-select">
+                                    <option value="1">上旬</option>
+                                    <option value="2">中旬</option>
+                                    <option value="3">下旬</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-xl-2 ">
+                                <div class="form-selectgroup">
+                                    <label class="form-selectgroup-item">
+                                        <input id="Query" type="button" name="icons" value="home" class="form-selectgroup-input" checked="">
+                                        <span class="form-selectgroup-label">
+                                            查詢
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--圖表-->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="chart-Part m-b-30 ">
+                                <div class="echarts" style="width: 100%;height:600px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="">
+                            <table id="datatable"></table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-zh-TW.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.3.1/decimal.min.js"
+            integrity="sha512-Ou4M+sSU8oa+mE3juYqR3JmW633MUpMhe1cd+IusOtfjkMo8I3zXs4fRmjmCFqpRg5RK/geqoXBY8XRwFY2Rsg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
+            integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    @*<script src="~/JSLib/datepicker-master/datepicker.min.js"></script>*@
+    <script src="~/JSLib/datepicker-master/ROCdatepicker.js"></script>
+    @*<script src="~/JSLib/datepicker-master/datepicker.js"></script>*@
+    <script src="~/JSLib/datepicker-master/datepicker.zh-CN.js"></script>
+
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    @*<script src="~/Scripts/MyTool/MyDateTool.js"></script>*@
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/View/RainfallSituation/Common/enum.js"></script>
+    <script src="~/Scripts/View/RainfallSituation/Common/Ajax.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/RainfallSituation/Common/Chart.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/RainfallSituation/CumulativeRainfallWithQ/main.js?@DateTime.Now.Ticks"></script>
+
+    <script>
+        let ReservoirOptList = @Html.Raw(Json.Encode(@ReservoirOptList));
+        let IAOptList = @Html.Raw(Json.Encode(@IAOptList));
+        let WorkStationOptList = @Html.Raw(Json.Encode(@WorkStationOptList));
+        var ajax_src = {
+            GetUnfTenDaysRainfallData: "@Url.Action("GetUnfTenDaysRainfallData", "RainfallSituation")",
+            @*GetFhyAverageTenDaysRainfallData: "@Url.Action("GetFhyAverageTenDaysRainfallData", "RainfallSituation")",*@
+            GetGridAverageTenDaysRainfallData: "@Url.Action("GetGridAverageTenDaysRainfallData", "RainfallSituation")",
+            GetTenDaysQData: "@Url.Action("GetTenDaysQData", "RainfallSituation")",
+        }
+
+    </script>
+}

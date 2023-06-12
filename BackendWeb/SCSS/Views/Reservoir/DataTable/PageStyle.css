@@ -1,0 +1,198 @@
+﻿.cbx {
+  margin: auto;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.cbx span {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+}
+
+.cbx span:first-child {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  transform: scale(1);
+  vertical-align: middle;
+  border: 1px solid #9098A9;
+  transition: all 0.2s ease;
+}
+
+.cbx span:first-child svg {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  fill: none;
+  stroke: #FFFFFF;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+  transform: translate3d(0, 0, 0);
+}
+
+.cbx span:first-child:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #1abbac;
+  display: block;
+  transform: scale(0);
+  opacity: 1;
+  border-radius: 50%;
+}
+
+.cbx span:last-child {
+  padding-left: 8px;
+}
+
+.cbx:hover span:first-child {
+  border-color: #506EEC;
+}
+
+.inp-cbx:checked + .cbx span:first-child {
+  background: #1abbac;
+  border-color: #1abbac;
+  animation: wave 0.4s ease;
+}
+
+.inp-cbx:checked + .cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+
+.inp-cbx:checked + .cbx span:first-child:before {
+  transform: scale(2.5);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+@keyframes wave {
+  50% {
+    transform: scale(0.9);
+  }
+}
+.my-popover {
+  max-width: initial;
+  max-width: initial;
+  border-top-color: #39f;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: 0 3px 6px #ccc;
+  box-shadow: 0 3px 6px #ccc;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  position: absolute;
+  border-top-color: #5fc897;
+}
+.my-popover .popover-header-part {
+  display: flex;
+}
+    .my-popover .popover-header-part button.page {
+        display: flex;
+        place-self: center;
+        font-size: 30px;
+        list-style: none;
+        width: 35px;
+        height: 30px;
+        line-height: 0;
+        padding: 0;
+        padding-bottom: 6px;
+        background: transparent;
+        border: none;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+.my-popover .popover-header-part button.page.hidden {
+  visibility: hidden;
+}
+.my-popover .popover-header-part button.page:hover {
+  background-color: #e5f2ff;
+}
+.my-popover .popover-header-part button.page:focus {
+  box-shadow: none;
+  outline: none;
+}
+.my-popover .popover-header-part .popover-header {
+  text-align: center;
+  font-weight: bold;
+  background-color: white;
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+.my-popover .popover-body {
+  padding: 9px 9px;
+}
+.my-popover .popover-body .page.hidden {
+  display: none;
+}
+.my-popover .popover-body .btn {
+  padding: 0px;
+  width: 60px;
+  height: 60px;
+  /*font-weight: bold;*/
+  background: white;
+  transition-duration: 0.3s;
+}
+.my-popover .popover-body .btn i {
+  font-style: normal;
+  margin-right: 0px;
+  color: #666666;
+}
+.my-popover .popover-body .btn.selected {
+  background-color: #5fc897 !important;
+  border-radius: 5px;
+  border: 1px solid #eaeaea;
+}
+.my-popover .popover-body .btn.selected i {
+  color: white;
+  font-weight: 600;
+}
+.my-popover .popover-body .btn:focus {
+  box-shadow: none;
+}
+.my-popover .popover-body .btn:hover {
+  background-color: #eaeaea;
+}
+.my-popover .popover-body input.input-box {
+  text-align: center;
+  max-width: 50px;
+  height: 50px;
+  margin: 5px;
+  border: none;
+  border: 1px solid #cccccc;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#DateTimeSelectionPart, #TenDaysSelectionPart, #MonthSelectionPart {
+  display: flex;
+  align-items: center;
+  margin: 5px 0px;
+}
+.TenDaysSelectionPart-popover1.my-popover .page,
+.TenDaysSelectionPart-popover2.my-popover .page {
+    display: block;
+    min-height: 0;
+}
+#DateTimeSelectionPart .cbk-elem, #TenDaysSelectionPart .cbk-elem, #MonthSelectionPart .cbk-elem {
+  margin-right: 10px;
+}
+#DateTimeSelectionPart .sub-title, #TenDaysSelectionPart .sub-title, #MonthSelectionPart .sub-title {
+  color: #666666;
+}
+#DateTimeSelectionPart .datePickerGroup, #TenDaysSelectionPart .datePickerGroup, #MonthSelectionPart .datePickerGroup {
+  width: 200px;
+  margin: 0px 15px;
+}
+
+.Query-Part {
+  display: flex;
+  justify-content: flex-end;
+}

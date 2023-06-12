@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "水庫及時水情";
+}
+
+@section header {
+    <link href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="~/SCSS/Views/Home/index/ReservoirTable.min.css" rel="stylesheet" />
+    @*<link href="~/SCSS/Views/Home/index/PageStyle.min.css" rel="stylesheet" />*@
+}
+
+<div id="ReservoirOverall" class="card">
+    <div class="card-header">
+        <h5 style="font-size: 20px;font-family: 微軟正黑體;">水庫現況</h5>
+        <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                @*<i class="fas fa-compress" title="全螢幕"></i>*@
+                @*<i class="fas fa-sliders-h" title="選項"></i>*@
+                <li><i class="feather minimize-card icon-plus" title="展開"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-block">
+        <table id="datatable"></table>
+    </div>
+</div>
+
+<div id="ReservoirRealTime" class="card">
+    <div class="card-header">
+        <h5 style="font-size: 20px;font-family: 微軟正黑體;">水庫即時水情</h5>
+        <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                @*<i class="fas fa-compress" title="全螢幕"></i>*@
+                <li><i class="feather minimize-card icon-plus" title="展開"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-block">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs md-tabs tab-col-6" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true">石門水庫</a>
+                <div class="slide"></div>
+            </li>
+         
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content card-block">
+            <div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true" name="石門水庫">
+                @*<div class="chart-Part m-b-30 ">
+                        <div class="echarts" style="width: 100%;height:400px;"></div>
+                    </div>*@
+
+                <div class="table-part">
+                    <table id="datatable"></table>
+                </div>
+            </div>
+          
+        
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
+    <script src="~/JSLib/LINQ/JSLINQ.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <!---------------------------------------------------------------------------------------->
+    <script src="~/Scripts/View/Home/AjaxClass.js"></script>
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/View/Home/ReservoirTable.js"></script>
+    <script>
+        var ajax_src = {
+            GetReservoirInfo : "@Url.Action("GetReservoirInfo", "Home")",
+            GetReservoirRealTimeHistory: "@Url.Action("GetReservoirRealTimeHistory", "Home")",
+            GetReservoirRule : "@Url.Action("GetReservoirRule", "Home")",
+        }
+    </script>
+}
+

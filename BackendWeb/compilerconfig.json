@@ -1,0 +1,94 @@
+﻿[
+  {
+    "outputFile": "SCSS/Site.css",
+    "inputFile": "SCSS/Site.scss"
+  },
+  {
+    "outputFile": "SCSS/Views/WaterSimulation/PageStyle.css",
+    "inputFile": "SCSS/Views/WaterSimulation/PageStyle.scss"
+  },
+  {
+    "outputFile": "Content/Tabler/dist/css/tabler-icons.css",
+    "inputFile": "Content/Tabler/dist/css/tabler-icons.scss"
+  },
+  {
+    "outputFile": "SCSS/Site_Old.css",
+    "inputFile": "SCSS/Site_Old.scss"
+  },
+  {
+    "outputFile": "SCSS/Views/RainfallSituation/DailyCumulativeRainfall/PageStyle.css",
+    "inputFile": "SCSS/Views/RainfallSituation/DailyCumulativeRainfall/PageStyle.scss"
+  },
+  {
+    "outputFile": "SCSS/Views/RainfallSituation/DroughtMonitoring/PageStyle.css",
+    "inputFile": "SCSS/Views/RainfallSituation/DroughtMonitoring/PageStyle.scss"
+  },
+  {
+    "outputFile": "SCSS/Views/WaterSituation/RealtimeReservoirInformation/PageStyle.css",
+    "inputFile": "SCSS/Views/WaterSituation/RealtimeReservoirInformation/PageStyle.scss"
+  },
+  {
+    "outputFile": "SCSS/Views/SupIrrigDecisions/WaterStorageIrrigSimu/PageStyle.css",
+    "inputFile": "SCSS/Views/SupIrrigDecisions/WaterStorageIrrigSimu/PageStyle.scss"
+  },
+  {
+    "outputFile": "JSLib/PageTransitionsAnimation/Style.css",
+    "inputFile": "JSLib/PageTransitionsAnimation/Style.scss"
+  },
+  {
+    "outputFile": "SCSS/Theme/Layout/MainManu.css",
+    "inputFile": "SCSS/Theme/Layout/MainManu.scss"
+  },
+  {
+    "outputFile": "SCSS/Theme/Layout/LayoutStyle.css",
+    "inputFile": "SCSS/Theme/Layout/LayoutStyle.scss"
+  },
+  {
+    "outputFile": "SCSS/Theme/Element/ButtonStyle.css",
+    "inputFile": "SCSS/Theme/Element/ButtonStyle.scss"
+  },
+  {
+    "outputFile": "SCSS/Views/RainfallSituation/FutureRainfallEstimation/PageStyle.css",
+    "inputFile": "SCSS/Views/RainfallSituation/FutureRainfallEstimation/PageStyle.scss"
+  },
+  {
+    "outputFile": "Views/Partial/Widget/WidgetStyle.css",
+    "inputFile": "Views/Partial/Widget/WidgetStyle.scss"
+  },
+  {
+    "outputFile": "SCSS/Widget/common.css",
+    "inputFile": "SCSS/Widget/common.scss"
+  },
+  {
+    "outputFile": "JSLib/CircleProgressBar/style.css",
+    "inputFile": "JSLib/CircleProgressBar/style.scss"
+  },
+  {
+    "outputFile": "SCSS/Widget/_RainfallSituation/WidgetStyle.css",
+    "inputFile": "SCSS/Widget/_RainfallSituation/WidgetStyle.scss"
+  },
+  {
+    "outputFile": "SCSS/Widget/_DroughtMonitoring/WidgetStyle.css",
+    "inputFile": "SCSS/Widget/_DroughtMonitoring/WidgetStyle.scss"
+  },
+  {
+    "outputFile": "JSLib/VerticalProgressBar/style.css",
+    "inputFile": "JSLib/VerticalProgressBar/style.scss"
+  },
+  {
+    "outputFile": "SCSS/Widget/_ReservoirInfo/WidgetStyle.css",
+    "inputFile": "SCSS/Widget/_ReservoirInfo/WidgetStyle.scss"
+  },
+  {
+    "outputFile": "SCSS/Widget/_ImpoundingInfo/WidgetStyle.css",
+    "inputFile": "SCSS/Widget/_ImpoundingInfo/WidgetStyle.scss"
+  },
+  {
+    "outputFile": "SCSS/Widget/_IrrigationSituation/WidgetStyle.css",
+    "inputFile": "SCSS/Widget/_IrrigationSituation/WidgetStyle.scss"
+  },
+  {
+    "outputFile": "SCSS/Views/WaterSituation/DailyIrrigaWaterSituation/PageStyle.css",
+    "inputFile": "SCSS/Views/WaterSituation/DailyIrrigaWaterSituation/PageStyle.scss"
+  }
+]

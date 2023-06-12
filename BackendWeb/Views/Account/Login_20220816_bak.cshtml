@@ -1,0 +1,179 @@
+﻿@using BackendWeb.Models
+@model LoginViewModel
+@{Layout = null;}
+@{
+ViewBag.Title = "登入 農業水資源智慧決策支援平台";
+    //Layout = "~/Views/Shared/_LayoutLoginPage.cshtml";
+}
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <script>
+        var dojoConfig = {
+            has: {
+                "esri-featurelayer-webgl": 1
+            }
+        };
+    </script>
+    <!-- Favicon icon -->
+    <link rel="icon" href="~/Media/Image/favicon.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    @Styles.Render("~/Adminty/css")
+</head>
+<style>
+    section#loginForm {
+        background-image: url('../../Images/background.JPG') !important;
+        background-size: cover;
+        background-position: bottom;
+    }
+
+        section#loginForm:before {
+            width: 100%;
+            height: 100%;
+            content: '';
+            position: absolute;
+            /*filter: blur(2px) brightness(0.45);*/
+            /*background-image: url('../../Img/login_Bg.jpg');*/
+            background-size: cover;
+        }
+
+    .login-block .auth-box {
+        margin: 20px auto 0 auto;
+        max-width: 420px;
+        padding: 30px 0px 0px 0px;
+        background: #fff9;
+    }
+
+    #loginForm .login-title-part {
+        margin-bottom: 120px;
+    }
+
+        #loginForm .login-title-part .title-part-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            #loginForm .login-title-part .title-part-top h1 {
+                font-size: 3rem;
+                font-weight: 800;
+                font-family: 微軟正黑體;
+                color: white;
+                text-shadow: 3px 3px 4px black;
+                padding: 15px;
+            }
+
+            #loginForm .login-title-part .title-part-top img {
+                //width: 120px;
+                height: 120px;
+            }
+
+        #loginForm .login-title-part .title-part-bottom {
+            display: flex;
+            justify-content: center;
+        }
+
+            #loginForm .login-title-part .title-part-bottom h1 {
+                font-size: 3.6rem;
+                font-weight: 800;
+                font-family: 微軟正黑體;
+                color: white;
+                text-shadow: 3px 3px 4px black;
+                padding: 15px;
+            }
+</style>
+<section id="loginForm" class="login-block">
+    <!-- Container-fluid starts -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="login-title-part">
+                    <div class="title-part-top">
+                        <img src="~/images/logo.png" />
+                        <img src="~/images/title.png" class="image" />
+                    </div>
+                    </div>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- Authentication card start -->
+
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="login-title-part">
+                             
+                                <div class="title-part-bottom">
+                                    <h1>農業水資源智慧決策支援平台</h1>
+                                </div>
+                            </div>
+                            @*<div class="text-center">
+                                <img src="..\files\assets\images\logo.png" alt="logo.png">
+                            </div>*@
+                            <div class="auth-box card">
+                                <div class="card-block">
+                                    @*<div class="row m-b-20">
+                                        <div class="col-md-12">
+                                            <h3 class="text-center">Sign In</h3>
+                                        </div>
+                                    </div>*@
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group form-primary">
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "輸入帳號" })
+                                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                        <span class="form-bar"></span>
+                                    </div>
+                                    <div class="form-group form-primary">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "輸入密碼" })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                        <span class="form-bar"></span>
+                                    </div>
+                                    @*<div class="m-t-25 text-left">
+                                        <div class="col-12">
+                                            <div class="checkbox-fade fade-in-primary d-">
+                                                <label>
+                                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                                    <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                    <span class="text-inverse">Remember me</span>
+                                                </label>
+                                            </div>
+                                            <div class="forgot-phone text-right f-right">
+                                                <a href="auth-reset-password.htm" class="text-right f-w-600"> Forgot Password?</a>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    <div class="row m-t-30">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">登入</button>
+                                        </div>
+                                    </div>
+                                    @*<hr>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <p class="text-inverse text-left m-b-0">Thank you.</p>
+                                            <p class="text-inverse text-left"><a href="index-1.htm"><b class="f-w-600">Back to website</b></a></p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <img src="..\files\assets\images\auth\Logo-small-bottom.png" alt="small-logo.png">
+                                        </div>
+                                    </div>*@
+                                </div>
+                            </div>
+                        }
+                        <!-- end of form -->
+                    </div>
+                    <!-- end of col-sm-12 -->
+                </div>
+                <!-- end of row -->
+            </div>
+            <!-- end of container-fluid -->
+
+</section>

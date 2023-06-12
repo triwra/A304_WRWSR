@@ -1,0 +1,88 @@
+﻿
+.pcoded {
+    .pcoded-navbar[navbar-theme="theme1"] {
+        background-color: $menu_bgColor;
+
+        .main-menu {
+            background-color: $menu_bgColor;
+
+            .pcoded-navigatio-lavel {
+                color: $menu_group_title_txtColor;
+                padding: 15px 15px 0px;
+                font-size: 1.1rem;
+                font-weight: bold;
+            }
+
+            ul.pcoded-item {
+                .pcoded-mtext {
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+
+                li {
+
+                    &.pcoded-trigger {
+                        a:nth-of-type(1)
+                        {
+                            /*background-color: #2ba09f;*/
+                        }
+                    }
+
+                    &:not(.disabled) {
+                        li:not(.disabled) {
+                            a {
+                                .pcoded-mtext {
+                                    color: $menu_group_item_txtColor
+                                }
+                            }
+                        }
+
+
+
+
+                        &:hover {
+                            & > a {
+                                .pcoded-mtext {
+                                    color: $menu_group_item_TxtColor--hover;
+                                }
+                            }
+                        }
+                    }
+
+                    &.disabled {
+                        &:hover {
+                            a {
+                                background-color: transparent;
+                                color: $menu_group_itemColor--disabled;
+
+                                &:after {
+                                    color: $menu_group_itemColor--disabled;
+                                }
+                            }
+                        }
+
+                        a {
+                            color: $menu_group_itemColor--disabled;
+                            cursor: not-allowed;
+
+                            .pcoded-micon {
+                                i {
+                                    color: $menu_group_itemColor--disabled;
+                                }
+                            }
+
+                            &:after {
+                                color: $menu_group_itemColor--disabled;
+                            }
+                        }
+
+                        &.pcoded-hasmenu a {
+                            cursor: not-allowed;
+                            transition-duration: 0s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,149 @@
+﻿@using DBClassLibrary.UserDomainLayer.ActionLogModel
+@model ContentQueryOption
+
+@{
+    ViewBag.Title = "存取記錄查詢";
+    var action = "DownloadData";
+    var controller = ViewContext.RouteData.Values["controller"].ToString();
+    var unitList = (SelectList)ViewBag.UnitList;
+
+}
+
+@section header { }
+
+<div class="page-body">
+    <h2>存取記錄查詢</h2>
+    <div class="row row-cards">
+        <!--設定-->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    @Html.ValidationSummary("", new { @class = "alert-danger" })
+
+                    @using (Html.BeginForm(action, controller, FormMethod.Post,
+                        new { @class = "form-inline", id = "formQuery", role = "form" }))
+                    {
+                        <table class="table table-vcenter card-table">
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        @Html.LabelFor(m => m.UnitID)
+                                    </th>
+                                    <td>
+                                        @Html.DropDownListFor(m => m.UnitID, unitList, "請選擇"
+                                            , htmlAttributes: new { @class = "mlSelect form-control" })
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th style="width: 10%;">
+                                        @Html.LabelFor(m => m.StartDate)
+                                    </th>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.StartDate, "{0:yyyy-MM-dd}",
+                                            htmlAttributes: new
+                                                 {
+                                                     @class = "form-control",
+                                                     @placeholder = "yyyy/MM/dd",
+                                                     @maxlength = "12",
+                                                     @type = "date"
+                                                 })
+                                        @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th style="width: 10%;">
+                                        @Html.LabelFor(m => m.EndDate)
+                                    </th>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.EndDate, "{0:yyyy-MM-dd}",
+                                            htmlAttributes: new
+                                                 {
+                                                     @class = "form-control",
+                                                     @placeholder = "yyyy/MM/dd",
+                                                     @maxlength = "12",
+                                                     @type = "date"
+                                                 })
+                                        @Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th style="width: 10%;">
+                                        @Html.LabelFor(m => m.RealName)
+                                    </th>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.RealName, new { @class = "form-control query-control" })
+                                        @Html.ValidationMessageFor(m => m.RealName, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        @Html.HiddenFor(m => m.PageIndex)
+                        @Html.HiddenFor(m => m.PageSize)
+                        @Html.HiddenFor(m => m.FrontEnd)
+
+                        <div class="row align-items-center mw-100">
+                            <div class="col">
+                            </div>
+                            <div class="col-auto">
+                                <div class="btn-list">
+                                    <button id="btnQuery" type="button" class="btn btn-primary">
+                                        <span class=""></span> 查詢
+                                    </button>
+                                    <button id="btnExportData" type="submit" class="btn btn-default">
+                                        <span class=""></span> 資料下載
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <!--表格-->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="" style="margin:auto;">
+                        <table id="tblData"></table>
+
+                    </div>
+                    <br />
+                    <div class="" style="margin: auto;">
+                        <div id="pager" class="invisible">
+                            <div id="pager"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+
+    <script src="~/Scripts/View/ActionLog/Index.js?20220826"></script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var getDataListUrl = "@Url.Action("GetDataList")";
+        var pagedPartialUrl = "@Url.Action("PagedPartial")";
+        var pagedPageIndexString = "/ActionLog?page=";
+        var DownloadDataUrl = "@Url.Action("DownloadData")";
+
+    </script>
+}

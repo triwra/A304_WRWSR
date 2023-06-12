@@ -1,0 +1,41 @@
+﻿div[class*=cwb-rain-legend] {
+  background: rgba(255, 255, 255, 0.7019607843);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+div[class*=cwb-rain-legend] .legend-title {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  color: #2b2b2b;
+}
+div[class*=cwb-rain-legend] .legend-entry {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  align-content: center;
+}
+div[class*=cwb-rain-legend] .legend-entry .entry-marker {
+  padding: 0.2rem 0.5rem;
+}
+div[class*=cwb-rain-legend] .legend-entry .entry-marker .marker {
+  width: 2rem;
+  height: 1rem;
+  border: 1px solid #6b6d6b;
+  border-radius: 0.2rem;
+}
+div[class*=cwb-rain-legend] .legend-entry .entry-txt {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.vertical-divider {
+  margin: 0 0.5rem 0.5rem 0;
+  width: 1px;
+  background: #e5e5e5;
+  height: 2rem;
+}
+
+.form-selectgroup {
+  align-items: center;
+}

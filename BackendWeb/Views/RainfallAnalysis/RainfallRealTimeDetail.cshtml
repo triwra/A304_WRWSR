@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "即時雨量";
+    var AreaID = ViewBag.AreaID;
+    var datatime = ViewBag.datatime;
+    var AreaOptionList = (SelectList)ViewBag.AreaOptionList;
+    DateTime MaxDataTime = ViewBag.MaxMinAvgRainValueRealTimeDataTime.MaxDataTime;
+    MaxDataTime.ToString();
+    DateTime MinDataTime = ViewBag.MaxMinAvgRainValueRealTimeDataTime.MinDataTime;
+}
+
+@section header {
+    <link href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="~/JSLib/BootstrapDatetimepickerMaster/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/SCSS/Views/RainfallAnalysis/RainfallRealTime/Detail.min.css" rel="stylesheet" />
+    @*<link href="~/SCSS/Views/Home/index/PageStyle.min.css" rel="stylesheet" />*@
+}
+
+<div id="RainfallRealTimeAvg" class="card">
+    <div class="card-header">
+        <h5 style="font-size: 20px;font-family: 微軟正黑體;">累積雨量查詢</h5>
+        <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                @*<i class="fas fa-compress" title="全螢幕"></i>
+                    <i class="fas fa-sliders-h" title="選項"></i>*@
+                <li><i class="feather minimize-card icon-plus" title="展開"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-block">
+        <div class=" ">
+            @*<h4 class="sub-title">
+                    排名查詢：
+                </h4>*@
+            <div id="FarmSelectionPart" class="row" style="flex-wrap: nowrap;">
+                <h4 class="sub-title" style="align-self: center;">
+                    管理處選擇：
+                </h4>
+                <div class="selection-elem">
+                    @Html.DropDownList("AreaOptionList", AreaOptionList, null, htmlAttributes: new { @id = "AreaOptionList", @name = "select", @class = "col-md-auto form-control form-control-primary w-100" })
+                </div>
+            </div>
+            <div id="DateTimeSelectionPart" class="option row" style="align-items: baseline; flex-wrap: nowrap;">
+                <h4 class="sub-title" style="align-self: center;">
+                    日期：
+                </h4>
+                <div class="datePickerGroup">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                        @Html.Editor("DatePicker", new { htmlAttributes = new { data_toggle = "datepicker", @id = "DatePicker", @class = "form-control", @autocomplete = "off" } })
+                    </div>
+                </div>
+                <div id="MaxMinDateHint" class="icon">
+                        <i class="info fas fa-info-circle clickable" style="pointer-events: none;" type="button" disabled></i>
+                </div>
+
+            </div>
+            @*<div id="DateTimeSelectionPart" class="option row col-xl-4 m-0" style="align-items: baseline; flex-wrap: nowrap;">
+                    <h4 class="sub-title w2" style="align-self: center;">
+                        時間：
+                    </h4>
+                    <div class="datePickerGroup w-100">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                            @Html.Editor("TimePicker", new { htmlAttributes = new { data_toggle = "datepicker", @id = "TimePicker", @class = "form-control", @autocomplete = "off" } })
+                        </div>
+                    </div>
+                </div>*@
+            <div class="row m-0 col-xl-12 w-100" style="justify-content: flex-end;">
+                <div id="BtnQuery" class="btn btn-primary pull-right clearfix" style=" float: right;">查詢</div>
+            </div>
+        </div>
+        <hr>
+        <div id="data-time" style="text-align:right;font-family: 微軟正黑體;" class="clearfix"><h6 class="text"></h6></div>
+        <table id="datatable"></table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+
+    <script src="~/JSLib/LINQ/JSLINQ.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/BootstrapDatetimepickerMaster/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/JSLib/BootstrapDatetimepickerMaster/js/locales/bootstrap-datetimepicker.zh-TW.js"></script>
+    <!---------------------------------------------------------------------------------------->
+    <script src="~/Scripts/View/RainfallAnalysis/AjaxClass.js"></script>
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+
+    <script>
+        var Datatime = "@datatime";
+        
+        var AreaID = "@AreaID";
+        var MaxDataTime = `@MaxDataTime.ToString("yyyy-MM-dd")`;
+        var MinDataTime = `@MinDataTime.ToString("yyyy-MM-dd")`;
+        if (Datatime == '0001-01-01 00:00:00') Datatime = MaxDataTime;
+        var ajax_src = {
+            GetAreaAverageRainValueRealTime: "@Url.Action("GetAreaAverageRainValueRealTime", "RainfallAnalysis")",
+            GetRainfallRealTimeInfo : "@Url.Action("GetRainfallRealTimeInfo", "RainfallAnalysis")",
+        }
+        console.log(AreaID, Datatime);
+    </script>
+
+    <script src="~/Scripts/View/RainfallAnalysis/RainfallRealTime/Detail.js"></script>
+}
+
+
+

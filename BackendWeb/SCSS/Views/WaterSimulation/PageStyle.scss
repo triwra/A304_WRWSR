@@ -1,0 +1,1251 @@
+﻿
+@import "../../element/popoverstyle";
+@import "../../theme/element/checkbox";
+.top_part {
+    h1 {
+        flex-grow: 1;
+    }
+
+    .right-part {
+        .function-part {
+            .fas-icon.circle {
+                border-radius: 500px;
+            }
+
+            .fas-icon.invers {
+                background-color: #607d8b;
+
+                i {
+                    color: white;
+                }
+            }
+
+            .fas-icon.invers:hover {
+                background-color: #659cb7;
+                box-shadow: 2px 2px 3px 3px #c4c4c4ab;
+            }
+
+            .fas-icon.invers:active {
+                background-color: #659cb7;
+                box-shadow: none;
+            }
+
+            .fas-icon {
+                display: flex;
+                width: 40px;
+                height: 40px;
+                justify-content: center;
+                transition-duration: 0.3s;
+                outline: none;
+                border: none;
+
+                i {
+                    font-size: x-large;
+                    color: #f44336;
+                    text-align: center;
+                    margin: 0;
+                    align-self: center;
+                }
+            }
+        }
+
+        .function-part {
+            display: flex;
+
+            div {
+                padding: 5px;
+            }
+
+            .dropdown {
+                .dropdown-menu.btm {
+                    top: -16px !important;
+                    left: -34px !important;
+                    box-shadow: 2px 2px 2px 2px #dad8d8a1;
+                }
+
+                .dropdown-menu.btm:after {
+                    top: 36px;
+                    right: 26px;
+                    transform: rotate(225deg);
+                }
+
+                .dropdown-menu {
+                    overflow: visible;
+                    border: none;
+                    top: 13px !important;
+                    left: -4px !important;
+                    padding: 5px 0px;
+                    margin: 0px;
+                    box-shadow: 4px 4px 2px 2px #dad8d8a1;
+
+                    a {
+                        font-size: 16px;
+                    }
+
+                    a:active {
+                        background: white;
+                        color: black;
+                    }
+                }
+
+                .dropdown-menu:after {
+                    content: "";
+                    position: absolute;
+                    top: -10px;
+                    right: 30px;
+                    transform: rotate(45deg);
+                    border: 10px solid #fff;
+                    border-right-color: transparent;
+                    border-bottom-color: transparent;
+                    box-shadow: -10px -9px 23px 1px rgba(0,0,0,.1);
+                }
+            }
+        }
+
+        .function-part.btm {
+            position: fixed;
+            z-index: 110;
+            bottom: 35px;
+            right: 50px;
+        }
+    }
+
+    display: flex;
+}
+
+.card {
+    .flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .flex.center {
+        justify-content: center;
+    }
+
+    @media (max-width: 1309px) {
+        .flex.center {
+            justify-content: initial;
+        }
+    }
+
+    .card-header {
+        h5 {
+            font-size: 20px;
+        }
+    }
+
+    .card-body {
+        .option {
+            .setting-container {
+                padding: 5px 0px;
+
+                .header-part {
+                    align-self: center;
+                    min-width: 170px;
+
+                    .option-title {
+                        font-size: 16px;
+                        font-weight: 900;
+                        text-align: end;
+                    }
+
+                    @media (max-width: 1309px) {
+                        .option-title {
+                            text-align: initial;
+                        }
+                    }
+                }
+            }
+
+            .datePickerGroup-container, .valueInputGroup-conatiner {
+                width: 850px;
+                background: whitesmoke;
+                padding: 15px;
+                border-radius: 5px;
+            }
+        }
+
+        .option.collapsible {
+            width: 100%;
+            margin: auto;
+            min-width: 215px;
+            max-width: 950px;
+
+            .header-part {
+                display: flex;
+                background-color: #e5e5e5;
+                padding: 5px 15px;
+                border-radius: 5px 5px 0px 0px;
+
+                .option-title {
+                    flex-grow: 1;
+                    text-align: initial;
+                }
+
+                button {
+                    border: none;
+                    background: no-repeat;
+                    font-size: 16px;
+                }
+
+                button:focus {
+                    outline: none;
+                }
+
+                button:hover {
+                    opacity: 0.8;
+                }
+            }
+
+            .datePickerGroup-container, .valueInputGroup-conatiner {
+                width: inherit;
+                background: whitesmoke;
+                padding: 15px;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
+#cardInitSetting {
+    .card-header {
+        display: flex;
+
+        .header-part {
+            flex-grow: 1;
+        }
+
+
+        .card-header-right {
+            top: 0px;
+            border-radius: 0 0 0 7px;
+            right: auto;
+            top: auto;
+            display: inline-block;
+            float: right;
+            padding: initial;
+            position: initial;
+
+            button {
+                border: none;
+                background: no-repeat;
+                font-size: 16px;
+            }
+
+            button:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .card-body {
+        #SimulationTimeSettingPart {
+            .datePickerGroup-container {
+                .datePickerGroup {
+                    input {
+                        font-size: 16px;
+                        text-align: center;
+                        font-weight: 600;
+                        max-width: 150px;
+                    }
+                }
+
+                .dateRangeMiddleTxt {
+                    font-size: 16px;
+                    padding: 0px 5px;
+                    align-self: center;
+                }
+
+                .input-group {
+                    margin: 5px;
+                    width: auto;
+
+                    input {
+                        font-size: 16px;
+                        text-align: center;
+                        font-weight: 600;
+                    }
+
+                    .cbk-elem {
+                        align-self: center;
+                        margin: 0px 15px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+        #EffectiveStorageSettingPart {
+            .valueInputGroup-conatiner {
+                .valueInputGroup {
+                    .btn-group {
+
+                        button[disabled="disabled"] {
+                            background-color: #a9a9a9;
+                            cursor: not-allowed !important;
+                        }
+
+                        button[disabled="disabled"]:hover {
+                            background-color: #a9a9a9 !important;
+                        }
+
+                        button[disabled="disabled"]:before {
+                            background-color: #a9a9a9;
+                        }
+
+                        button {
+                            background-color: #87b94c;
+                            font-size: 16px;
+                            font-weight: 700;
+                            margin: 5px;
+                        }
+
+                        button:hover {
+                            background-color: #016d6f !important;
+                        }
+
+                        button:before {
+                            background-color: #b5d590;
+                        }
+
+                        input {
+                            margin: 5px;
+                        }
+                    }
+
+                    .input-group {
+                        margin: 5px;
+
+                        input {
+                            font-size: 16px;
+                            text-align: center;
+                            font-weight: 600;
+                        }
+
+                        .cbk-elem {
+                            align-self: center;
+                            margin: 0px 15px;
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+
+        #HistoryStorageSettingPart {
+            input#HistoryYear {
+                font-size: 16px;
+                text-align: center;
+                font-weight: 600;
+                max-width: 300px;
+                margin: 5px;
+            }
+        }
+
+        #querybtnPart {
+            .valueInputGroup-conatiner {
+                min-height: 68px;
+            }
+
+            .btn-group {
+                display: flex;
+                justify-content: flex-end;
+
+                button {
+                    background: #607d8b;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: white;
+                    padding: 13px 25px;
+                    outline: none;
+                    border: none;
+                    border-radius: 5px;
+                    transition-duration: 0.25s;
+                }
+
+                button.circle {
+                    background: #dddddd;
+                    color: #607d8b;
+                    border-radius: 650px;
+                    padding: 0;
+                    width: 40px;
+                    height: 40px;
+                    margin: 5px;
+
+                    i {
+                        margin: 0px;
+                    }
+                }
+
+                button:hover {
+                    background-color: #659cb7;
+                    box-shadow: 2px 2px 3px 3px #c4c4c4ab;
+                }
+
+                button:active {
+                    background-color: #607d8b;
+                    box-shadow: none;
+                }
+
+                #startSimulation.btm {
+                    right: 150px;
+                }
+
+                #clearAllSetting.btm {
+                    right: 40px;
+                }
+
+                #addNewMethodSection.btm {
+                    right: 90px;
+
+                    #functionMenuButton {
+                        padding: 0px;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 900px;
+                    }
+
+
+                    i.fas {
+                        margin: 0px;
+                    }
+                }
+
+                .btm {
+                    position: fixed;
+                    bottom: 33px;
+                    z-index: 109;
+                    transition-duration: 0s;
+                }
+            }
+        }
+    }
+}
+
+
+.cardMethodArea {
+    .cardMethodSetting {
+        .card-body {
+            #MethodNameSettingPart {
+                .valueInputGroup-conatiner {
+                    .valueInputGroup {
+                        .input-group {
+                            margin: 5px;
+
+                            input {
+                                font-size: 16px;
+                                text-align: left;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #InflowSettingPart {
+                .valueInputGroup-conatiner {
+                    .valueInputGroup {
+                        .btn-group {
+                            button {
+                                background-color: #87b94c;
+                                font-size: 16px;
+                                font-weight: 700;
+                                margin: 5px;
+                            }
+
+                            button:hover {
+                                background-color: #016d6f !important;
+                            }
+
+                            button:before {
+                                background-color: #b5d590;
+                            }
+
+                            input {
+                                margin: 5px;
+                            }
+
+                            .cbx {
+                                display: flex;
+                                margin: 0;
+
+                                .cbk-elem {
+                                    align-self: center;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            #UsedWaterSettingPart {
+                .valueInputGroup-conatiner {
+                    .valueInputGroup {
+                        .checkbox-group {
+                            .selection-elem {
+                                margin: 0px 5px;
+
+                                span {
+                                    font-size: 15px;
+                                    color: #828282;
+                                    font-weight: 600;
+                                }
+
+                                select {
+                                    font-size: 16px;
+                                    height: initial;
+                                    min-width: 170px;
+                                    text-align-last: center;
+                                    text-align: center;
+                                }
+                            }
+
+                            .cbk-elem {
+                                align-self: center;
+                            }
+                        }
+                    }
+                }
+
+                .LostPercentage {
+                    /* width: 100%; */
+                    margin-left: 15px;
+                    padding-left: 5px;
+                    /* border-left: 2px solid #87b94c; */
+                    display: flex;
+                    align-content: center;
+                    align-items: center;
+                    text-align: center;
+
+                    .title {
+                        cursor: default;
+                        font-size: 18px;
+                        align-self: center;
+                        font-weight: 800;
+                        padding: 5px;
+                        text-align: end;
+                    }
+
+                    .divider {
+                        cursor: default;
+                        font-size: 18px;
+                        align-self: center;
+                        font-weight: 800;
+                        padding: 5px;
+                    }
+
+                    .percentage-txt {
+                        cursor: default;
+                        font-size: 18px;
+                        align-self: center;
+                        font-weight: 800;
+                        padding: 5px;
+                    }
+
+                    input {
+                        font-size: 16px;
+                        text-align: center;
+                        font-weight: 600;
+                        max-width: 80px;
+                        width: 100%;
+                        height: max-content;
+                    }
+                }
+            }
+
+            #IrrigationSettingPart {
+                .form-check-container {
+                    display: flex;
+                    align-items: center;
+                    align-content: center;
+                    flex-direction: row;
+
+                    .form-check {
+                        padding: 5px;
+                        min-width: 70px;
+                        font-size: 16px;
+
+                        input {
+                            position: initial;
+                            margin-left: 0px;
+                        }
+
+                        .form-check-label {
+                            padding-left: 0rem;
+                        }
+                    }
+
+
+                    fieldset.form-group {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        align-content: center;
+                        flex-wrap: wrap;
+                        flex-direction: row;
+                        margin: 0 !important;
+                        border: 1px solid #ccc;
+                        padding: 5px 10px;
+                        width: 100%;
+                    }
+                }
+
+                .valueInputGroup-conatiner {
+                    .valueInputGroup {
+                        .checkbox-group {
+                            .input-group {
+                                margin-bottom: 0px;
+                                border: 1px solid #d1d1d1;
+                                padding: 15px 5px;
+                                border-radius: 5px;
+                                margin: 15px 0px;
+
+                                .input-group-title {
+                                    align-self: center;
+                                    margin-right: 10px;
+                                    font-size: 16px;
+                                    color: #828282;
+                                    font-weight: 600;
+                                    min-width: 50px;
+                                }
+
+                                .input-group-container {
+                                    width: inherit;
+
+                                    .flex {
+                                        flex-wrap: nowrap;
+                                        width: inherit;
+                                    }
+                                }
+
+                                .cbk-elem {
+                                    min-width: 18px;
+                                    align-self: center;
+                                }
+
+                                .input-elem {
+                                    margin: 0px 5px;
+                                    width: inherit;
+
+                                    span {
+                                        font-size: 15px;
+                                        color: #828282;
+                                        font-weight: 600;
+                                    }
+
+                                    input {
+                                        font-size: 16px;
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #DelayIrrigSettingPart {
+            .valueInputGroup-conatiner {
+                .valueInputGroup {
+                    .datePickerGroup-container {
+                        padding: 0px;
+                        width: auto;
+
+                        .datePickerGroup {
+                            input {
+                                font-size: 16px;
+                                text-align: center;
+                                font-weight: 600;
+                                max-width: 150px;
+                                width: 100%
+                            }
+                        }
+
+                        .dateRangeMiddleTxt {
+                            font-size: 16px;
+                            padding: 0px 5px;
+                            align-self: center;
+
+                            @media (max-width: 598px) {
+                                width: 100%;
+                                text-align: center;
+                            }
+                        }
+
+
+
+                        .input-group {
+                            margin: 5px;
+                            width: auto;
+
+                            input {
+                                font-size: 16px;
+                                text-align: center;
+                                font-weight: 600;
+                            }
+
+                            .cbk-elem {
+                                align-self: center;
+                                margin: 0px 15px;
+                                font-size: 16px;
+                            }
+                        }
+                    }
+
+                    .input-group {
+                        margin-bottom: 0px;
+                        border: 1px solid #d1d1d1;
+                        padding: 15px 5px;
+                        border-radius: 5px;
+                        margin: 15px 0px;
+
+                        .input-group-title {
+                            align-self: center;
+                            margin-right: 10px;
+                            font-size: 16px;
+                            color: #828282;
+                            font-weight: 600;
+                            min-width: 100px;
+                        }
+
+                        .input-group-content {
+                            display: flex;
+                            flex-wrap: wrap;
+                            margin: 5px 0px;
+
+                            select {
+                                margin: 0px 20px 0px 0px;
+                            }
+
+                            .delay-part {
+
+                                div.flex {
+                                    flex-wrap: nowrap;
+                                }
+
+                                span {
+                                    cursor: default;
+                                    font-size: 18px;
+                                    align-self: center;
+                                    font-weight: 800;
+                                    padding: 5px;
+                                }
+
+                                input {
+                                    font-size: 16px;
+                                    text-align: center;
+                                    font-weight: 600;
+                                    max-width: 100px;
+                                    width: 100%;
+                                }
+
+                                i {
+                                    font-size: 22px;
+                                    align-self: center;
+                                    padding: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #DiscountSettingPart {
+            .valueInputGroup-conatiner {
+                .valueInputGroup {
+                    .datePickerGroup-container {
+                        padding: 0px;
+                        width: auto;
+
+                        .datePickerGroup {
+                            input {
+                                font-size: 16px;
+                                text-align: center;
+                                font-weight: 600;
+                                max-width: 150px;
+                                width: 100%
+                            }
+                        }
+
+                        .dateRangeMiddleTxt {
+                            font-size: 16px;
+                            padding: 0px 5px;
+                            align-self: center;
+
+                            @media (max-width: 598px) {
+                                width: 100%;
+                                text-align: center;
+                            }
+                        }
+
+
+
+                        .input-group {
+                            margin: 5px;
+                            width: auto;
+
+                            input {
+                                font-size: 16px;
+                                text-align: center;
+                                font-weight: 600;
+                            }
+
+                            .cbk-elem {
+                                align-self: center;
+                                margin: 0px 15px;
+                                font-size: 16px;
+                            }
+                        }
+                    }
+
+                    .input-group {
+                        margin-bottom: 0px;
+                        border: 1px solid #d1d1d1;
+                        padding: 15px 5px;
+                        border-radius: 5px;
+                        margin: 15px 0px;
+
+                        .input-group-title {
+                            align-self: center;
+                            margin-right: 10px;
+                            font-size: 16px;
+                            color: #828282;
+                            font-weight: 600;
+                            min-width: 100px;
+                        }
+
+                        .input-group-content {
+                            display: flex;
+                            flex-wrap: wrap;
+
+                            .percent-part {
+                                margin: 0px 20px;
+
+                                div.flex {
+                                    flex-wrap: nowrap;
+                                }
+
+                                input {
+                                    font-size: 16px;
+                                    text-align: center;
+                                    font-weight: 600;
+                                    max-width: 80px;
+                                    width: 100%;
+                                }
+
+                                i {
+                                    font-size: 22px;
+                                    align-self: center;
+                                    padding: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #IntermittentSettingPart {
+            .valueInputGroup-conatiner {
+                .valueInputGroup {
+                    .datePickerGroup-container {
+                        padding: 0px;
+                        width: auto;
+
+                        .datePickerGroup {
+                            input {
+                                font-size: 16px;
+                                text-align: center;
+                                font-weight: 600;
+                                max-width: 150px;
+                                width: 100%
+                            }
+                        }
+
+                        .dateRangeMiddleTxt {
+                            font-size: 16px;
+                            padding: 0px 5px;
+                            align-self: center;
+
+                            @media (max-width: 598px) {
+                                width: 100%;
+                                text-align: center;
+                            }
+                        }
+
+
+
+                        .input-group {
+                            margin: 5px;
+                            width: auto;
+
+                            input {
+                                font-size: 16px;
+                                text-align: center;
+                                font-weight: 600;
+                            }
+
+                            .cbk-elem {
+                                align-self: center;
+                                margin: 0px 15px;
+                                font-size: 16px;
+                            }
+                        }
+                    }
+
+                    .input-group {
+                        margin-bottom: 0px;
+                        border: 1px solid #d1d1d1;
+                        padding: 15px 5px;
+                        border-radius: 5px;
+                        margin: 15px 0px;
+
+                        .input-group-title {
+                            align-self: center;
+                            margin-right: 10px;
+                            font-size: 16px;
+                            color: #828282;
+                            font-weight: 600;
+                            min-width: 100px;
+                        }
+
+                        .input-group-content {
+                            display: flex;
+                            flex-wrap: wrap;
+
+                            .interval-part {
+                                margin: 0px 20px;
+
+                                div.flex {
+                                    flex-wrap: nowrap;
+                                }
+
+                                span {
+                                    cursor: default;
+                                    font-size: 18px;
+                                    align-self: center;
+                                    font-weight: 800;
+                                    padding: 5px;
+                                }
+
+                                input {
+                                    font-size: 16px;
+                                    text-align: center;
+                                    font-weight: 600;
+                                    max-width: 80px;
+                                    width: 100%;
+                                }
+
+                                i {
+                                    font-size: 22px;
+                                    align-self: center;
+                                    padding: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #querybtnPart {
+            .btn-group {
+                display: flex;
+                justify-content: flex-end;
+
+                button {
+                    background: #da382c;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: white;
+                    padding: 5px 15px;
+                    outline: none;
+                    border: none;
+                    border-radius: 5px;
+                    transition-duration: 0.25s;
+                }
+
+                button:hover {
+                    background-color: #f44336;
+                    box-shadow: 2px 2px 3px 3px #c4c4c4ab;
+                }
+
+                button:active {
+                    background-color: #f44336;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}
+
+
+#SimulationResult {
+    .table-part {
+        .table-info:hover {
+            border-color: #9d9d9d;
+        }
+
+        .table-info {
+            display: flex;
+            background-color: #d3d3d3;
+            border: 1px solid #d1d1d1;
+            border-bottom-color: transparent;
+            padding: 5px;
+            cursor: pointer;
+            transition-duration: 0.2s;
+
+            .title {
+                font-size: 18px;
+                font-weight: 900;
+                flex-grow: 1;
+            }
+
+            .unit {
+                font-size: 18px;
+                font-weight: 900;
+            }
+        }
+    }
+}
+
+
+#DayEffectiveStorageModal {
+    padding-right: 0px !important;
+
+    .modal-dialog {
+        @media (min-width: 576px) {
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .modal-content {
+            border: none;
+
+            .modal-header {
+            }
+
+            .modal-body {
+            }
+
+            .modal-footer {
+            }
+        }
+    }
+}
+
+.modal[role="dialog"] {
+    .flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .flex.center {
+        justify-content: center;
+    }
+
+    @media (max-width: 1309px) {
+        .flex.center {
+            justify-content: initial;
+        }
+    }
+
+    .size-xs[role="document"] {
+        @media (min-width: 576px) {
+            max-width: 500px;
+        }
+    }
+
+    .size-s[role="document"] {
+        @media (min-width: 576px) {
+            max-width: 600px;
+        }
+    }
+
+    .size-m[role="document"] {
+        @media (min-width: 576px) {
+            max-width: 750px;
+        }
+    }
+
+    .size-l[role="document"] {
+        @media (min-width: 576px) {
+            max-width: 900px;
+        }
+    }
+
+    .size-xl[role="document"] {
+        @media (min-width: 576px) {
+            max-width: 1200px;
+        }
+    }
+
+    .modal-dialog {
+        .modal-content {
+            border-radius: 0;
+            background: transparent;
+
+            .modal-header {
+                /*border-bottom: none;*/
+                border-top-right-radius: 15px;
+                border-top-left-radius: 15px;
+                /* border-top: 1px solid; */
+                background: white;
+
+                .modal-title {
+                    font-weight: 800;
+                    color: #545454
+                }
+
+                button.close {
+                    margin-top: 0px;
+
+                    i {
+                        font-size: 22px;
+                    }
+                }
+
+                button.close:focus {
+                    outline: none;
+                }
+            }
+
+            .modal-body {
+                background: white;
+
+                .datePickerGroup-container {
+                    .datePickerGroup {
+                        input {
+                            font-size: 16px;
+                            text-align: center;
+                            font-weight: 600;
+                            max-width: 150px;
+                        }
+                    }
+
+                    .dateRangeMiddleTxt {
+                        font-size: 16px;
+                        padding: 0px 5px;
+                        align-self: center;
+                    }
+                }
+
+                .option {
+                    .setting-container {
+                        padding: 5px 0px;
+
+                        .header-part {
+                            align-self: center;
+                            min-width: 100px;
+
+                            .option-title {
+                                font-size: 18px;
+                                font-weight: 900;
+                                text-align: end;
+                                color: #545454;
+                            }
+
+                            @media (max-width: 1309px) {
+                                .option-title {
+                                    text-align: initial;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                #QueryResult.txt {
+                    font-size: 18px;
+                    font-weight: 900;
+                    color: #545454;
+                }
+
+                #QueryResult.table {
+                    padding: 15px;
+                    margin-bottom: 0px;
+
+                    .bootstrap-table {
+                        border-bottom: 1px solid #e9ecef;
+                    }
+                }
+            }
+
+            .modal-footer {
+                background: white;
+                /*border-top: none;*/
+                border-bottom-right-radius: 15px;
+                border-bottom-left-radius: 15px;
+
+                .cndss-btn {
+                    outline: none;
+                    border: 1px solid transparent;
+                    border-radius: 5px;
+                    transition-duration: .25s;
+                    font-size: 16px;
+                    font-weight: 600;
+                    padding: 7px 25px;
+                }
+
+                .cndss-btn:focus {
+                    outline: none;
+                    box-shadow: none;
+                }
+
+                .cndss-btn:hover {
+                    box-shadow: 3px 5px 1px 1px #c4c4c470;
+                }
+
+                .cndss-btn.default {
+                    color: #000;
+                    border: 1px solid #e4e4e4;
+                    background-color: #dadada;
+                }
+
+                .cndss-btn.default:hover {
+                    color: #000;
+                    border: 1px solid #e4e4e4;
+                    background-color: #efefef;
+                }
+
+                .cndss-btn.default:active {
+                    background-color: #e4e4e4;
+                    box-shadow: none;
+                }
+
+                .cndss-btn.primary {
+                    color: white;
+                    background-color: #607d8b;
+                }
+
+                .cndss-btn.primary:hover {
+                    background-color: #659cb7;
+                }
+
+                .cndss-btn.primary:active {
+                    background-color: #607d8b;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}
+
+.controlBtnSet {
+    width: 280px;
+    height: 80px;
+    background: rgba(88,87,87,0.3);
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(209,209,209,0.5);
+    box-shadow: 3px 4px 4px 0 rgba(70,70,70,0.3);
+    z-index: 100;
+}
+
+.controlBtnSet.hide {
+    display: none;
+}

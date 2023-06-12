@@ -1,0 +1,78 @@
+﻿@using DBClassLibrary.UserDomainLayer.MenuModel
+@model BackendWeb.Controllers.MenuController.MenuFModel
+@{
+    ViewBag.Title = "我的最愛選單設定";
+    var menuList = ViewBag.MenuList as List<AppMenu>;
+}
+
+@section header {
+
+}
+
+<h3>我的最愛選單設定 :</h3>
+
+@using (Html.BeginForm("Favorite", "Menu", FormMethod.Post, new { @class = "", id = "formInput", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.CheckedMenu)
+    <div class="row">
+        <div class="panel-group col-md-5 col-md-offset-3">
+            @foreach (var menu in menuList)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span><strong>@(menu.Label)</strong></span>
+                        <div class="pull-right">
+                            <input id="Menu@(menu.Id)" type="checkbox" @(menu.Checked ? "checked" : "") data-toggle="toggle" data-onstyle="info" data-size="mini" data-on=" " data-off=" ">
+                        </div>
+                        <span class="glyphicon glyphicon-download tw-menu-move pull-right move-down"></span>
+                        <span class="glyphicon glyphicon-upload tw-menu-move pull-right move-up"></span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="tw-block-btn">
+        <input type="submit" class="btn btn-primary" value="確定" />
+        @Html.ActionLink("取消", "Index", "Home", null, new { @class = "btn btn-default" })
+    </div>
+}
+@if (TempData["Favorite"] != null)
+{
+    <div class="modal fade modal-register" id="modalRegister" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><span class="glyphicon glyphicon-check"></span> 我的最愛選單設定 </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-group">
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                <div class="alert alert-info text-center">
+                                    我的最愛選單已設定成功。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+    <script>
+        @if (TempData["Favorite"] != null)
+        {
+            @:$("#modalRegister").modal({ backdrop: "static", keyboard: false });
+        }
+    </script>
+    <script src="~/Scripts/View/MenuFavorite.js?v=1"></script>
+}
+

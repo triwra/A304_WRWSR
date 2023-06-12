@@ -1,0 +1,104 @@
+﻿.my-popover {
+    max-width: initial;
+    max-width: initial;
+    border-top-color: #39f;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: 0 3px 6px #ccc;
+    box-shadow: 0 3px 6px #ccc;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    position: absolute;
+    border-top-color: #5fc897;
+
+    .popover-header-part {
+        display: flex;
+
+        button.page {
+            place-self: center;
+            font-size: 30px;
+            list-style: none;
+            width: 35px;
+            height: 30px;
+            line-height: 0;
+            padding: 0;
+            padding-bottom: 6px;
+            background: transparent;
+            border: none;
+        }
+
+        button.page.hidden {
+            visibility: hidden;
+        }
+
+        button.page:hover {
+            background-color: rgb(229, 242, 255);
+        }
+
+        button.page:focus {
+            box-shadow: none;
+            outline: none;
+        }
+
+        .popover-header {
+            text-align: center;
+            font-weight: bold;
+            background-color: white;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+    }
+
+    .popover-body {
+        padding: 9px 9px;
+
+        .page.hidden {
+            display: none;
+        }
+
+        .btn {
+            padding: 0px;
+            width: 60px;
+            height: 60px;
+            /*font-weight: bold;*/
+            background: white;
+            transition-duration: 0.3s;
+
+
+            i {
+                font-style: normal;
+                margin-right: 0px;
+                color: #666666;
+            }
+        }
+
+        .btn.selected {
+            background-color: #5fc897 !important;
+            border-radius: 5px;
+            border: 1px solid #eaeaea;
+
+            i {
+                color: white;
+                font-weight: 600;
+            }
+        }
+
+        .btn:focus {
+            box-shadow: none;
+        }
+
+        .btn:hover {
+            background-color: #eaeaea;
+        }
+
+        input.input-box {
+            text-align: center;
+            max-width: 50px;
+            height: 50px;
+            margin: 5px;
+            border: none;
+            border: 1px solid #cccccc;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+}

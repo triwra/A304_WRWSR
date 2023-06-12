@@ -1,0 +1,32 @@
+﻿@using DBClassLibrary.DomainLayer.UserModel
+@model UserData
+@{
+    ViewBag.Title = "鎖定使用者";
+}
+
+<h3>鎖定使用者 :</h3>
+
+@using (Html.BeginForm("LockoutAccount", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="card-block alert alert-danger">
+        @Html.HiddenFor(m => m.UserName)
+        @Html.HiddenFor(m => m.RealName)
+        @Html.HiddenFor(m => m.Email)
+        鎖定使用者 : @Model.UserName<br />
+        鎖定後此使用者將無法登入。
+
+    </div>
+
+    <div class="tw-block-btn">
+        <input type="submit" class="btn btn-primary" value="鎖定此使用者" />
+        @Html.ActionLink("取消", "Index", "User", null, new { @class = "btn btn-default" })
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

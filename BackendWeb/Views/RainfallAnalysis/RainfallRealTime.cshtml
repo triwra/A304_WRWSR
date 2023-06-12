@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "即時雨量";
+}
+
+@section header {
+    <link href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="~/SCSS/Views/RainfallAnalysis/RainfallHistory/PageStyle.min.css" rel="stylesheet" />
+}
+
+<div id="RainfallRealTimeAvg" class="card col-xl-12 p-l-0 p-r-0">
+    <div class="card-header">
+        <h5 class="title">累積雨量查詢</h5>
+        <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                @*<i class="fas fa-compress" title="全螢幕"></i>
+                <i class="fas fa-sliders-h" title="選項"></i>*@
+                <li><i class="feather minimize-card icon-plus" title="展開"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-block">
+        <div id="data-time" style="text-align:right;font-family: 微軟正黑體;"><h6 class="text"></h6></div>
+        <table id="datatable"></table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
+    <script src="~/JSLib/LINQ/JSLINQ.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <!---------------------------------------------------------------------------------------->
+    <script src="~/Scripts/View/RainfallAnalysis/AjaxClass.js"></script>
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/View/RainfallAnalysis/RainfallRealTime/PageScript.js"></script>
+    <script>
+        var ajax_src = {
+            GetAreaAverageRainValueRealTime: "@Url.Action("GetAreaAverageRainValueRealTime", "RainfallAnalysis")",
+            GetRainfallRealTimeInfo : "@Url.Action("GetRainfallRealTimeInfo", "RainfallAnalysis")",
+        }
+    </script>
+}
+

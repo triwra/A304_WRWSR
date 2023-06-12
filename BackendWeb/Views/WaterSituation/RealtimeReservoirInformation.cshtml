@@ -1,0 +1,211 @@
+﻿@using DBClassLibrary.UserDomainLayer.UserInterfaceModel
+@{
+    ViewBag.Title = "Index";
+    var ReservoirList = ViewBag.ReservoirList;
+    var ReservoirYearList = ViewBag.ReservoirYearList;
+    var DailyReservoirList = ViewBag.DailyReservoirList;
+    string[] stationArry = ViewBag.stationArry;
+    var ReservoirYearList2 = ViewBag.ReservoirYearList;
+}
+
+@section header {
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin="" />
+    <link href="~/JSLib/datepicker-master/datepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
+          integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link href="~/SCSS/Views/WaterSituation/RealtimeReservoirInformation/PageStyle.min.css?@DateTime.Now.Ticks" rel="stylesheet" />
+
+    <style>
+        #map {
+            height: 750px;
+        }
+
+        .explain {
+            font-size: 14px;
+            line-height: 1.3;
+        }
+
+            .explain .red {
+                color: #e03015;
+                font-weight: bold;
+            }
+
+            .explain .orange {
+                color: #f08c6a !important;
+                font-weight: bold !important;
+            }
+
+        .wrwsr-panel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+        }
+
+            .wrwsr-panel.sty1 .widget.e4 {
+                padding: 0px;
+                margin-right: 18px;
+                margin-bottom: 10px;
+                background: white;
+                width: 100%;
+                min-height: 200px;
+                border-radius: 10px;
+                box-shadow: 0px 12px 20px rgba(14, 31, 53, 0.12);
+            }
+    </style>
+}
+
+<div class="page-body RealtimeReservoirInformation">
+
+    <div class="row row-cards">
+        <!--PageContent-->
+        <!--分頁-->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="form-selectgroup">
+                            <label class="form-selectgroup-item">
+                                <input type="radio" name="BoundaryType" value="1" class="form-selectgroup-input" checked="">
+                                <a href="/WaterSituation/RealtimeReservoirInformation" class="form-selectgroup-label">
+                                    水庫總覽
+                                </a>
+                            </label>
+                            <label class="form-selectgroup-item">
+                                <input type="radio" name="BoundaryType" value="2" class="form-selectgroup-input">
+                                <a href="/WaterSituation/SingleReservoirInformation" class="form-selectgroup-label">
+                                    單一水庫
+                                </a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            @*<div class="card">
+                <div class="card-body">*@
+            <div class="gauge-part-container">
+
+                <div class="reservoir-block-group">
+                    @foreach (SelectOption option in DailyReservoirList)
+                    {
+
+
+                        <div class="wrwsr-panel sty1 mb-2">
+                            <div class="widget e4 p-3 p-lg-3 ">
+
+                                @*<div class="card">
+                                    <div class="card-body">*@
+
+                                <div class="reservoir-block">
+                                    <div id="reservoir-@option.Value" class="reservoir-gauge">
+
+                                        <div class="reservoir-name">@option.Name</div>
+                                        <svg id="liquid-@option.Value" class="liquid-area"
+                                             style="width:133px;"></svg>
+
+                                        <div class="reservoir-info">
+                                            <div class="waterVal-title">有效蓄水量</div>
+                                            <div class="waterVal-txt">
+                                                <span class="waterVal-value">0</span>
+                                                <span class="waterVal-unit">/ 萬噸</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    }
+
+                </div>
+            </div>
+
+            @*</div>
+                </div>*@
+        </div>
+
+        @*<div class="col-md-12">*@
+
+        <div class="explain">
+            <ol style="font-size: 18px;list-style:none; padding:0px;">
+                <li>註1：曾文及烏山頭水庫採聯合運用，其有效蓄水量以兩水庫合計。</li>
+                <li>
+                    註2：<span class="orange">橘色</span>
+                    代表水位(蓄水量)介於運用規線下限及嚴重下限之間。
+                </li>
+                <li>
+                    註3：<span class="red">紅色</span>
+                    代表水位(蓄水量)低於運用規線嚴重下限。
+                </li>
+            </ol>
+        </div>
+
+        @*</div>*@
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="">
+                        <table id="datatable"></table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/4.0.2/moment-range.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-zh-TW.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.3.1/decimal.min.js"
+            integrity="sha512-Ou4M+sSU8oa+mE3juYqR3JmW633MUpMhe1cd+IusOtfjkMo8I3zXs4fRmjmCFqpRg5RK/geqoXBY8XRwFY2Rsg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
+            integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script src="~/JSLib/datepicker-master/datepicker.js" charset="big5"></script>
+    <script src="~/JSLib/datepicker-master/datepicker.zh-CN.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    @*<script src="~/Scripts/MyTool/MyDateTool.js"></script>*@
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/d3.v3.5.17.min.js"></script>
+    <script src="~/JSLib/liquidFillGauge.js"></script>
+    <script src="~/Scripts/View/WaterSituation/Common/Ajax.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/WaterSituation/Common/Chart.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/WaterSituation/RealtimeReservoirInformation/overall.js?@DateTime.Now.Ticks"></script>
+
+    <script>
+        let stationArry = @Html.Raw(Json.Encode(@stationArry));
+        var ajax_src = {
+            //水庫總覽
+            GetMultiLatestReservoirInfo: "@Url.Action("GetMultiLatestReservoirInfo", "WaterSituation")",
+            GetReservoirRuleDay: "@Url.Action("GetReservoirRuleDay", "WaterSituation")",
+            //單一水庫
+             GetHistoryReservoirDataRank: "@Url.Action("GetHistoryReservoirDataRank", "Reservoir")",
+        }
+        window['moment-range'].extendMoment(moment);
+    </script>
+}

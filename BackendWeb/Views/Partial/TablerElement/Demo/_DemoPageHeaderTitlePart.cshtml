@@ -1,0 +1,32 @@
+﻿@using BackendWeb.Helper
+@using DBClassLibrary.UserDomainLayer.MenuModel
+
+@{
+    var action = ViewContext.RouteData.Values["action"].ToString(); ;
+    var controller = ViewContext.RouteData.Values["controller"].ToString();
+
+    string strhtml = CommonHelper.GetBreadcrumbsHtml(controller, action,
+    this.ViewContext.HttpContext.Request.QueryString.ToString());
+
+    AppMenu MenuItem = CommonHelper.GetActionAppMenuData(controller, action);
+
+    if (strhtml != string.Empty)
+    {
+        <div class="row row-cards" style="padding: 0px 0px 0px 14px;">
+            <div class="row align-items-center">
+                <div class="Breadcrumbs">
+                    @Html.Raw(strhtml)
+                </div>
+            </div>
+
+            <div class="row align-items-center" style="padding: 8px 0px 0px 18px;">
+                <i class="BreadcrumbsICON @MenuItem.Glyphicon"></i>
+                <span class="BreadcrumbsTitle">
+                    @MenuItem.Label
+                </span>
+            </div>
+        </div>
+
+    }
+}
+

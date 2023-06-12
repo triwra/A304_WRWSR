@@ -1,0 +1,565 @@
+﻿body {
+    /*    padding-top: 50px;
+    padding-bottom: 18px;
+    font-family: 微軟正黑體;
+    font-size: 18px;
+    background-color: rgb(246, 248, 250);*/
+    background-color: #ffffff;
+}
+
+textarea {
+    resize: vertical;
+}
+
+@media only print {
+    body {
+        /*padding-top: 15px;*/
+    }
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 35px;
+    max-width: 1320px;
+    min-height: 700px;
+    color: #222222;
+    /*font: normal 100%/1.0 "Verdana", "Yu Gothic", "SimHei", "Open Sans", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;*/
+}
+
+.footer-content {
+    color: rgb(90, 120, 120);
+    background-color: rgb(217, 237, 247);
+    margin-top: 150px;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 1.0;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 100%;
+}*/
+
+.fixed-bottom {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+/* navbar define css */
+.navbar-default {
+    /*background-color: rgb(8, 185, 190);*/
+    background-color: #2f92ca;
+    color: #FFF;
+}
+
+    .navbar-default .navbar-header > a,
+    .navbar-default .navbar-nav > li > a {
+        color: #FFF;
+    }
+
+    .navbar-default .navbar-toggle:focus {
+        /*background-color: rgb(15, 190, 195);*/
+        background-color: #57A5D2;
+        color: #FFF;
+    }
+
+    .navbar-default .navbar-toggle,
+    .navbar-default .navbar-toggle:hover {
+        /*background-color: rgb(5, 180, 185);*/
+        background-color: #3986B3;
+        color: #FFF;
+    }
+
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: #FFF;
+        }
+    /* navbar font color */
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #000000;
+    }
+
+    .navbar-default .navbar-nav > .active > a:hover,
+    .navbar-default .navbar-nav > li > a:hover {
+        background-color: transparent;
+        color: #F3F3F3;
+        padding-bottom: 0.62em;
+        border-bottom: 0.45em solid #F3F3F3;
+    }
+
+/* Bootstrap 3 的卡片(Card) */
+.cardMain {
+    position: relative;
+    border: 0.1rem solid #e5e5e5;
+    border-radius: 10px;
+    background-color: #f3f5f7;
+    padding: 32px 32px 16px 32px;
+}
+
+.card {
+    position: relative;
+    border: 0.1rem solid #e5e5e5;
+    border-radius: 10px;
+    background-color: #FFF;
+}
+
+    /*照片卡片*/
+    .card .card-header {
+        border-radius: 0.4rem 0.4rem 0 0;
+        padding: .75rem 1.25rem;
+        background-color: #f5f5f5;
+        border-bottom: 0.1em solid #e5e5e5;
+        color: #4e5665;
+        font-weight: bold;
+    }
+
+/*查詢條件的選項*/
+.card-OptionItem {
+    border-radius: 0.4rem;
+    margin: 5px;
+    padding: 15px 5px 15px 5px;
+    background-color: #f3f5f7;    
+}
+    .card-OptionItem .card-OptionItem-Text > div {
+        background-color: #f3f5f7;
+        padding: 3px 5px 0px 5px;
+    }
+
+.card-block {
+    padding: 1.25rem;
+}
+
+.card-fixheight {
+    min-height: 105px;
+    max-height: 105px;
+    overflow: hidden;
+}
+
+.card-fixheight40 {
+    min-height: 50px;
+    max-height: 50px;
+    overflow: hidden;
+}
+
+.card-fixheight25 {
+    min-height: 25px;
+    max-height: 25px;
+    overflow: hidden;
+}
+
+.FileName-block {
+    border: 0.2rem solid #e5e5e5;
+    padding: .75rem 1.25rem;
+    background-color: white;
+    color: #4e5665;
+    font-weight: bold;
+    float: left;
+}
+
+#twScrollTop {
+    color: rgba(150, 150, 150, 0.3);
+    font-size: 220%;
+    cursor: pointer;
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    z-index: 99;
+    border: none;
+    outline: none;
+}
+
+/* Bootstrap table normal row color  */
+.table-striped > tbody > tr:nth-child(even) > td, .table-striped > tbody > tr:nth-child(even) > th {
+    background-color: rgb(255, 255, 255);
+}
+
+/* Bootstrap table striped row color  */
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: rgb(248, 248, 248);
+}
+
+/* Bootstrap table honer row color  */
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: rgb(240, 240, 240);
+}
+
+/* For Query Result */
+.table-NoBoder > tbody > tr > td {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+/*table.table-bordered > thead > tr > th {
+    border: 1px solid rgb(215, 215, 215);
+}
+
+table.table-bordered > tbody > tr > td {
+    border: 1px solid rgb(215, 215, 215);
+}*/
+
+.panel-heading[data-toggle] {
+    cursor: pointer;
+}
+
+.pagination {
+    margin-top: 0px;
+}
+
+.func-title {
+    font-size: 22px;
+    text-align: left;
+    width: 100%;
+    padding: 10px 15px;
+    color: #5d5d5d;
+    /*background-color: #d0f0f0;*/
+    background-color: rgb(217, 237, 247);
+}
+
+.data-title {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.tw-nav > li > a, .tw-panel-nav > li > a {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 7px 12px;
+}
+
+.tw-nav > li.active > a, .tw-nav > li.active > a:hover, .tw-nav > li.active > a:focus {
+    background-color: rgb(246, 248, 250);
+}
+
+.tw-nav-unit {
+    float: right;
+    color: rgb(110, 130, 130);
+    font-size: 16px;
+    font-weight: 500;
+    margin: 10px 5px 0px 0px;
+}
+
+.tw-table {
+    font-size: 16px;
+}
+
+    .tw-table thead {
+        color: rgb(8, 48, 48);
+        background-color: rgb(225, 228, 228);
+    }
+
+.tw-table-header2 thead th .th-inner {
+    line-height: 1.3;
+}
+
+.tw-table-index {
+    font-weight: 700;
+}
+
+.tw-table-margin {
+    margin-top: 10px;
+}
+
+.tw-table-checkbox {
+    vertical-align: middle !important;
+}
+
+.esri-view-root {
+    background-color: rgb(220, 242, 245);
+}
+
+.tw-loading {
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgba(100, 100, 100, 0.2);
+}
+
+    .tw-loading img {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+.transparent {
+    color: rgba(255, 255, 255, 0);
+}
+
+.pdf-viewer {
+    margin-bottom: 10px;
+    border: 1px solid grey;
+}
+
+.tw-block-btn {
+    text-align: right;
+    margin-top: 15px;
+}
+
+.modal-case .modal-caseMiddle .panel-group, .modal-register .panel-group, .modal-operate .panel-group {
+    margin-bottom: 0px;
+}
+
+.modal-register .alert, .modal-operate .alert {
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.tw-menu-group th {
+    text-align: left;
+    padding-left: 20px !important;
+}
+
+.tw-menu-group td {
+    text-align: center;
+    width: 100px;
+}
+
+.tw-menu-group tr {
+    background-color: rgb(255, 255, 255);
+}
+
+.tw-menu-group .menu-group-header {
+    background-color: rgb(249, 249, 249);
+}
+
+.tw-menu-move {
+    font-size: 23px;
+    margin-top: -2px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.tw-modal .modal-header {
+    background-color: rgb(240, 240, 240);
+}
+
+.tw-panel-spec .panel-heading {
+    font-size: 16px;
+}
+
+.tw-panel-spec .panel-body {
+    font-size: 15px;
+}
+
+.tw-panel-spec:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+
+    .tw-panel-spec:hover .panel-heading {
+        background-color: rgb(248, 248, 245);
+    }
+
+    .tw-panel-spec:hover .panel-body {
+        background-color: rgb(255, 255, 255);
+    }
+
+.tw-table-spec {
+    width: 100%;
+}
+
+    .tw-table-spec > tbody > tr > th {
+        border-bottom: 2px solid white;
+        background-color: rgb(234, 234, 232);
+        text-align: right;
+        vertical-align: middle;
+        height: 40px;
+        padding: 8px 8px 8px 8px;
+    }
+
+    .tw-table-spec > tbody > tr > td {
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
+        background-color: rgb(245, 245, 243);
+        vertical-align: middle;
+        height: 40px;
+        padding: 8px 8px;
+    }
+
+    .tw-table-spec .tw-table-spec-header {
+        width: 41%;
+    }
+
+.tw-modal-msg {
+    text-align: center;
+    padding: 35px 0px;
+}
+
+.tw-operate-legend {
+    color: rgb(90, 90, 90);
+    font-size: 16px;
+    margin-right: 5px;
+    margin-bottom: 8px;
+}
+
+    .tw-operate-legend .glyphicon {
+        color: rgb(220, 70, 70);
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+.tw-operate {
+    color: rgb(220, 70, 70);
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.annex-none {
+    color: rgb(200, 200, 200);
+}
+
+.note-content *:last-child {
+    margin-bottom: 0px;
+}
+
+.tw-form-label-lg label {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.case-info {
+    width: 100%;
+}
+
+    .case-info > tbody > tr > th {
+        border-bottom: 2px solid white;
+        background-color: rgb(234, 234, 232);
+        text-align: right;
+        vertical-align: middle;
+        height: 40px;
+        padding: 8px 8px 8px 8px;
+    }
+
+    .case-info > tbody > tr > td {
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
+        background-color: rgb(245, 245, 243);
+        vertical-align: middle;
+        height: 40px;
+        padding: 8px 8px;
+    }
+
+.query-op-group {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    padding: 0px 15px;
+}
+
+.query-input {
+    width: 100%;
+}
+
+    .query-input > tbody > tr > th {
+        border-bottom: 2px solid white;
+        background-color: rgb(234, 234, 232);
+        text-align: right;
+        vertical-align: middle;
+        padding: 3px 5px 0px 5px;
+    }
+
+    .query-input > tbody > tr > td {
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
+        background-color: rgb(245, 245, 243);
+        vertical-align: middle;
+        padding: 5px 5px;
+    }
+
+    .query-input .query-control {
+        width: 100%;
+    }
+
+.data-input {
+    width: 100%;
+}
+
+    .data-input > tbody > tr > th {
+        border-bottom: 2px solid white;
+        background-color: rgb(234, 234, 232);
+        text-align: right;
+        vertical-align: middle;
+        padding: 3px 10px 3px 10px;
+    }
+
+    .data-input > tbody > tr > td {
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
+        background-color: rgb(245, 245, 243);
+        vertical-align: middle;
+        padding: 6px 10px;
+    }
+
+    .data-input .input-group {
+        width: 100%;
+    }
+
+.operate-button {
+    margin: 0px 5px;
+}
+
+@media only screen and (min-width: 768px) {
+    .modal-case {
+        width: 85%;
+    }
+
+    .modal-caseMiddle {
+        width: 60%;
+    }
+}
+
+.tw-nav > li > a, .tw-panel-nav > li > a {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 7px 12px;
+}
+
+.case-label {
+    cursor: pointer;
+    font-size: 100%;
+    white-space: normal;
+    display: inline-block;
+    line-height: unset;
+}
+
+.info-ask-all {
+    font-weight: 600;
+    text-align: center;
+    text-decoration: underline;
+    padding: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.info-select-all {
+    font-weight: 600;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.tw-box-shadow:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,.2), 0 6px 20px rgba(0,0,0,.19);
+}

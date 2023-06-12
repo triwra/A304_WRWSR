@@ -1,0 +1,342 @@
+﻿.cbx {
+  margin: auto;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.cbx span {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+}
+
+.cbx span:first-child {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  transform: scale(1);
+  vertical-align: middle;
+  border: 1px solid #9098A9;
+  transition: all 0.2s ease;
+}
+
+.cbx span:first-child svg {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  fill: none;
+  stroke: #FFFFFF;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+  transform: translate3d(0, 0, 0);
+}
+
+.cbx span:first-child:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #1abbac;
+  display: block;
+  transform: scale(0);
+  opacity: 1;
+  border-radius: 50%;
+}
+
+.cbx span:last-child {
+  padding-left: 8px;
+}
+
+.cbx:hover span:first-child {
+  border-color: #506EEC;
+}
+
+.inp-cbx:checked + .cbx span:first-child {
+  background: #1abbac;
+  border-color: #1abbac;
+  animation: wave 0.4s ease;
+}
+
+.inp-cbx:checked + .cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+
+.inp-cbx:checked + .cbx span:first-child:before {
+  transform: scale(2.5);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+@keyframes wave {
+  50% {
+    transform: scale(0.9);
+  }
+}
+.my-popover {
+  max-width: initial;
+  max-width: initial;
+  border-top-color: #39f;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: 0 3px 6px #ccc;
+  box-shadow: 0 3px 6px #ccc;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  position: absolute;
+  border-top-color: #5fc897;
+}
+.my-popover .popover-header-part {
+  display: flex;
+}
+.my-popover .popover-header-part button.page {
+  place-self: center;
+  font-size: 30px;
+  list-style: none;
+  width: 35px;
+  height: 30px;
+  line-height: 0;
+  padding: 0;
+  padding-bottom: 6px;
+  background: transparent;
+  border: none;
+}
+.my-popover .popover-header-part button.page.hidden {
+  visibility: hidden;
+}
+.my-popover .popover-header-part button.page:hover {
+  background-color: #e5f2ff;
+}
+.my-popover .popover-header-part button.page:focus {
+  box-shadow: none;
+  outline: none;
+}
+.my-popover .popover-header-part .popover-header {
+  text-align: center;
+  font-weight: bold;
+  background-color: white;
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+.my-popover .popover-body {
+  padding: 9px 9px;
+}
+.my-popover .popover-body .page.hidden {
+  display: none;
+}
+.my-popover .popover-body .btn {
+  padding: 0px;
+  width: 60px;
+  height: 60px;
+  /*font-weight: bold;*/
+  background: white;
+  transition-duration: 0.3s;
+}
+.my-popover .popover-body .btn i {
+  font-style: normal;
+  margin-right: 0px;
+  color: #666666;
+}
+.my-popover .popover-body .btn.selected {
+  background-color: #5fc897 !important;
+  border-radius: 5px;
+  border: 1px solid #eaeaea;
+}
+.my-popover .popover-body .btn.selected i {
+  color: white;
+  font-weight: 600;
+}
+.my-popover .popover-body .btn:focus {
+  box-shadow: none;
+}
+.my-popover .popover-body .btn:hover {
+  background-color: #eaeaea;
+}
+.my-popover .popover-body input.input-box {
+  text-align: center;
+  max-width: 50px;
+  height: 50px;
+  margin: 5px;
+  border: none;
+  border: 1px solid #cccccc;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+button {
+  background: #607d8b;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  padding: 13px 25px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  transition-duration: 0.25s;
+}
+button:hover {
+  background-color: #659cb7;
+  box-shadow: 2px 2px 3px 3px #c4c4c4ab;
+}
+button:active {
+  background-color: #607d8b;
+  box-shadow: none;
+}
+button .btm {
+  position: fixed;
+  bottom: 33px;
+  z-index: 109;
+  right: 173px;
+  padding: 13px 25px;
+  transition-duration: 0s;
+}
+
+.option-part .option-container .option {
+  border: 1px solid #ededed;
+  padding: 10px;
+  margin: 10px 0px;
+}
+.option-part .option-container .option .setting-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.option-part .option-container .header-part .sub-title {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 0px 0px 5px 0px;
+  margin: 0;
+  border-bottom: none;
+}
+.option-part .option-container .valueInputGroup-conatiner,
+.option-part .option-container .datePickerGroup-container {
+  /*border: 1px solid #ededed;
+  padding: 15px 15px;*/
+}
+.option-part .option-container .valueInputGroup-conatiner .btn-group .btn {
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+.option-part .option-container #UsedWaterSettingPart .valueInputGroup-conatiner .valueInputGroup .checkbox-group {
+  /*display: flex;*/
+  display: flex;
+  flex-wrap: wrap;
+}
+.option-part .option-container #UsedWaterSettingPart .valueInputGroup-conatiner .valueInputGroup .checkbox-group .cbk-elem-group {
+  display: flex;
+  padding: 0px 15px;
+  /*flex-wrap: wrap;*/
+  /*margin-right: 60px;*/
+}
+.option-part .option-container #UsedWaterSettingPart .valueInputGroup-conatiner .valueInputGroup .checkbox-group .cbk-elem-group .cbk-elem {
+  align-self: center;
+  margin-right: 5px;
+  /*width: 140px;*/
+}
+@media (max-width: 636px) {
+  .option-part .option-container #UsedWaterSettingPart .valueInputGroup-conatiner .valueInputGroup .checkbox-group .cbk-elem-group {
+    margin-bottom: 15px;
+    /*margin-top: 15px;*/
+    width: 100%;
+    padding: 0px;
+  }
+  .option-part .option-container #UsedWaterSettingPart .valueInputGroup-conatiner .valueInputGroup .checkbox-group .cbk-elem-group .selection-elem {
+    width: 100%;
+  }
+  .option-part .option-container #UsedWaterSettingPart .valueInputGroup-conatiner .valueInputGroup .checkbox-group .cbk-elem-group .cbk-elem {
+    /*align-self: flex-end;*/
+    margin-right: 5px;
+    /*width: 180px;*/
+  }
+}
+.option-part .serach-container > #BtnQuery {
+  float: right;
+}
+
+#SimulationTimeSettingPart {
+  align-items: baseline;
+  /*.datePickerGroup:nth-of-type(2) {
+  padding-left: 15px;
+  }
+
+  .datePickerGroup:nth-of-type(1) {
+      padding-right: 15px;
+  }*/
+}
+#SimulationTimeSettingPart .datePickerGroup-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+#SimulationTimeSettingPart .sub-title {
+  align-self: flex-end;
+}
+#SimulationTimeSettingPart .datePickerGroup {
+  flex-grow: 0.5;
+  max-width: 200px;
+  padding: 0px 10px;
+}
+@media only screen and (max-width: 575px) {
+  #SimulationTimeSettingPart .datePickerGroup {
+    max-width: initial;
+    width: 100%;
+  }
+}
+
+#IrrigationSettingPart .valueInputGroup-conatiner {
+  flex-grow: 1;
+}
+#IrrigationSettingPart .valueInputGroup-conatiner .rice-part, #IrrigationSettingPart .valueInputGroup-conatiner .TSTM-part {
+  flex-wrap: wrap;
+}
+#IrrigationSettingPart .valueInputGroup-conatiner .rice-part .rice-part-container, #IrrigationSettingPart .valueInputGroup-conatiner .rice-part .TSTM-part-container, #IrrigationSettingPart .valueInputGroup-conatiner .TSTM-part .rice-part-container, #IrrigationSettingPart .valueInputGroup-conatiner .TSTM-part .TSTM-part-container {
+  max-width: 300px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#IrrigationSettingPart .valueInputGroup-conatiner .rice-part .rice-part-container .StopIrrigateArea, #IrrigationSettingPart .valueInputGroup-conatiner .rice-part .rice-part-container .StopIrrigateTSTM, #IrrigationSettingPart .valueInputGroup-conatiner .rice-part .TSTM-part-container .StopIrrigateArea, #IrrigationSettingPart .valueInputGroup-conatiner .rice-part .TSTM-part-container .StopIrrigateTSTM, #IrrigationSettingPart .valueInputGroup-conatiner .TSTM-part .rice-part-container .StopIrrigateArea, #IrrigationSettingPart .valueInputGroup-conatiner .TSTM-part .rice-part-container .StopIrrigateTSTM, #IrrigationSettingPart .valueInputGroup-conatiner .TSTM-part .TSTM-part-container .StopIrrigateArea, #IrrigationSettingPart .valueInputGroup-conatiner .TSTM-part .TSTM-part-container .StopIrrigateTSTM {
+  width: 100%;
+}
+
+.datepicker-container .datepicker-panel [data-view=year] {
+  pointer-events: none;
+}
+.datepicker-container .datepicker-panel li[data-view="month prev"] {
+  pointer-events: none;
+}
+.datepicker-container .datepicker-panel li[data-view="month next"] {
+  pointer-events: none;
+}
+
+#RankEffectiveStorageModal .modal-body .datePickerGroup-container, #RankEffectiveStorageModal .modal-body .valueInputGroup-conatiner {
+  display: flex;
+}
+#RankEffectiveStorageModal .modal-body .datePickerGroup-container .datePickerGroup, #RankEffectiveStorageModal .modal-body .valueInputGroup-conatiner .datePickerGroup {
+  width: 100%;
+  margin: 0px 30px;
+}
+#RankEffectiveStorageModal .modal-body .datePickerGroup-container .valueInputGroup, #RankEffectiveStorageModal .modal-body .valueInputGroup-conatiner .valueInputGroup {
+  width: 50%;
+  margin: 0px 30px;
+}
+#RankEffectiveStorageModal .modal-body .BtnQuery-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#RankInflowModal .fixed-table-container .fixed-table-body {
+  height: 90%;
+}
+
+.serach-container .QueryPart {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 0;
+}
+.serach-container .QueryPart .btn {
+  margin: 5px;
+}

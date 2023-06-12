@@ -1,0 +1,83 @@
+﻿.widget.e3 {
+
+    .wrwsr-body {
+        .content-part {
+            width: 100%;
+
+            .info-part {
+                background: #F3F5F7;
+                border-radius: 10px;
+
+                .info-group {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+
+                    .info-title {
+                        font-weight: 700;
+                        font-size: 23px;
+                        line-height: 32px;
+                        min-height: 65px;
+                        color: #000000;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .info-block {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+
+                        .block-title {
+                            font-weight: 700;
+                            font-size: 18px;
+                            line-height: 1.5;
+                            color: #000000;
+                            align-self: flex-start;
+                        }
+
+                        .block-value {
+                            align-self: flex-end;
+                            font-size: 18px;
+
+                            span:nth-of-type(1) {
+                                font-weight: 700;
+                                color: #007AB5;
+                            }
+
+                            span:nth-of-type(2) {
+                                font-size: 80%;
+                                font-weight: 700;
+                                color: #757681;
+                                align-self: end;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .wrwsr-gague-part {
+                .wrwsr-gague-group {
+                    .wrwsr-gague {
+                        width: 80%;
+                    }
+
+                    .title {
+                        font-size: 150%;
+                        font-weight: 700;
+                        text-align: center;
+                    }
+
+                    .sub-title {
+                        color: #757681;
+                        font-size: 80%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

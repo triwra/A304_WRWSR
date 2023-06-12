@@ -1,0 +1,64 @@
+﻿.widget.e1 .wrwsr-header .option-part .option-btn-group {
+  height: 100%;
+  background: #F3F5F7;
+  border-radius: 10px; }
+  .widget.e1 .wrwsr-header .option-part .option-btn-group .selected {
+    color: #39a771;
+    font-weight: 700; }
+  .widget.e1 .wrwsr-header .option-part .option-btn-group .opt-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #39A771; }
+  .widget.e1 .wrwsr-header .option-part .option-btn-group .wrwsr-btn {
+    cursor: pointer; }
+
+.widget.e1 .wrwsr-body .content-part .info-part {
+  background: #F3F5F7;
+  border-radius: 10px; }
+  .widget.e1 .wrwsr-body .content-part .info-part .info-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center; }
+    .widget.e1 .wrwsr-body .content-part .info-part .info-group .info-title {
+      font-weight: 700;
+      font-size: 156%;
+      line-height: 25px;
+      min-height: 50px;
+      color: #000000;
+      text-align: center;
+      display: flex;
+      align-items: center; }
+    .widget.e1 .wrwsr-body .content-part .info-part .info-group .info-block {
+      display: flex;
+      flex-direction: column;
+      width: 100%; }
+      .widget.e1 .wrwsr-body .content-part .info-part .info-group .info-block .block-title {
+        font-weight: 500;
+        font-size: 115%;
+        line-height: 1.5;
+        color: #757681;
+        align-self: flex-start; }
+      .widget.e1 .wrwsr-body .content-part .info-part .info-group .info-block .block-value {
+        align-self: center;
+        font-size: 18px; }
+        .widget.e1 .wrwsr-body .content-part .info-part .info-group .info-block .block-value span:nth-of-type(1) {
+          font-weight: 700; }
+        .widget.e1 .wrwsr-body .content-part .info-part .info-group .info-block .block-value span:nth-of-type(2) {
+          font-size: 16px;
+          line-height: 19px;
+          color: #000000;
+          align-self: end; }
+      .widget.e1 .wrwsr-body .content-part .info-part .info-group .info-block .block-value2 {
+        align-self: flex-end;
+        font-size: 16px;
+        padding-right: 8px; }
+        .widget.e1 .wrwsr-body .content-part .info-part .info-group .info-block .block-value2 span:nth-of-type(1) {
+          font-size: 16px;
+          line-height: 19px;
+          color: #000000;
+          align-self: end; }

@@ -1,0 +1,202 @@
+﻿@import "../../../CheckBox";
+@import "../../../Element/PopoverStyle";
+@import "../../../Element/ButtonStyle";
+.option-part {
+    .option-container {
+        .option {
+            //padding-bottom: 30px;
+            border: 1px solid #ededed;
+            padding: 10px;
+            margin: 10px 0px;
+
+            .setting-container {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+        }
+
+        .header-part .sub-title {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 0px 0px 5px 0px;
+            margin: 0;
+            border-bottom: none;
+        }
+
+        .valueInputGroup-conatiner,
+        .datePickerGroup-container {
+            /*border: 1px solid #ededed;
+            padding: 15px 15px;*/
+        }
+
+        .valueInputGroup-conatiner {
+            .btn-group {
+                .btn {
+                    margin-right: 15px;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+
+        #UsedWaterSettingPart {
+            .valueInputGroup-conatiner {
+                .valueInputGroup {
+                    .checkbox-group {
+                        /*display: flex;*/
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        .cbk-elem-group {
+                            display: flex;
+                            padding: 0px 15px;
+                            /*flex-wrap: wrap;*/
+                            /*margin-right: 60px;*/
+                            .cbk-elem {
+                                align-self: center;
+                                margin-right: 5px;
+                                /*width: 140px;*/
+                            }
+                        }
+
+                        @media (max-width: 636px) {
+                            .cbk-elem-group {
+                                margin-bottom: 15px;
+                                /*margin-top: 15px;*/
+                                width: 100%;
+                                padding:0px;
+                                .selection-elem {
+                                    width: 100%
+                                }
+
+                                .cbk-elem {
+                                    /*align-self: flex-end;*/
+                                    margin-right: 5px;
+                                    /*width: 180px;*/
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .serach-container > #BtnQuery {
+        float: right;
+    }
+}
+
+
+#SimulationTimeSettingPart {
+    align-items: baseline;
+
+    .datePickerGroup-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sub-title {
+        align-self: flex-end;
+    }
+
+    .datePickerGroup {
+        flex-grow: .5;
+        max-width: 200px;
+        padding: 0px 10px;
+    }
+
+    @media only screen and (max-width: 575px) {
+        .datePickerGroup {
+            max-width: initial;
+            width: 100%
+        }
+    }
+    /*.datePickerGroup:nth-of-type(2) {
+    padding-left: 15px;
+    }
+
+    .datePickerGroup:nth-of-type(1) {
+        padding-right: 15px;
+    }*/
+}
+
+#IrrigationSettingPart {
+    .valueInputGroup-conatiner {
+        flex-grow: 1;
+
+        .rice-part, .TSTM-part {
+            flex-wrap: wrap;
+
+            .rice-part-container, .TSTM-part-container {
+                max-width: 300px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+
+                .StopIrrigateArea, .StopIrrigateTSTM {
+                    width: 100%
+                }
+            }
+        }
+    }
+}
+
+    .datepicker-container {
+        .datepicker-panel {
+            [data-view="year"] {
+                pointer-events: none;
+            }
+
+            li[data-view="month prev"] {
+                pointer-events: none;
+            }
+
+            li[data-view="month next"] {
+                pointer-events: none;
+            }
+        }
+    }
+
+    #RankEffectiveStorageModal {
+        .modal-body {
+            .datePickerGroup-container, .valueInputGroup-conatiner {
+                display: flex;
+
+                .datePickerGroup {
+                    width: 100%;
+                    margin: 0px 30px;
+                }
+
+                .valueInputGroup {
+                    width: 50%;
+                    margin: 0px 30px;
+                }
+            }
+
+            .BtnQuery-container {
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    #RankInflowModal {
+        .fixed-table-container {
+            .fixed-table-body {
+                height: 90%;
+            }
+        }
+    }
+
+    .serach-container {
+        .QueryPart {
+            display: flex;
+            justify-content: flex-end;
+            padding: 15px 0;
+
+            .btn {
+                margin: 5px;
+            }
+        }
+    }

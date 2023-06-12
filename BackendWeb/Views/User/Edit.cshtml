@@ -1,0 +1,75 @@
+﻿@using DBClassLibrary.DomainLayer.UserModel
+@model UserData
+@{
+    ViewBag.Title = "修改使用者";
+    var unitList = (List<SelectListItem>)TempData["UnitList"];
+    var roleList = (List<SelectListItem>)TempData["RoleList"];
+    TempData.Keep();
+}
+
+
+<h3>修改使用者 :</h3>
+
+@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "alert-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName, new { @class = "col-md-1 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-1 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RealName, new { @class = "col-md-1 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(m => m.RealName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.RealName, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-1 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UnitID, htmlAttributes: new { @class = "col-md-1 control-label" })
+        <div class="col-md-5">
+            @Html.DropDownListFor(m => m.UnitID, unitList, "請選擇", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UnitID, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(m => m.SubUnit, htmlAttributes: new { @class = "col-md-1 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(m => m.SubUnit, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title, new { @class = "col-md-1 control-label" })
+        <div class="col-md-5">
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(m => m.RoleName, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-5">
+            @Html.DropDownListFor(m => m.RoleName, roleList, "請選擇", htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="tw-block-btn">
+        <input type="submit" class="btn btn-primary" value="儲存" />
+        @Html.ActionLink("取消", "Index", "User", null, new { @class = "btn btn-default" })
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

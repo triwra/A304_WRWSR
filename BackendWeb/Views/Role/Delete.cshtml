@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNet.Identity.EntityFramework
+@model IdentityRole
+@{
+    ViewBag.Title = "刪除群組";
+}
+
+<h3>刪除群組 :</h3>
+
+@using (Html.BeginForm("Delete", "Role", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "alert-danger" })
+
+    <div class="alert alert-danger">
+        @Html.HiddenFor(m => m.Id)
+        @*@Html.HiddenFor(m => m.Name)*@
+        群組名稱 : @Model.Name
+        <br /> 刪除群組後，將無法再使用此群組。
+    </div>
+
+    <div class="tw-block-btn">
+        <input type="submit" class="btn btn-primary" value="刪除" />
+        @Html.ActionLink("取消", "Index", "Role", null, new { @class = "btn btn-default" })
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

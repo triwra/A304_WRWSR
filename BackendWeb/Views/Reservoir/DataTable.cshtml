@@ -1,0 +1,181 @@
+﻿@using DBClassLibrary.UserDataAccessLayer;
+@using DBClassLibrary.UserDomainLayer.ReservoirModel;
+
+@{
+    int type = ViewBag.type;
+}
+
+@section header{
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="~/JSLib/datepicker-master/datepicker.css" rel="stylesheet" />
+    <link href="~/SCSS/Views/Reservoir/DataTable/PageStyle.min.css" rel="stylesheet" />
+}
+
+
+
+<div class="card" style="font-family: 微軟正黑體;">
+    <div class="card-header">
+        <h5 style="font-size: 20px;font-family: 微軟正黑體;">@ViewBag.Title</h5>
+        <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                <li><i class="feather minimize-card icon-minus"></i></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card-block option-part">
+        @if ((DataType)type != DataType.EffectiveStorage)
+        {
+            <div id="TenDaysSelectionPart" class="option">
+                <div class="cbk-elem">
+                    <input class="inp-cbx" id="TenDaysSelect" type="radio" name="QuerySelect" style="display: none;" value="IrrgPlanData" label="選擇旬別">
+                    <label class="cbx" for="TenDaysSelect">
+                        <span>
+                            <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </svg>
+                        </span>
+                    </label>
+                </div>
+                <h4 class="sub-title">選擇旬別</h4>
+                <div class="datePickerGroup">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                        @Html.Editor("StartDate", new { htmlAttributes = new { data_toggle = "popover", @id = "StartDate", @class = "form-control", @autocomplete = "off" } })
+                    </div>
+                </div>
+            </div>
+            <div id="MonthSelectionPart" class="option">
+                <div class="cbk-elem">
+                    <input class="inp-cbx" id="MonthSelect" type="radio" name="QuerySelect" style="display: none;" value="IrrgPlanData" label="選擇月份">
+                    <label class="cbx" for="MonthSelect">
+                        <span>
+                            <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </svg>
+                        </span>
+                    </label>
+                </div>
+                <h4 class="sub-title">選擇月份</h4>
+                <div class="datePickerGroup">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                        @Html.Editor("StartDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "StartDate", @class = "form-control", @autocomplete = "off" } })
+                    </div>
+                </div>
+            </div>
+        }
+        <div id="DateTimeSelectionPart" class="option">
+            @if ((DataType)type != DataType.EffectiveStorage)
+            {
+                <div class="cbk-elem">
+                    <input checked="" class="inp-cbx" id="DateTimeSelect" type="radio" name="QuerySelect" style="display: none;" value="IrrgPlanData" label="自行設定">
+                    <label class="cbx" for="DateTimeSelect">
+                        <span>
+                            <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </svg>
+                        </span>
+                    </label>
+                </div>
+            }
+            <h4 class="sub-title">
+                @((DataType)type == DataType.EffectiveStorage ? "選擇日期" : "開始日期")
+            </h4>
+            <div class="datePickerGroup">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                    @Html.Editor("StartDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "StartDate", @class = "form-control", @autocomplete = "off", @placeholder = ((DataType)type == DataType.EffectiveStorage ? "選擇日期" : "開始日期") } })
+                </div>
+            </div>
+            @if ((DataType)type != DataType.EffectiveStorage)
+            {
+                <h4 class="sub-title">
+                    結束日期
+                </h4>
+                <div class="datePickerGroup">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                        @Html.Editor("EndDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "EndDate", @class = "form-control", @autocomplete = "off", @placeholder = "結束日期" } })
+                    </div>
+                </div>
+            }
+            <div class="Query-Part">
+                <div id="BtnQuery" class="btn btn-primary pull-right" style=" float: right;">查詢</div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="chart-Part m-b-30 ">
+            <div class="echarts" style="width: 100%;height:400px;"></div>
+        </div>
+        <table id="datatable" class="rwd-table"></table>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-zh-TW.min.js"></script>
+    <script src="~/JSLib/datepicker-master/datepicker.min.js"></script>
+    <script src="~/JSLib/datepicker-master/datepicker.zh-CN.js"></script>
+    <script src="~/JSLib/LINQ/JSLINQ.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    @*<script src="~/Scripts/MyTool/MyDateTool.js"></script>*@
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/MyTool/MyPopoverTool.js"></script>
+    <script src="~/Scripts/Ajax/ReservoirAjax.js"></script>
+    <script src="~/Scripts/View/Reservoir/ChartBuilderClass.js"></script>
+    <script src="~/Scripts/View/Reservoir/RealTimeInfo/DataTable.js?V=2"></script>
+
+    <script>
+        var ajax_src = {
+            GetHistoryReservoirDataRank: "@Url.Action("GetHistoryReservoirDataRank", "Reservoir")",
+            GetReservoirRuleDay: "@Url.Action("GetReservoirRuleDay", "Reservoir")",
+            GetReservoirDataAverage: "@Url.Action("GetReservoirDataAverage", "Reservoir")",
+            GetHistoryReservoirTimeSeriesData: "@Url.Action("GetHistoryReservoirTimeSeriesData", "Reservoir")",
+            GetReservoirRuleTimeSeriesData: "@Url.Action("GetReservoirRuleTimeSeriesData", "Reservoir")",
+            GetPiValueTimeSeriesData: "@Url.Action("GetPiValueTimeSeriesData", "Reservoir")",
+        }
+        let datatype = @type;
+        //$('#TenDaysSelectionPart #StartDate').popover({
+        //    animation: false,
+        //    html: true,
+        //    sanitize: false,
+        //    placement: 'bottom',
+        //    trigger: 'click',
+        //    content: '<button type="button" id="button-image" class="btn btn-primary"><i class="mdi mdi-edit">1</i></button> <br><button type="button" id="button-clear" class="btn btn-danger"><i class="mdi mdi-trash-can-outline">2</i></button>',
+        //})
+        let mydatetool = new MyDateTool();
+        let mypopovertool = new MyPopoverTool(mydatetool.GetPopoverMonthTxtValArry(3, 4));
+        let option = {
+            title:'月份',
+            animation: false,
+            html: true,
+            sanitize: false,
+            placement: 'bottom',
+            trigger: 'click',
+            content: mypopovertool.CreateContenHtml(),
+        }
+        mypopovertool.popover('#MonthSelectionPart #StartDate', option, 'MonthSelectionPart-popover')
+
+        let mypopovertool2 = new MyPopoverTool(mydatetool.GetPopoverTenDaysTxtValArry(3, 4, 3));
+        let option2 = {
+            title: '旬期',
+            animation: false,
+            html: true,
+            sanitize: false,
+            placement: 'bottom',
+            trigger: 'click',
+            content: mypopovertool2.CreateContenHtml(),
+        }
+        mypopovertool2.popover('#TenDaysSelectionPart #StartDate', option2, 'TenDaysSelectionPart-popover')
+
+    </script>
+}

@@ -1,0 +1,33 @@
+﻿@using DBClassLibrary.DomainLayer.UnitModel
+@model UnitData
+@{
+    ViewBag.Title = "刪除單位";
+}
+
+<h3>刪除單位 :</h3>
+
+@using (Html.BeginForm("Delete", "Unit", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "alert-danger" })
+
+    <div class="alert alert-danger">
+        @Html.HiddenFor(m => m.UnitID)
+        @Html.HiddenFor(m => m.UnitNumber)
+        @Html.HiddenFor(m => m.UnitName)
+        單位名稱 : @Model.UnitName
+        <br /> 刪除單位後，將無法再使用此單位。
+    </div>
+
+    <div class="tw-block-btn">
+        <input type="submit" class="btn btn-primary" value="刪除" />
+        @Html.ActionLink("取消", "Index", "Unit", null, new { @class = "btn btn-default" })
+    </div>
+}
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

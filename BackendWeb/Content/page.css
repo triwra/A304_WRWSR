@@ -1,0 +1,90 @@
+﻿.ctcid-article {
+    padding: 30px 0px;
+}
+
+    .ctcid-article .sub-title-1 {
+        font-size: 1.8rem;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+        font-weight: 500;
+        line-height: 1.2;
+        color: #229b90;
+        font-weight: 700;
+        padding: 0 5vmax;
+    }
+
+        .ctcid-article .sub-title-1:before {
+            content: "◆ ";
+        }
+
+    .ctcid-article p {
+        font-size: 18px;
+        padding: 0px 5vmax;
+        line-height: 1.8;
+        letter-spacing: 1px;
+    }
+
+        .ctcid-article p:before {
+            content: "　　";
+        }
+
+    .ctcid-article .image {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 70%;
+        margin: auto;
+        margin-bottom: 2rem;
+    }
+
+        .ctcid-article .image a {
+            border: 1px solid #e3e3e3;
+            padding: 10px;
+            margin: 5px 0px;
+            transition-duration: 0.3s;
+            margin-top: -25px;
+        }
+
+            .ctcid-article .image a:hover {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+            }
+
+        .ctcid-article .image .title {
+            color: black;
+            color: #646464;
+            font-size: 18px;
+            font-style: italic;
+        }
+
+            .ctcid-article .image .title:before {
+                content: "『";
+            }
+
+            .ctcid-article .image .title:after {
+                content: "』";
+            }
+
+    .ctcid-article .reference_part {
+        padding: 0 5vmax;
+    }
+
+        .ctcid-article .reference_part div {
+            font-size: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            line-height: 1.2;
+            font-weight: 700;
+            color: #898989;
+        }
+
+        .ctcid-article .reference_part ol,
+        .ctcid-article .reference_part li {
+            margin-top: 0;
+            font-size: 108%;
+            font-size: 18px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            color: #898989;
+            font-style: italic;
+        }

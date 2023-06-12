@@ -1,0 +1,79 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using DBClassLibrary.DomainLayer.UserModel
+@model IEnumerable<UserData>
+@{
+    ViewBag.Title = "使用者名單";
+}
+
+<h3>使用者列表 :</h3>
+
+<table class="table table-bordered table-hover table-striped">
+    <tr>
+        <th>
+            帳號
+        </th>
+        <th>
+            姓名
+        </th>
+        <th>
+            電子信箱
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitsList)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RolesList)
+        </th>
+
+        <th width="200px">功能</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td data-th="@Html.DisplayNameFor(model => model.UserName)">
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td data-th="@Html.DisplayNameFor(model => model.RealName)">
+                @Html.DisplayFor(modelItem => item.RealName)
+            </td>
+            <td data-th="@Html.DisplayNameFor(model => model.Email)">
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+            <td data-th="@Html.DisplayNameFor(model => model.SubUnit)">
+                @Html.DisplayFor(modelItem => item.SubUnit)
+            </td>
+            <td data-th="@Html.DisplayNameFor(model => model.UnitsList)">
+                @foreach (var UnitItem in item.UnitsList)
+                {
+                    @(UnitItem.UnitName) <br />
+                }
+            </td>
+            <td data-th="@Html.DisplayNameFor(model => model.RolesList)">
+                @foreach (var RoleItem in item.RolesList)
+                {
+                    @Html.DisplayFor(modelItem => RoleItem)<br />
+                }
+            </td>
+
+            <td data-th="Action">
+                @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("重設密碼", "ResetPassword", "Account", new { id = item.Id }, null) |
+                @Html.ActionLink("鎖定帳號", "LockoutAccount", "User", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+
+<div class="tw-block-btn">
+    @Html.ActionLink("新增", "Register", "Account", null, new { @class = "btn btn-primary" })
+</div>
+
+

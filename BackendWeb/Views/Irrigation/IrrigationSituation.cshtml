@@ -1,0 +1,246 @@
+﻿@using DBClassLibrary.UserDataAccessLayer;
+@using DBClassLibrary.UserDomainLayer.ReservoirModel;
+
+@{
+    // int type = ViewBag.type;
+    int type = 1;
+}
+
+@section header{
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet">
+    <link href="~/JSLib/datepicker-master/datepicker.css" rel="stylesheet" />
+    <link href="~/SCSS/Views/Reservoir/DataTable/PageStyle.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+          integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+          crossorigin="" />
+}
+<style>
+    .leaflet-container {
+        background: #ffffff !important;
+    }
+</style>
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <!--PageContent-->
+            <!--設定-->
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="mb-3">
+                        <div class="form-selectgroup">
+                            <label class="form-selectgroup-item">
+                                <input type="radio" name="BoundaryType" value="1" class="form-selectgroup-input" checked="" onclick="showDetail()">
+                                <span class="form-selectgroup-label">
+                                    水稻種植總覽
+
+                                </span>
+                            </label>
+                            <label class="form-selectgroup-item">
+                                <input type="radio" name="BoundaryType" value="3" class="form-selectgroup-input" onclick="showDetail()">
+                                <span class="form-selectgroup-label">
+                                    單一管理處
+
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="card-body" id="card_body" style="display:none">
+                        <div class="tab-content">
+
+                            <div class="tab-pane  active show" id="tabs-profile-9">
+                                <div class="row g-2 align-items-center mb-3">
+                                    <div class="col-12 col-xl-1 w-auto font-weight-bold">年度</div>
+                                    <div class="col-12 col-xl-2 col-sm-2 col-md-2 col-xl">
+                                        <select name="Dll_Year" class="form-select" id="Dll_Year">
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-xl-1 w-auto font-weight-bold">選擇區域</div>
+                                    <div class="col-12 col-xl-2 col-sm-2 col-md-2 col-xl">
+                                        <select name="Dll_Irragation" class="form-select" id="Dll_Irragation">
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-xl-1 w-auto font-weight-bold">
+                                        期作
+                                    </div>
+                                    <div class="col-12 col-xl-2 col-sm-3 col-md-2 col-xl">
+                                        <select name="Dll_Period" class="form-select" id="Dll_Period">
+                                            <option value="1">一期作</option>
+                                            <option value="2">二期作</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="col-12 col-xl-4 ">
+                                        <div class="form-selectgroup">
+                                            <label class="form-selectgroup-item">
+                                                <input id="BtnQuery_2" type="button" name="icons" value="home" class="form-selectgroup-input">
+                                                <span class="form-selectgroup-label">
+                                                    查詢
+                                                </span>
+
+                                            </label>
+                                            <img src="~/Images/loading.gif" id="loadRiceImage" style="width:32px;height:32px;display:none" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-2" id="area1">
+            <div class="card-body">
+                <div class="d-flex justify-content-center">
+                    <h1>水稻分布情勢<span id="mainTitle"></span></h1>
+                </div>
+                <div class="row">
+
+                    <div class="col-6">
+                        <div class="d-flex justify-content-center">
+                        </div>
+                        <div class="chart-Part">
+                            <div id="Map" style="width: 100%;height:800px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="d-flex justify-content-center">
+                        </div>
+                        <div id="datatable" style="width: 100%;height:800px;"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-2" id="area2" style="display:none;width: 100%;height:1000px;">
+            <div class="card-body">
+                <div class="d-flex justify-content-left">
+                    <h1><span id="subTitleDate"></span><span id="subTitle"></span><span id="subTitleDataDate"></span></h1>
+                </div>
+                <div class="row">
+
+                    <div class="col-6">
+                        <div class="d-flex justify-content-center">
+                        </div>
+                        <div class="chart-Part">
+                            <div id="riceMap" style="width: 100%;height:800px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+
+                        <div id="datatable2" style="width: 100%;height:300px;">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th style="background-color: #6d817a;color: #fff;font-size:1.0rem;font-weight:600;text-align:center">
+                                            水稻種植<br />面積(公頃)
+                                        </th>
+                                        <th style="background-color: #6d817a;color: #fff;font-size:1.0rem;font-weight:600;text-align:center">
+                                            近五年平均種植<br />面積(公頃)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:center"><span id="currentArea" style="font-family:'Helvetica';font-size: 2.625rem; font-weight: 600;"></span></td>
+                                        <td style="text-align:center"><span id="averageArea" style="font-family:'Helvetica';font-size: 2.625rem; font-weight: 600;"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="chart-Part">
+                            <div id="chart-container" class="echarts" style="width:100%;height:500px;"></div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-zh-TW.min.js"></script>
+
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+            integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+            crossorigin=""></script>
+    <script src="~/JSLib/datepicker-master/datepicker.min.js"></script>
+    <script src="~/JSLib/datepicker-master/datepicker.zh-CN.js"></script>
+    <script src="~/JSLib/LINQ/JSLINQ.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    @*<script src="~/Scripts/MyTool/MyDateTool.js"></script>*@
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/MyTool/MyPopoverTool.js"></script>
+    <script src="~/Scripts/View/Irrigation/Data/Irrigation_WGS84.js"></script>
+    @* <script src="~/Scripts/View/Irrigation/Data/riceBorder_WGS84.js"></script>*@
+    <script src="~/Scripts/View/Irrigation/Data/cityMap_WGS84.js"></script>
+    @* <script src="~/Scripts/View/Irrigation/Data/river_WGS84.js"></script>*@
+    <script src="~/Scripts/View/Irrigation/Data/taoyuanRiver.js"></script>
+    <script src="~/Scripts/View/Irrigation/Data/shimenRiver.js"></script>
+    <script src="~/Scripts/View/Irrigation/IrrigationMap.js?20220823"></script>
+    <script src="~/Scripts/View/Irrigation/RiceMap.js?20220823"></script>
+
+
+    <script src="~/Scripts/View/Irrigation/Ajax.js"></script>
+
+    <script>
+                                var ajax_src = {
+                                    GetHistoryReservoirDataRank: "@Url.Action("GetHistoryReservoirDataRank", "Reservoir")",
+                                    GetReservoirRuleDay: "@Url.Action("GetReservoirRuleDay", "Reservoir")",
+                                    GetReservoirDataAverage: "@Url.Action("GetReservoirDataAverage", "Reservoir")",
+                                    GetHistoryReservoirTimeSeriesData: "@Url.Action("GetHistoryReservoirTimeSeriesData", "Reservoir")",
+                                    GetReservoirRuleTimeSeriesData: "@Url.Action("GetReservoirRuleTimeSeriesData", "Reservoir")",
+                                    GetPiValueTimeSeriesData: "@Url.Action("GetPiValueTimeSeriesData", "Reservoir")",
+                                    GetAllReservoir: "@Url.Action("GetAllReservoirList", "RainfallAnalysis")",
+                                    GetAllIrragation: "@Url.Action("GetAllIrragationList", "RainfallAnalysis")",
+                                    GetAllStation: "@Url.Action("GetAllStationList", "RainfallAnalysis")",
+                                    GetRainfallbyDay: "@Url.Action("GetRainfallbyDay", "RainfallAnalysis")",
+                                    getIrrigationFarmInfo: "@Url.Action("getIrrigationFarmInfo", "Irrigation")",
+                                    GetAllYearAreaByIrrigation: "@Url.Action("GetAllYearAreaByIrrigation", "Irrigation")",
+                                    GetLocationByIrrigation: "@Url.Action("GetLocationByIrrigation", "Irrigation")",
+                                    GetAllIrragationYear: "@Url.Action("GetAllIrragationYear", "Irrigation")",
+                                    GetRiceMapByIrr: "@Url.Action("GetRiceMapByIrr", "Irrigation")",
+                                    GetDataDateByIrrigation: "@Url.Action("GetDataDateByIrrigation", "Irrigation")",
+                                    GetCityGeoData: "@Url.Action("GetCityGeoData", "Irrigation")",
+
+
+                                }
+                                let datatype = @type;
+                                //$('#TenDaysSelectionPart #StartDate').popover({
+                                //    animation: false,
+                                //    html: true,
+                                //    sanitize: false,
+                                //    placement: 'bottom',
+                                //    trigger: 'click',
+                                //    content: '<button type="button" id="button-image" class="btn btn-primary"><i class="mdi mdi-edit">1</i></button> <br><button type="button" id="button-clear" class="btn btn-danger"><i class="mdi mdi-trash-can-outline">2</i></button>',
+
+
+    </script>
+}

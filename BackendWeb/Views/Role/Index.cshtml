@@ -1,0 +1,53 @@
+﻿
+@using Microsoft.AspNet.Identity.EntityFramework
+@using BackendWeb.Helper
+@model IEnumerable<IdentityRole>
+@{
+    ViewBag.Title = "群組列表";
+}
+
+<h3>群組列表 :</h3>
+
+@if (Model != null && Model.Count() == 0)
+{
+    <div class="alert alert-info">
+        沒有符合條件的資料!
+    </div>
+}
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Name)*@
+                群組名稱
+            </th>
+            <th width="200px">功能</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td data-th="@Html.DisplayNameFor(model => model.Name)">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td data-th="Action">
+                    @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+                    @if (item.Name != CommonHelper.RoleAdmin)
+                    {
+                        @:| @Html.ActionLink("功能選單設定", "Role", "Menu", new { id = item.Id }, null)
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+<div class="tw-block-btn">
+    @*@Html.ActionLink("我的最愛選單設定", "Role", "Menu", new { id = CommonHelper.RoleMenuFavoriteId }, new { @class = "btn btn-info" })*@
+    @Html.ActionLink("新增", "Create", "Role", null, new { @class = "btn btn-primary" })
+</div>
+

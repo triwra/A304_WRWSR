@@ -1,0 +1,626 @@
+﻿
+@{
+    ViewBag.Title = "_WaterSimulationMethodCard";
+    var IrrigationPlanDataYearList = (SelectList)ViewBag.IrrigationPlanDataYearList;
+    var PublicUseOfWaterYearList = (SelectList)ViewBag.PublicUseOfWaterYearList;
+    int max_methodNo = ViewBag.max_methodNo;
+}
+
+<div  class="simu-method" methodNo="@max_methodNo">
+    <div class="card cardMethodSetting" >
+        <div class="card-header collapsed" id="headingMethodSetting-@max_methodNo" data-toggle="collapse" data-target="#collapseMethodSetting-@max_methodNo" aria-expanded="true" aria-controls="collapseMethodSetting-@max_methodNo">
+            <h5>模擬設定</h5>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li>
+                        <i class="feather minimize-card icon-minus"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="collapseMethodSetting-@max_methodNo" class="collapse show" aria-labelledby="headingMethodSetting-@max_methodNo">
+            <div class="card-body">
+                <div id="MethodNameSettingPart" class="option collapsible">
+                    <div class="setting-container center">
+                        <div class="header-part" id="headingMethodNameSetting-@max_methodNo" data-toggle="collapse" data-target="#collapseMethodNameSetting-@max_methodNo" aria-expanded="true" aria-controls="collapseMethodSetting-@max_methodNo">
+                            <div class="option-title">
+                                方案名稱
+                            </div>
+                            <button>
+                                <i class="feather minimize-card icon-minus"></i>
+                            </button>
+                        </div>
+                        <div class="collapse show" id="collapseMethodNameSetting-@max_methodNo" aria-labelledby="headingMethodNameSetting-@max_methodNo">
+                            <div class="valueInputGroup-conatiner">
+                                <div class="valueInputGroup">
+                                    <div class="input-group">
+                                        <span></span>
+                                        @Html.Editor("methodName" + max_methodNo, new { htmlAttributes = new { @id = "methodName-" + max_methodNo, @class = "form-control", @autocomplete = "off", @placeholder = "請輸入方法名稱", @value = 40000 } })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="InflowSettingPart" class="option collapsible">
+                    <div class="setting-container center">
+                        <div class="header-part" id="headingInflowSetting-@max_methodNo" data-toggle="collapse" data-target="#collapseInflowSetting-@max_methodNo" aria-expanded="true" aria-controls="collapseInflowSetting-@max_methodNo">
+                            <div class="option-title">
+                                入流量設定
+                            </div>
+                            <button>
+                                <i class="feather minimize-card icon-minus"></i>
+                            </button>
+                        </div>
+                        <div id="collapseInflowSetting-@max_methodNo" class="collapse show" aria-labelledby="headingInflowSetting-@max_methodNo">
+                            <div class="valueInputGroup-conatiner">
+                                <div class="valueInputGroup">
+                                    <div class="btn-group flex">
+                                        <label class="cbx " for="QValSelectionRadio-@max_methodNo" data-toggle="modal" data-target="#large-Modal">
+                                            <div class="cbk-elem inflow-cbk">
+                                                <input checked class="inp-cbx" id="QValSelectionRadio-@max_methodNo" type="radio" style="display: none;" name="InflowSettingRadio-@max_methodNo">
+                                                <label class="cbx" for="QValSelectionRadio-@max_methodNo">
+                                                    <span>
+                                                        <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                        </svg>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <button data-toggle="modal" style="margin-bottom:0;" data-target="#QValSelectionModal-@max_methodNo" class="btn btn-mat btn-primary ">設定各旬超越機率流量</button>
+                                        </label>
+                                        <label class="cbx " for="RankInflowRadio-@max_methodNo" data-toggle="modal" data-target="#large-Modal">
+                                            <div class="cbk-elem inflow-cbk">
+                                                <input class="inp-cbx" id="RankInflowRadio-@max_methodNo" type="radio" style="display: none;" name="InflowSettingRadio-@max_methodNo">
+                                                <label class="cbx" for="RankInflowRadio-@max_methodNo">
+                                                    <span>
+                                                        <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                        </svg>
+                                                    </span>
+                                                </label>
+
+                                            </div>
+                                            <button data-toggle="modal" style="margin-bottom:0;" data-target="#RankInflowModal-@max_methodNo" class="btn btn-mat btn-primary ">採用歷史豐枯年度入流量</button>
+                                        </label>
+
+                                    </div>
+                                    <div class="result-part"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="UsedWaterSettingPart" class="option collapsible">
+                    <div class="setting-container center">
+                        <div class="header-part" id="headingUsedWaterSetting-@max_methodNo" data-toggle="collapse" data-target="#collapseUsedWaterSetting-@max_methodNo" aria-expanded="true" aria-controls="collapseUsedWaterSetting-@max_methodNo">
+                            <div class="option-title">
+                                用水量設定
+                            </div>
+                            <button>
+                                <i class="feather minimize-card icon-minus"></i>
+                            </button>
+                        </div>
+                        <div id="collapseUsedWaterSetting-@max_methodNo" class="collapse show" aria-labelledby="headingUsedWaterSetting-@max_methodNo">
+                            <div class="valueInputGroup-conatiner">
+                                <div class="valueInputGroup">
+                                    <div class="checkbox-group flex">
+                                        <div class="cbk-elem-group flex" id="IrrgPlanData-gruop">
+                                            <div class="cbk-elem">
+                                                <input checked data-toggle="modal" data-target="#large-Modal" class="inp-cbx" id="IrrgPlanData-@max_methodNo" type="checkbox" style="display: none;" value="IrrgPlanData" label="當日水情">
+                                                <label class="cbx" for="IrrgPlanData-@max_methodNo" data-toggle="modal" data-target="#large-Modal">
+                                                    <span>
+                                                        <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                        </svg>
+                                                    </span>@*<span>查詢輸入灌溉用水</span>*@
+                                                </label>
+                                            </div>
+                                            <div class="selection-elem">
+                                                <span>選擇灌溉用水年度</span>
+                                                @Html.DropDownList("IrrigationPlanDataYearList-" + max_methodNo, IrrigationPlanDataYearList, null, htmlAttributes: new { @id = "IrrigationPlanDataYearList-" + max_methodNo, @name = "select", @class = " form-control form-control-primary" })
+                                            </div>
+                                        </div>
+                                        <div class="cbk-elem-group flex" id="PublicWaterData-Pub-gruop">
+                                            <div class="cbk-elem">
+                                                <input checked class="inp-cbx" id="PublicWaterDataPub-@max_methodNo" type="checkbox" style="display: none;" value="PublicWaterDataPub" label="歷史水情">
+                                                <label class="cbx" for="PublicWaterDataPub-@max_methodNo">
+                                                    <span>
+                                                        <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                        </svg>
+                                                    </span>@*<span>查詢輸入民生用水</span>*@
+                                                </label>
+                                            </div>
+                                            <div class="selection-elem">
+                                                <span>選擇民生用水年度</span>
+                                                @Html.DropDownList("PublicUseOfWaterYearList-" + max_methodNo, PublicUseOfWaterYearList, null, htmlAttributes: new { @id = "PublicUseOfWaterYearList-" + max_methodNo, @name = "select", @class = " form-control form-control-primary" })
+                                            </div>
+                                        </div>
+                                        <div class="cbk-elem-group flex" id="PublicWaterData-Ind-gruop">
+                                            <div class="cbk-elem">
+                                                <input checked class="inp-cbx" id="PublicWaterDataInd-@max_methodNo" type="checkbox" style="display: none;" value="PublicWaterDataInd" label="歷史水情">
+                                                <label class="cbx" for="PublicWaterDataInd-@max_methodNo">
+                                                    <span>
+                                                        <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                        </svg>
+                                                    </span>@*<span>查詢輸入工業用水</span>*@
+                                                </label>
+                                            </div>
+                                            <div class="selection-elem">
+                                                <span>選擇工業用水年度</span>
+                                                @Html.DropDownList("PublicUseOfWaterYearList-" + max_methodNo, PublicUseOfWaterYearList, null, htmlAttributes: new { @id = "PublicUseOfWaterYearList-" + max_methodNo, @name = "select", @class = "form-control form-control-primary" })
+                                            </div>
+                                        </div>
+                                        <div id="ReservoirLostPercentage" class="flex LostPercentage">
+                                            <span class="title">水庫運轉<br>損失量設定</span>
+                                            <span class="divider-txt">:</span>
+                                            <input autocomplete="off" class="form-control text-box single-line" name="delay_input" type="text">
+                                            <span class="percentage-txt">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="result-part"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="DelayIrrigSettingPart" class="option collapsible">
+                    <div class="setting-container center">
+                        <div class="header-part">
+                            <div class="option-title" id="headingDelayIrrigSetting-@max_methodNo" data-toggle="collapse" data-target="#collapseDelayIrrigSetting-@max_methodNo" aria-expanded="true" aria-controls="collapseDelayIrrigSetting-@max_methodNo">
+                                開灌日期設定
+                            </div>
+                            <div class="dropdown">
+                                <button class="fas-icon circle invers "
+                                        type="button" id="functionMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-cog"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="functionMenuButton">
+                                    <button class="dropdown-item" id="addPeriod2DelaySettingBlock">新增[二期作水稻延後灌溉]設定區塊</button>
+                                </div>
+                                <button id="headingIntermittentSetting-@max_methodNo" data-toggle="collapse" data-target="#collapseDelayIrrigSetting-@max_methodNo" aria-expanded="true" aria-controls="collapseDelayIrrigSetting-@max_methodNo">
+                                    <i class="feather minimize-card icon-chevron-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="collapseDelayIrrigSetting-@max_methodNo" class="collapse show" aria-labelledby="headingDelayIrrigSetting-@max_methodNo">
+                            <div class="valueInputGroup-conatiner">
+                                <div class="valueInputGroup">
+                                    <div class="input-group period1-part">
+                                        <div class="input-group-title">一期作</div>
+                                        <div class="input-group-container">
+                                            <div class="input-group-content">
+                                                <div class="delay-part">
+                                                    <div class="flex">
+                                                        <span>開灌日期</span>
+                                                        <div class="datePickerGroup">
+                                                            <div>
+                                                                <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="delay_input" type="text" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group period2-part" ">
+                                        <div class="input-group-title">二期作</div>
+                                        <div class="input-group-container">
+                                            <div class="input-group-content">
+                                                <select class=" form-control form-control-primary" id="GroupSelection-1" name="GroupSelection-1">
+                                                    <option value="1">第一組</option>
+                                                    <option value="2">第二組</option>
+                                                    <option value="3">第三組</option>
+                                                    <option value="4">第四組</option>
+                                                    <option value="5">第五組</option>
+                                                    <option value="6">第六組</option>
+                                                </select>
+                                                <div class="delay-part">
+                                                    <div class="flex">
+                                                        <span>開灌日期</span>
+                                                        <div class="datePickerGroup">
+                                                            <div>
+                                                                <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="delay_input" type="text" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="IrrigationSettingPart" class="option collapsible">
+                    <div class="setting-container center">
+                        <div class="header-part" id="headingIrrigationSetting-@max_methodNo" data-toggle="collapse" data-target="#collapseIrrigationSetting-@max_methodNo" aria-expanded="true" aria-controls="collapseIrrigationSetting-@max_methodNo">
+                            <div class="option-title">
+                                停灌設定
+                            </div>
+                            <button>
+                                <i class="feather minimize-card icon-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="collapseIrrigationSetting-@max_methodNo" class="collapse show" aria-labelledby="headingIrrigationSetting-@max_methodNo">
+                        <div class="valueInputGroup-conatiner">
+                            <div class="valueInputGroup">
+                                <div class="checkbox-group">
+                                    <div class="input-group rice-part">
+                                        <div class="input-group-title">水稻</div>
+                                        <div class="input-group-container">
+                                            <div class="rice-part-container flex">
+                                                <div class="cbk-elem">
+                                                    <input checked class="inp-cbx" id="TR1Area-@max_methodNo" type="checkbox" style="display: none;" value="TR1Area">
+                                                    <label class="cbx" for="TR1Area-@max_methodNo">
+                                                        <span>
+                                                            <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                            </svg>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="input-elem">
+                                                    <span>一期作</span>
+                                                    <input id="StopIrrigateArea1-@max_methodNo" class="form-control StopIrrigateArea-@max_methodNo" autocomplete="off" onfocus="this.blur();" placeholder="選擇停灌灌區">
+                                                </div>
+                                            </div>
+                                            <div class="rice-part-container flex">
+                                                <div class="cbk-elem">
+                                                    <input checked class="inp-cbx" id="TR2Area-@max_methodNo" type="checkbox" style="display: none;" value="TR2Area">
+                                                    <label class="cbx" for="TR2Area-@max_methodNo">
+                                                        <span>
+                                                            <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                            </svg>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="input-elem">
+                                                    <span>二期作</span>
+                                                    <input id="StopIrrigateArea2-@max_methodNo" class="form-control StopIrrigateArea-@max_methodNo" autocomplete="off" onfocus="this.blur();" placeholder="選擇停灌灌區">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        @*@Html.Editor("StopIrrigateArea", new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @value = 40000 } })*@
+                                    </div>
+                                    <div class="input-group TS-part">
+                                        <div class="input-group-title">甘蔗</div>
+                                        <div class="input-group-container">
+                                            <div class="TSTM-part-container flex">
+                                                <div class="cbk-elem">
+                                                    <input checked class="inp-cbx" id="TS-@max_methodNo" type="checkbox" style="display: none;" value="TS">
+                                                    <label class="cbx" for="TS-@max_methodNo">
+                                                        <span>
+                                                            <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                            </svg>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="input-elem">
+                                                    <input id="StopIrrigateTS-@max_methodNo" class="form-control StopIrrigateTSTM-@max_methodNo" autocomplete="off" onfocus="this.blur();" placeholder="選擇停灌期別">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group TS-part">
+                                        <div class="input-group-title">雜作</div>
+                                        <div class="input-group-container">
+                                            <div class="TSTM-part-container flex">
+                                                <div class="cbk-elem">
+                                                    <input checked class="inp-cbx" id="TM-@max_methodNo" type="checkbox" style="display: none;" value="TSTM">
+                                                    <label class="cbx" for="TM-@max_methodNo">
+                                                        <span>
+                                                            <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                            </svg>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="input-elem">
+                                                    <input id="StopIrrigateTM-@max_methodNo" class="form-control StopIrrigateTSTM-@max_methodNo" autocomplete="off" onfocus="this.blur();" placeholder="選擇停灌期別">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-part"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="DiscountSettingPart" class="option collapsible">
+                    <div class="setting-container center">
+                        <div class="header-part">
+                            <div class="option-title">
+                                折扣灌溉設定
+                            </div>
+                            <div class="dropdown">
+                                <button class="fas-icon circle invers "
+                                        type="button" id="functionMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-cog"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="functionMenuButton">
+                                    <button class="dropdown-item" id="addDiscountRiceBlock">新增[水稻折扣灌溉設定]區塊</button>
+                                    <button class="dropdown-item" id="addDiscountTSTMBlock">新增[甘蔗雜作折扣灌溉設定]區塊</button>
+                                    <button class="dropdown-item" id="addDiscountPubBlock">新增[民生工業折扣灌溉設定]區塊</button>
+                                </div>
+                            </div>
+                            <div>
+                                <button id="headingDiscountSetting-@max_methodNo" data-toggle="collapse" data-target="#collapseDiscountSetting-@max_methodNo" aria-expanded="true" aria-controls="collapseDiscountSetting-@max_methodNo">
+                                    <i class="feather minimize-card icon-chevron-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="collapseDiscountSetting-@max_methodNo" class="collapse show" aria-labelledby="headingDiscountSetting-@max_methodNo">
+                            <div class="valueInputGroup-conatiner">
+                                <div class="valueInputGroup">
+                                    <div class="input-group rice-part">
+                                        <div class="input-group-title">水稻</div>
+                                        <div class="input-group-container">
+                                            <div class="input-group-content">
+                                                <div class="datePickerGroup-container flex">
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="StartDate" placeholder="開始日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="dateRangeMiddleTxt">至</div>
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="EndDate" placeholder="結束日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="percent-part">
+                                                    <div class="flex">
+                                                        <input autocomplete="off" class="form-control text-box single-line" name="percent_input" type="text">
+                                                        <i class="feather minimize-card icon-percent"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group TSTM-part">
+                                        <div class="input-group-title">甘蔗雜作</div>
+                                        <div class="input-group-container">
+                                            <div class="input-group-content">
+                                                <div class="datePickerGroup-container flex">
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="StartDate" placeholder="開始日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="dateRangeMiddleTxt">至</div>
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="EndDate" placeholder="結束日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="percent-part">
+                                                    <div class="flex">
+                                                        <input autocomplete="off" class="form-control text-box single-line" name="percent_input" type="text">
+                                                        <i class="feather minimize-card icon-percent"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group Pub-part">
+                                        <div class="input-group-title">民生工業</div>
+                                        <div class="input-group-container">
+                                            <div class="input-group-content">
+                                                <div class="datePickerGroup-container flex">
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="StartDate" placeholder="開始日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="dateRangeMiddleTxt">至</div>
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="EndDate" placeholder="結束日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="percent-part">
+                                                    <div class="flex">
+                                                        <input autocomplete="off" class="form-control text-box single-line" name="percent_input" type="text">
+                                                        <i class="feather minimize-card icon-percent"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="result-part"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="IntermittentSettingPart" class="option collapsible">
+                    <div class="setting-container center">
+                        <div class="header-part">
+                            <div class="option-title" id="headingIntermittentSetting-@max_methodNo" data-toggle="collapse" data-target="#collapseIntermittentSetting-@max_methodNo" aria-expanded="true" aria-controls="collapseintermittentSetting-@max_methodNo">
+                                間歇灌溉設定
+                            </div>
+                            <div class="dropdown">
+                                <button class="fas-icon circle invers "
+                                        type="button" id="functionMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-cog"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="functionMenuButton">
+                                    <button class="dropdown-item" id="addIntermittentRiceBlock">新增[水稻間歇灌溉設定]區塊</button>
+                                    <button class="dropdown-item" id="addIntermittentTSTMBlock">新增[甘蔗雜作間歇灌溉設定]區塊</button>
+                                    <button class="dropdown-item" id="addIntermittentPubBlock">新增[民生工業間歇灌溉設定]區塊</button>
+                                </div>
+                            </div>
+                            <button id="headingIntermittentSetting-@max_methodNo" data-toggle="collapse" data-target="#collapseIntermittentSetting-@max_methodNo" aria-expanded="true" aria-controls="collapseintermittentSetting-@max_methodNo">
+                                <i class="feather minimize-card icon-chevron-up"></i>
+                            </button>
+                        </div>
+                        <div id="collapseIntermittentSetting-@max_methodNo" class="collapse show" aria-labelledby="headingIntermittentSetting-@max_methodNo">
+                            <div class="valueInputGroup-conatiner">
+                                <div class="valueInputGroup">
+                                    <div class="input-group rice-part">
+                                        <div class="input-group-title">水稻</div>
+                                        <div class="input-group-container">
+                                            <div class="input-group-content">
+                                                <div class="datePickerGroup-container flex">
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="StartDate" placeholder="開始日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="dateRangeMiddleTxt">至</div>
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="EndDate" placeholder="結束日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="interval-part">
+                                                    <div class="flex">
+                                                        <span>供</span>
+                                                        <input autocomplete="off" class="form-control text-box single-line" name="supply_input" type="text">
+                                                        <span>停</span>
+                                                        <input autocomplete="off" class="form-control text-box single-line" name="cut_input" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group TSTM-part">
+                                        <div class="input-group-title">甘蔗雜作</div>
+                                        <div class="input-group-container">
+                                            <div class="input-group-content">
+                                                <div class="datePickerGroup-container flex">
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="StartDate" placeholder="開始日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="dateRangeMiddleTxt">至</div>
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="EndDate" placeholder="結束日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="interval-part">
+                                                    <div class="flex">
+                                                        <span>供</span>
+                                                        <input autocomplete="off" class="form-control text-box single-line" name="supply_input" type="text">
+                                                        <span>停</span>
+                                                        <input autocomplete="off" class="form-control text-box single-line" name="cut_input" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group Pub-part">
+                                        <div class="input-group-title">民生工業</div>
+                                        <div class="input-group-container">
+                                            <div class="input-group-content">
+                                                <div class="datePickerGroup-container flex">
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="StartDate" placeholder="開始日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="dateRangeMiddleTxt">至</div>
+                                                    <div class="datePickerGroup">
+                                                        <div>
+                                                            <input autocomplete="off" class="form-control text-box single-line" data-toggle="datepicker" name="EndDate" placeholder="結束日期" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="interval-part">
+                                                    <div class="flex">
+                                                        <span>供</span>
+                                                        <input autocomplete="off" class="form-control text-box single-line" name="supply_input" type="text">
+                                                        <span>停</span>
+                                                        <input autocomplete="off" class="form-control text-box single-line" name="cut_input" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="result-part"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade QValSelectionModal" id="QValSelectionModal-@max_methodNo" tabindex="-1" role="dialog" style="z-index: 1050; display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">設定各旬超越機率流量</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="QvalConfig">
+                        <div class="QvalSelectionPart">
+                            <h4 class="sub-title">
+                                期作選擇：
+                            </h4>
+                            <select id="QvalSelection" name="select" class="col-md-auto form-control form-control-primary">
+                                <option value="Q95">Q95</option>
+                                <option value="Q90">Q90</option>
+                                <option value="Q85">Q85</option>
+                                <option value="Q80">Q80</option>
+                                <option value="Q75">Q75</option>
+                                <option value="Q70">Q70</option>
+                                <option value="Q60">Q60</option>
+                                <option value="Q50">Q50</option>
+                            </select>
+                        </div>
+                        <main class="grid-selection">
+                            <section class="sec demo">
+                                <section class="box-wrap boxes blue"></section>
+                            </section>
+                        </main>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">關閉</button>
+                    <button id="LoadVal" type="button" class="btn btn-primary waves-effect waves-light" data-dismiss="modal">確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade RankInflowModal" id="RankInflowModal-@max_methodNo" tabindex="-1" role="dialog" style="z-index: 1050; display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">查詢輸入歷史豐枯年度入流量</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="QueryResult">
+                        <div id="QueryResultTable-@max_methodNo" class="qrt"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">關閉</button>
+                    <button id="LoadVal" type="button" class="btn btn-primary waves-effect waves-light" data-dismiss="modal">確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

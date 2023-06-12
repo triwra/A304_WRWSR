@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A304_WRWSRBatch", "A304_WRWSRBatch\A304_WRWSRBatch.csproj", "{4533DD86-F14D-475E-BD49-4FD92A27A8A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBClassLibrary", "DBClassLibrary\DBClassLibrary.csproj", "{7D5ECAE0-A12B-4CBD-9293-D5C1B84C8E2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendWeb", "BackendWeb\BackendWeb.csproj", "{BF02E18B-1DB2-40B0-B110-5978EF8A0939}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterPlanAPI", "WaterPlanAPI\WaterPlanAPI\WaterPlanAPI.csproj", "{04E517CA-0B8A-4D4D-9975-9FF27D2022BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4533DD86-F14D-475E-BD49-4FD92A27A8A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4533DD86-F14D-475E-BD49-4FD92A27A8A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4533DD86-F14D-475E-BD49-4FD92A27A8A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4533DD86-F14D-475E-BD49-4FD92A27A8A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D5ECAE0-A12B-4CBD-9293-D5C1B84C8E2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D5ECAE0-A12B-4CBD-9293-D5C1B84C8E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D5ECAE0-A12B-4CBD-9293-D5C1B84C8E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D5ECAE0-A12B-4CBD-9293-D5C1B84C8E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF02E18B-1DB2-40B0-B110-5978EF8A0939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF02E18B-1DB2-40B0-B110-5978EF8A0939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF02E18B-1DB2-40B0-B110-5978EF8A0939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF02E18B-1DB2-40B0-B110-5978EF8A0939}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04E517CA-0B8A-4D4D-9975-9FF27D2022BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04E517CA-0B8A-4D4D-9975-9FF27D2022BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04E517CA-0B8A-4D4D-9975-9FF27D2022BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04E517CA-0B8A-4D4D-9975-9FF27D2022BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {512ED213-B438-4844-BE6F-667FD9722CAB}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://triwrait.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = A304_WRWSRBatch\\A304_WRWSRBatch.csproj
+		SccProjectName1 = A304_WRWSRBatch
+		SccLocalPath1 = A304_WRWSRBatch
+		SccProjectUniqueName2 = DBClassLibrary\\DBClassLibrary.csproj
+		SccProjectName2 = DBClassLibrary
+		SccLocalPath2 = DBClassLibrary
+		SccProjectUniqueName3 = BackendWeb\\BackendWeb.csproj
+		SccProjectName3 = BackendWeb
+		SccLocalPath3 = BackendWeb
+		SccProjectUniqueName4 = WaterPlanAPI\\WaterPlanAPI\\WaterPlanAPI.csproj
+		SccProjectName4 = WaterPlanAPI/WaterPlanAPI
+		SccLocalPath4 = WaterPlanAPI\\WaterPlanAPI
+	EndGlobalSection
+EndGlobal

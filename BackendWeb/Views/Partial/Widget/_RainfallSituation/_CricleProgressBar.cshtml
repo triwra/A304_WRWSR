@@ -1,0 +1,10 @@
+﻿<!-- Change data-value in svg element to impact progress -->
+<div class="wrwsr-cricle-progressbar">
+    <svg viewBox="-10 -10 120 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" data-value="0">
+        <circle r="45" cx="50" cy="50" />
+        <!-- 282.78302001953125 is auto-calculated by path.getTotalLength() -->
+        <path class="meter" d="M5,50a45,45 0 1,0 90,0a45,45 0 1,0 -90,0" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="282.78302001953125" stroke-dasharray="282.78302001953125" />
+        <!-- Value automatically updates based on data-value set above -->
+        <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="20"></text>
+    </svg>
+</div>

@@ -1,0 +1,180 @@
+﻿@using DBClassLibrary.UserDomainLayer.UserInterfaceModel
+@{
+    ViewBag.Title = "Index";
+    var ReservoirList = ViewBag.ReservoirList;
+    var ReservoirYearList = ViewBag.ReservoirYearList;
+    var DailyReservoirList = ViewBag.DailyReservoirList;
+    string[] stationArry = ViewBag.stationArry;
+    var ReservoirYearList2 = ViewBag.ReservoirYearList;
+}
+
+@section header {
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin="" />
+    <link href="~/JSLib/datepicker-master/datepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
+          integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link href="~/SCSS/Views/WaterSituation/RealtimeReservoirInformation/PageStyle.min.css?@DateTime.Now.Ticks" rel="stylesheet" />
+    <style>
+        #map {
+            height: 750px;
+        }
+    </style>
+}
+
+<div class="page-body SingleReservoirInformation">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <!--PageContent-->
+            <!--分頁-->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="form-selectgroup">
+                                <label class="form-selectgroup-item">
+                                    <input type="radio" name="BoundaryType" value="1" class="form-selectgroup-input">
+                                    <a href="/WaterSituation/RealtimeReservoirInformation" class="form-selectgroup-label">
+                                        水庫總覽
+                                    </a>
+                                </label>
+                                <label class="form-selectgroup-item">
+                                    <input type="radio" name="BoundaryType" value="2" class="form-selectgroup-input" checked="">
+                                    <a href="/WaterSituation/SingleReservoirInformation" class="form-selectgroup-label">
+                                        單一水庫
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row g-2 align-items-center mb-3">
+                            <div class="col-12 col-xl-1 w-auto font-weight-bold">區域選擇</div>
+                            <div class="col-12 col-xl-2 ">
+                                <select id="StationNo" class="form-select">
+                                    @foreach (SelectOption option in ReservoirList)
+                                    {
+                                        <option value="@option.Value">@option.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 col-xl-1 w-auto font-weight-bold">日期選擇</div>
+                            <div class="col-12 col-xl-2 col-sm-4 col-md-2 col-xl">
+                                <div class="input-icon">
+                                    <input class="form-control" placeholder="Select a date" id="StartDate">
+                                    <span class="input-icon-addon">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-2 ">
+                                <div class="form-selectgroup">
+                                    <label class="form-selectgroup-item">
+                                        <input id="Query" type="button" name="icons" value="home" class="form-selectgroup-input" checked="">
+                                        <span class="form-selectgroup-label">
+                                            查詢
+                                        </span>
+                                    </label>
+                                    <a href="#" class="btn-action" id="refresh_multi_select">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/refresh -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="gauge-part-container">
+                            <div class="reservoir-block-group">
+                                <div class="reservoir-block">
+                                    <div id="reservoir-single" class="reservoir-gauge">
+                                        <div class="reservoir-name"></div>
+                                        <svg id="liquid-single" width="100%" height="200" class="liquid-area"></svg>
+                                        <div class="reservoir-info">
+                                            <div class="waterVal-txt">
+                                                有效蓄水量 : <span>20,526</span> 萬噸
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 table-part">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="">
+                            <table id="datatable"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="">
+                            <div class="chart-Part m-b-30 ">
+                                <div class="echarts" style="width: 100%;height:500px;"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/4.0.2/moment-range.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-zh-TW.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.3.1/decimal.min.js"
+            integrity="sha512-Ou4M+sSU8oa+mE3juYqR3JmW633MUpMhe1cd+IusOtfjkMo8I3zXs4fRmjmCFqpRg5RK/geqoXBY8XRwFY2Rsg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
+            integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script src="~/JSLib/datepicker-master/datepicker.js" charset="big5"></script>
+    <script src="~/JSLib/datepicker-master/datepicker.zh-CN.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    @*<script src="~/Scripts/MyTool/MyDateTool.js"></script>*@
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/d3.v3.5.17.min.js"></script>
+    <script src="~/JSLib/liquidFillGauge.js"></script>
+    <script src="~/Scripts/View/WaterSituation/Common/Ajax.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/WaterSituation/Common/Chart.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/WaterSituation/RealtimeReservoirInformation/single.js?@DateTime.Now.Ticks"></script>
+
+    <script>
+        let stationArry = @Html.Raw(Json.Encode(@stationArry));
+        var ajax_src = {
+            //水庫總覽
+            GetMultiLatestReservoirInfo: "@Url.Action("GetMultiLatestReservoirInfo", "WaterSituation")",
+            GetReservoirRuleDay: "@Url.Action("GetReservoirRuleDay", "WaterSituation")",
+            //單一水庫
+            GetHistoryReservoirDataRank: "@Url.Action("GetHistoryReservoirDataRank", "Reservoir")",
+            GetSameDayEffectiveStorageData: "@Url.Action("GetSameDayEffectiveStorageData", "WaterSituation")",
+        }
+        window['moment-range'].extendMoment(moment);
+    </script>
+}

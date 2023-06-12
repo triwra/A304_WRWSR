@@ -1,0 +1,52 @@
+﻿@using DBClassLibrary.DomainLayer.UnitModel
+@model IEnumerable<UnitData>
+@{
+    ViewBag.Title = "單位列表";
+}
+
+<h3>單位列表 :</h3>
+
+@if (Model != null && Model.Count() == 0)
+{
+    <div class="alert alert-info">
+        沒有符合條件的資料!
+    </div>
+}
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitName)
+            </th>
+            <th width="200px">功能</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td data-th="@Html.DisplayNameFor(model => model.UnitNumber)">
+                    @Html.DisplayFor(modelItem => item.UnitNumber)
+                </td>
+                <td data-th="@Html.DisplayNameFor(model => model.UnitName)">
+                    @Html.DisplayFor(modelItem => item.UnitName)
+                </td>
+                <td data-th="Action">
+                    @Html.ActionLink("修改", "Edit", new { id = item.UnitID }) |
+                    @Html.ActionLink("刪除", "Delete", new { id = item.UnitID })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+<div class="tw-block-btn">
+    @Html.ActionLink("新增", "Create", "Unit", null, new { @class = "btn btn-primary" })
+</div>
+
+

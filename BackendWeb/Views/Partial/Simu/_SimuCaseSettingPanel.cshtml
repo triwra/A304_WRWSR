@@ -1,0 +1,422 @@
+﻿
+@{
+    ViewBag.Title = "_SimuCaseSettingPanel";
+    var IrrigationPlanDataYearList = (SelectList)ViewBag.IrrigationPlanDataYearList;
+    var PublicUseOfWaterYearList = (SelectList)ViewBag.PublicUseOfWaterYearList;
+    int max_methodNo = ViewBag.max_methodNo;
+}
+
+
+<div caseNo="@max_methodNo" class="modal bottom fade" id="caseNo-@max_methodNo-setting-panel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="caseNo-@max_methodNo-setting-panel-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-xl">
+                    <div class="col-md-12">
+                        <div class="card caseSettingSection">
+                            <div class="card-body">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <div class="row">
+                                    <div class="col-xl-6  setting-part left-part">
+                                        <div class="row g-2 align-items-center mb-3 common keep">
+                                            <div class="col-12 col-xl-10 row">
+                                                <div class="col-12 col-xl-8 mb-1 case-name-input-part">
+                                                    <div class="input-icon">
+                                                        <input class="form-control text-center" placeholder="請輸入方案名稱" id="CaseName">
+                                                        <span class="input-icon-addon">
+                                                            <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-forms" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                                <path d="M12 3a3 3 0 0 0 -3 3v12a3 3 0 0 0 3 3"></path>
+                                                                <path d="M6 3a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3"></path>
+                                                                <path d="M13 7h7a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-7"></path>
+                                                                <path d="M5 7h-1a1 1 0 0 0 -1 1v8a1 1 0 0 0 1 1h1"></path>
+                                                                <path d="M17 12h.01"></path>
+                                                                <path d="M13 12h.01"></path>
+                                                            </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-xl-4 mb-1 query-part">
+                                                    <div class=" btn-part">
+                                                        <a id="caseQuery" href="#" class="caseQuery btn">加入模擬</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-xl-12 switch-setting-btn-part">
+                                                    <div>
+                                                        <div class="btn-part">
+                                                            <input type="checkbox" class="btn-check switchMode" id="switchMode-@max_methodNo" autocomplete="off">
+                                                            <label class="btn" for="switchMode-@max_methodNo">+進階設定</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--需水量設定-->
+                                        <div class="row g-2 align-items-center mb-3 common">
+                                            <div class="col-12 col-xl-12  font-weight-bold setting-top-title">需水量設定<i class="ti ti-info-circle"></i></div>
+                                        </div>
+                                        <div class="row g-2 align-items-center mb-3 common setting-group-container">
+                                            <div class="row irrig-water-setting-part">
+                                                <div class="col-12 col-xl-12 mb-2 font-weight-bold setting-leading-title">供灌面積設定</div>
+                                                <div class="col-12 col-xl-12 ">
+                                                    <div>
+
+                                                        <label class="toggle  d-flex align-items-center mb-2 mt-2">
+                                                            <input id="AuxiliaryWaterSource" class="toggle-checkbox" type="checkbox">
+                                                            <div class="toggle-switch"></div>
+                                                            <span class="toggle-label setting-normal-text">考慮補助水源</span>
+                                                        </label>
+
+                                                        <label class="form-check d-flex align-items-center">
+                                                            <input class="col-2 form-check-input" type="radio" name="irrig-area-type-@max_methodNo" value="1" checked>
+                                                            <span class="col-3 form-check-label text-center" style="font-size:20px">計畫面積</span>
+                                                            <div class="col-5">
+                                                                <select id="PlanIrrigUsedWaterYear" class="form-select text-center" required>
+                                                                    <option value="2021">110</option>
+                                                                </select>
+                                                            </div>
+                                                        </label>
+                                                        <label class="form-check d-flex align-items-center">
+                                                            <input class="col-2 form-check-input" type="radio" name="irrig-area-type-@max_methodNo" value="2">
+                                                            <span class="col-3 form-check-label text-center" style="font-size:20px">判釋面積</span>
+                                                            <div class="col-5">
+                                                                <select id="SentencingIrrigUsedWaterYear" class="form-select text-center" required>
+                                                                    <option value="9999">平均</option>
+                                                                    <option value="2021">110</option>
+                                                                    <option value="2020">109</option>
+                                                                    <option value="2019">108</option>
+                                                                    <option value="2018">107</option>
+                                                                    <option value="2017">106</option>
+                                                                </select>
+                                                            </div>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--入流量設定-->
+                                        <div class="row g-2 align-items-center mt-4  mb-3 common">
+                                            <div class="col-12 col-xl-12 font-weight-bold setting-top-title">入流量設定</div>
+                                        </div>
+                                        <div class="row g-2 align-items-center mb-3 setting-group-container common">
+                                            <div class="row g-2 align-items-center mb-1 common">
+                                                <div class="form-selectgroup Q-radio-part">
+                                                    <label class="form-selectgroup-item">
+                                                        <input type="radio" name="Qradio-@max_methodNo" value="Q70" class="form-selectgroup-input" checked="">
+                                                        <span class="form-selectgroup-label"> Q70</span>
+                                                    </label>
+                                                    <label class="form-selectgroup-item">
+                                                        <input type="radio" name="Qradio-@max_methodNo" value="Q80" class="form-selectgroup-input">
+                                                        <span class="form-selectgroup-label">Q80</span>
+                                                    </label>
+                                                    <label class="form-selectgroup-item">
+                                                        <input type="radio" name="Qradio-@max_methodNo" value="Q90" class="form-selectgroup-input">
+                                                        <span class="form-selectgroup-label"> Q90</span>
+                                                    </label>
+                                                    <label class="form-selectgroup-item">
+                                                        <input type="radio" name="Qradio-@max_methodNo" value="QminAverageValue" class="form-selectgroup-input">
+                                                        <span class="form-selectgroup-label">十年最枯</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row g-2 align-items-center mb-1 pro hide">
+                                                <div class="pro-Q-radio-part btn-group w-100">
+                                                    <label class="form-selectgroup-item col-6">
+                                                        <input type="radio" name="Qradio-@max_methodNo" value="TenDaysQ" class="form-selectgroup-input">
+                                                        <span class="form-selectgroup-label">各旬超越機率流量</span>
+                                                    </label>
+                                                    <label class="form-selectgroup-item col-6">
+                                                        <input type="radio" name="Qradio-@max_methodNo" value="InflowRank" class="form-selectgroup-input">
+                                                        <span class="form-selectgroup-label">歷史豐枯年度入流量</span>
+                                                    </label>
+                                                </div>
+                                                <div id="QGridSelection-@max_methodNo" class="hide">
+                                                    <main class="grid-selection">
+                                                        <section class="sec demo">
+                                                            <section class="box-wrap boxes blue"></section>
+                                                        </section>
+                                                        <div class="col-xl-2 mt-3">
+                                                            <select id="QGridValueSelection" class="form-select text-center" required>
+                                                                <option value="Q95">Q95</option>
+                                                                <option value="Q90">Q90</option>
+                                                                <option value="Q85">Q85</option>
+                                                                <option value="Q80">Q80</option>
+                                                                <option value="Q75">Q75</option>
+                                                                <option value="Q70">Q70</option>
+                                                                <option value="Q60">Q60</option>
+                                                                <option value="Q50">Q50</option>
+                                                            </select>
+                                                        </div>
+                                                    </main>
+                                                </div>
+                                                <div id="InflowTableSelection-@max_methodNo" class="hide">
+                                                    <table id="InflowTable" style="width: 100%; height: 150px;">
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xl-6 setting-part  right-part">
+                                        <div class="row g-2 align-items-center mb-3 pro hide">
+                                            <div class="col-12 col-xl-12  font-weight-bold setting-top-title">進階需水量設定<i class="ti ti-info-circle"></i></div>
+                                        </div>
+                                        <div class="row g-2 align-items-center mb-3 setting-group-container pro hide">
+                                            <div class="mb-4 pro hide delay-setting-part">
+                                                <label class="form-check d-flex align-items-center">
+                                                    <input id="delay-setting-part-cbx-@max_methodNo" class="col-2 form-check-input" type="checkbox">
+                                                    <div class="row g-2 align-items-center me-2 ms-2">
+                                                        <div class="col-12 col-xl-12  font-weight-bold setting-leading-title">延後供灌日期<i class="ti ti-info-circle"></i></div>
+                                                    </div>
+                                                </label>
+                                                <div class="pro hide mask">
+                                                    <div class="row g-2 align-items-center mb-3">
+                                                        <div class="row align-items-center irrig-water-setting-part">
+                                                            <div class="w-auto col-12 col-md-1 col-xl-1 setting-normal-text">一期作</div>
+                                                            <div class="col-12 col-xl-4 col-sm-4 col-md-2 col-xl">
+                                                                <div class="input-icon">
+                                                                    <input class="form-control text-center" placeholder="今日" id="Period1StartDate">
+                                                                    <span class="input-icon-addon">
+                                                                        <!-- download svg icon from http://tabler-icons.io/i/calendar -->
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewbox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="m0 0h24v24h0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row g-2 align-items-center mb-3">
+                                                        <div class="row align-items-center irrig-water-setting-part">
+                                                            <div class="w-auto col-12 col-md-1 col-xl-1 setting-normal-text">二期作</div>
+                                                            <div class="col-12 col-xl-4 col-sm-4 col-md-2 col-xl">
+                                                                <div class="input-icon">
+                                                                    <input class="form-control text-center" placeholder="今日" id="Period2StartDate">
+                                                                    <span class="input-icon-addon">
+                                                                        <!-- download svg icon from http://tabler-icons.io/i/calendar -->
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewbox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="m0 0h24v24h0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 pro hide discount-setting-part">
+                                                <label class="form-check d-flex align-items-center">
+                                                    <input id="discount-setting-part-cbx-@max_methodNo" class="col-2 form-check-input" type="checkbox">
+                                                    <div class="row g-2 align-items-center me-2 ms-2">
+                                                        <div class="col-12 col-xl-12  font-weight-bold setting-leading-title">折扣用水設定<i class="ti ti-info-circle"></i></div>
+                                                    </div>
+                                                </label>
+                                                <div class="pro hide mask">
+                                                    <div class="row g-2 align-items-center mb-3 d-felx flex-row align-content-center  justify-content-start">
+                                                        <div class="w-auto col-12 col-md-1 col-xl-1 setting-normal-text">水稻</div>
+                                                        <div class="col-12 col-md-5 col-xl-3 col-sm-4 col-md-2 col-xl">
+                                                            <div class="input-icon">
+                                                                <input class="form-control text-center" placeholder="今日" id="ProIrrgiStartDate">
+                                                                <span class="input-icon-addon">
+                                                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <span class="w-auto col-md-1 normal-txt setting-normal-text">至</span>
+                                                        <div class="col-12 col-md-5 col-xl-3 col-sm-4 col-md-2 col-xl">
+                                                            <div class="input-icon">
+                                                                <input class="form-control text-center" placeholder="結束" id="ProIrrgiEndDate">
+                                                                <span class="input-icon-addon">
+                                                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        @*<div class="col-12 col-md-1 col-xl-1 w-auto setting-normal-text">｜折扣</div>*@
+                                                        <div class="col-12 col-md-5 col-xl-2 discount-setting-part">
+                                                            <input class="form-control" placeholder="" id="ProIrrgiDiscount">
+                                                        </div>
+                                                        <div class="col-12 col-xl-1 w-auto setting-normal-text">%</div>
+                                                    </div>
+                                                    <div class="row g-2 align-items-center mb-3 d-felx flex-row align-content-center  justify-content-start">
+                                                        <div class="w-auto col-12 col-md-1 col-xl-1 setting-normal-text">民生</div>
+                                                        <div class="col-12 col-md-5 col-xl-3 col-sm-4 col-md-2 col-xl">
+                                                            <div class="input-icon">
+                                                                <input class="form-control text-center" placeholder="今日" id="ProPubStartDate">
+                                                                <span class="input-icon-addon">
+                                                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <span class="w-auto col-md-1 normal-txt setting-normal-text">至</span>
+                                                        <div class="col-12 col-md-5 col-xl-3 col-sm-4 col-md-2 col-xl">
+                                                            <div class="input-icon">
+                                                                <input class="form-control text-center" placeholder="結束" id="ProPubEndDate">
+                                                                <span class="input-icon-addon">
+                                                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        @*<div class="col-12 col-md-1 col-xl-1 w-auto setting-normal-text">｜折扣</div>*@
+                                                        <div class="col-12 col-md-5 col-xl-2 discount-setting-part">
+                                                            <input class="form-control" placeholder="" id="ProPubDiscount">
+                                                        </div>
+                                                        <div class="col-12 col-xl-1 w-auto setting-normal-text">%</div>
+                                                    </div>
+                                                    <div class="row g-2 align-items-center mb-3 d-felx flex-row align-content-center  justify-content-start">
+                                                        <div class="w-auto col-12 col-md-1 col-xl-1 setting-normal-text">工業</div>
+                                                        <div class="col-12 col-md-5 col-xl-3 col-sm-4 col-md-2 col-xl">
+                                                            <div class="input-icon">
+                                                                <input class="form-control text-center" placeholder="今日" id="ProIndStartDate">
+                                                                <span class="input-icon-addon">
+                                                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <span class="w-auto col-md-1 normal-txt setting-normal-text">至</span>
+                                                        <div class="col-12 col-md-5 col-xl-3 col-sm-4 col-md-2 col-xl">
+                                                            <div class="input-icon">
+                                                                <input class="form-control text-center" placeholder="結束" id="ProIndEndDate">
+                                                                <span class="input-icon-addon">
+                                                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        @*<div class="col-12 col-md-1 col-xl-1 w-auto setting-normal-text">｜折扣</div>*@
+                                                        <div class="col-12 col-md-5 col-xl-2 discount-setting-part">
+                                                            <input class="form-control" placeholder="" id="ProIndDiscount">
+                                                        </div>
+                                                        <div class="col-12 col-xl-1 w-auto setting-normal-text">%</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-4 pro hide">
+                                                <label class="form-check d-flex align-items-center">
+                                                    <input id="susp-area-setting-part-cbx-@max_methodNo" class="col-2 form-check-input" type="checkbox">
+                                                    <div class="row g-2 align-items-center me-2 ms-2">
+                                                        <div class="col-12 col-xl-12  font-weight-bold setting-leading-title">停灌區域<i class="ti ti-info-circle"></i></div>
+                                                    </div>
+                                                </label>
+                                                <div class="pro hide mask">
+                                                    <div id="SuspendedIrrigationArea-@max_methodNo" class="row g-2 align-items-center mb-3 ">
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="d-flex align-items-center setting-normal-text">
+                                                                <input class="me-2 form-check-input checkbox cbx-select-group " id="cbx-select-group-a-@max_methodNo" type="checkbox" value="a-@max_methodNo">
+                                                                <label class="me-2 form-check-label" for="cbx-select-group-a-@max_methodNo">桃一</label>
+                                                            </div>
+                                                            <div class="form-selectgroup form-selectgroup-pills">
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-a-@max_methodNo" id="cbx-group-a-1-@max_methodNo" type="checkbox" value="NO1" data-group="a-@max_methodNo" data-id="NO1">
+                                                                    <span class="form-selectgroup-label setting-normal-text">桃園</span>
+                                                                </label>
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-a-@max_methodNo" id="cbx-group-a-2-@max_methodNo" type="checkbox" value="NO2" data-group="a-@max_methodNo" data-id="NO2">
+                                                                    <span class="form-selectgroup-label setting-normal-text">大竹</span>
+                                                                </label>
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-a-@max_methodNo" id="cbx-group-a-3-@max_methodNo" type="checkbox" value="NO3" data-group="a-@max_methodNo" data-id="NO3">
+                                                                    <span class="form-selectgroup-label setting-normal-text">大園</span>
+                                                                </label>
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-a-@max_methodNo" id="cbx-group-a-4-@max_methodNo" type="checkbox" value="NO4" data-group="a-@max_methodNo" data-id="NO4">
+                                                                    <span class="form-selectgroup-label setting-normal-text">大崙</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="d-flex align-items-center setting-normal-text">
+                                                                <input class="me-2 form-check-input checkbox cbx-select-group " id="cbx-select-group-b-@max_methodNo" type="checkbox" value="b-@max_methodNo">
+                                                                <label class="me-2 form-check-label" for="cbx-select-group-b-@max_methodNo">桃二</label>
+                                                            </div>
+                                                            <div class="form-selectgroup form-selectgroup-pills">
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-b-@max_methodNo" id="cbx-group-b-1-@max_methodNo" type="checkbox" value="NO5" data-group="b-@max_methodNo" data-id="NO5">
+                                                                    <span class="form-selectgroup-label setting-normal-text">草漯</span>
+                                                                </label>
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-b-@max_methodNo" id="cbx-group-b-2-@max_methodNo" type="checkbox" value="NO6" data-group="b-@max_methodNo" data-id="NO6">
+                                                                    <span class="form-selectgroup-label setting-normal-text">新坡</span>
+                                                                </label>
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-b-@max_methodNo" id="cbx-group-b-3-@max_methodNo" type="checkbox" value="NO7" data-group="b-@max_methodNo" data-id="NO7">
+                                                                    <span class="form-selectgroup-label setting-normal-text">觀音</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="d-flex align-items-center setting-normal-text">
+                                                                <input class="me-2 form-check-input checkbox cbx-select-group " id="cbx-select-group-c-@max_methodNo" type="checkbox" value="c-@max_methodNo">
+                                                                <label class="me-2 form-check-label" for="cbx-select-group-c-@max_methodNo">桃三</label>
+                                                            </div>
+                                                            <div class="form-selectgroup form-selectgroup-pills">
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-c-@max_methodNo" id="cbx-group-c-1-@max_methodNo" type="checkbox" value="NO8" data-group="c-@max_methodNo" data-id="NO8">
+                                                                    <span class="form-selectgroup-label setting-normal-text">新屋</span>
+                                                                </label>
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-c-@max_methodNo" id="cbx-group-c-2-@max_methodNo" type="checkbox" value="NO9" data-group="c-@max_methodNo" data-id="NO9">
+                                                                    <span class="form-selectgroup-label setting-normal-text">湖口</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="d-flex align-items-center setting-normal-text">
+                                                                <input class="me-2 form-check-input checkbox cbx-select-group " id="cbx-select-group-d-@max_methodNo" type="checkbox" value="d-@max_methodNo">
+                                                                <label class="me-2 form-check-label" for="cbx-select-group-d-@max_methodNo">石一</label>
+                                                            </div>
+                                                            <div class="form-selectgroup form-selectgroup-pills">
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-d-@max_methodNo" id="cbx-group-d-1-@max_methodNo" type="checkbox" value="NO10" data-group="d-@max_methodNo" data-id="NO10">
+                                                                    <span class="form-selectgroup-label setting-normal-text">八德</span>
+                                                                </label>
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-d-@max_methodNo" id="cbx-group-d-2-@max_methodNo" type="checkbox" value="NO11" data-group="d-@max_methodNo" data-id="NO11">
+                                                                    <span class="form-selectgroup-label setting-normal-text">中壢</span>
+                                                                </label>
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-d-@max_methodNo" id="cbx-group-d-3-@max_methodNo" type="checkbox" value="NO12" data-group="d-@max_methodNo" data-id="NO12">
+                                                                    <span class="form-selectgroup-label setting-normal-text">過嶺</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <div class="d-flex align-items-center setting-normal-text">
+                                                                <input class="me-2 form-check-input checkbox cbx-select-group " id="cbx-select-group-e-@max_methodNo" type="checkbox" value="e-@max_methodNo">
+                                                                <label class="me-2 form-check-label" for="cbx-select-group-e-@max_methodNo">石二</label>
+                                                            </div>
+                                                            <div class="form-selectgroup form-selectgroup-pills">
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-e-@max_methodNo" id="cbx-group-e-1-@max_methodNo" type="checkbox" value="NO13" data-group="e-@max_methodNo" data-id="NO13">
+                                                                    <span class="form-selectgroup-label setting-normal-text">楊梅</span>
+                                                                </label>
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-e-@max_methodNo" id="cbx-group-e-2-@max_methodNo" type="checkbox" value="NO14" data-group="e-@max_methodNo" data-id="NO14">
+                                                                    <span class="form-selectgroup-label setting-normal-text">富岡</span>
+                                                                </label>
+                                                                <label class="form-selectgroup-item">
+                                                                    <input class="form-selectgroup-input form-check-input checkbox cbx-group cbx-group-e-@max_methodNo" id="cbx-group-e-3-@max_methodNo" type="checkbox" value="NO15" data-group="e-@max_methodNo" data-id="NO15">
+                                                                    <span class="form-selectgroup-label setting-normal-text">湖口</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xl-12 setting-part sumi-result-table-part  ms-3 me-3 table-part hide">
+                                        <table id="SumiResultTable"></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

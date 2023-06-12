@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section header {
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin="" />
+    <link href="~/JSLib/datepicker-master/datepicker.css" rel="stylesheet" />
+    <link href="~/SCSS/Views/RainfallSituation/DailyCumulativeRainfall/PageStyle.min.css?@DateTime.Now.Ticks" rel="stylesheet" />
+    <style>
+        #map {
+            height: 750px;
+        }
+    </style>
+}
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <!--PageContent-->
+            <!--設定-->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="d-flex align-items-center font-weight-bold">
+                            <h3 class="card-title">設定</h3>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-selectgroup">
+                                <label class="form-selectgroup-item">
+                                    <input type="radio" name="BoundaryType" value="1" class="form-selectgroup-input">
+                                    <a href="/RainfallSituation/ReservoirDailyCumulativeRainfall" class="form-selectgroup-label">
+                                        水庫
+                                    </a>
+                                </label>
+                                <label class="form-selectgroup-item">
+                                    <input type="radio" name="BoundaryType" value="3" class="form-selectgroup-input" checked="">
+                                    <a href="/RainfallSituation/IrrigationAreaDailyCumulativeRainfall" class="form-selectgroup-label">
+                                        管理處
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 align-items-center mb-3">
+                            <div class="col-12 col-xl-1 w-auto font-weight-bold">統計期間</div>
+                            <div class="col-12 col-xl-2 ">
+                                <div class="form-selectgroup">
+                                    <label class="form-selectgroup-item">
+                                        <input type="radio" name="DateOptionType" value="Daily" class="form-selectgroup-input" checked="">
+                                        <span class="form-selectgroup-label">
+                                            即時累積
+                                        </span>
+                                    </label>
+                                    <span class="vertical-divider"></span>
+                                    <label class="form-selectgroup-item">
+                                        <input type="radio" name="DateOptionType" value="Range" class="form-selectgroup-input">
+                                        <span class="form-selectgroup-label">
+                                            期距累積
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-2 col-sm-4 col-md-2 col-xl">
+                                <div class="input-icon">
+                                    <input disabled class="form-control" placeholder="Select a date" id="StartDate" value="2020-06-20">
+                                    <span class="input-icon-addon">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <span style="display:contents;">至</span>
+                            <div class="col-12 col-xl-2 col-sm-4 col-md-2 col-xl">
+                                <div class="input-icon">
+                                    <input disabled class="form-control " placeholder="Select a date" id="EndDate" value="2020-06-20">
+                                    <span class="input-icon-addon">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><rect x="4" y="5" width="16" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="4" y1="11" x2="20" y2="11"></line><line x1="11" y1="15" x2="12" y2="15"></line><line x1="12" y1="15" x2="12" y2="18"></line></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-2 ">
+                                <div class="form-selectgroup">
+                                    <label class="form-selectgroup-item">
+                                        <input id="Query" type="button" name="icons" value="home" class="form-selectgroup-input" checked="">
+                                        <span class="form-selectgroup-label">
+                                            查詢
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--台灣地圖-->
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="">
+                            <div id="map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--表格-->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+
+
+                        <div class="">
+                            <table id="datatable"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--圖表-->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="chart-Part m-b-30 ">
+                                <div class="echarts" style="width: 100%;height:400px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-zh-TW.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.3.1/decimal.min.js"
+            integrity="sha512-Ou4M+sSU8oa+mE3juYqR3JmW633MUpMhe1cd+IusOtfjkMo8I3zXs4fRmjmCFqpRg5RK/geqoXBY8XRwFY2Rsg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@3.0.8/dist/esri-leaflet.js"
+            integrity="sha512-E0DKVahIg0p1UHR2Kf9NX7x7TUewJb30mxkxEm2qOYTVJObgsAGpEol9F6iK6oefCbkJiA4/i6fnTHzM6H1kEA=="
+            crossorigin=""></script>
+    <script src="~/JSLib/Leaflet.idw-master/src/leaflet-idw.js"></script>
+    <!-- Load Esri Leaflet Vector from CDN -->
+    <script src="https://unpkg.com/esri-leaflet-vector@3.1.4/dist/esri-leaflet-vector.js"
+            integrity="sha512-qqHFNDWxGD6JBy4qQ0M6ehco1Eob19SyxL0uetMwtid3BQthgTpGkNRokO+/gPU2oWmfty5Dg3wTHt7IwJQMCA=="
+            crossorigin=""></script>
+    @*<script src="~/JSLib/LINQ/JSLINQ.js"></script>*@
+    @*<script src="~/JSLib/datepicker-master/datepicker.min.js"></script>*@
+    <script src="~/JSLib/datepicker-master/ROCdatepicker.js"></script>
+    @*<script src="~/JSLib/datepicker-master/datepicker.js"></script>*@
+    <script src="~/JSLib/datepicker-master/datepicker.zh-CN.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    @*<script src="~/Scripts/MyTool/MyDateTool.js"></script>*@
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/View/RainfallSituation/Common/Ajax.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/RainfallSituation/Common/Chart.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/RainfallSituation/Common/main.js?@DateTime.Now.Ticks"></script>
+
+    <script>
+        let BoundaryType = 3;
+        let IANo = '01';
+        var ajax_src = {
+            GetRealTimeGridCumulativeDailyRainfall: "@Url.Action("GetRealTimeGridCumulativeDailyRainfall", "RainfallSituation")",
+            GetRealTimeGridCumulativeRangeRainfall: "@Url.Action("GetRealTimeGridCumulativeRangeRainfall", "RainfallSituation")",
+            GetRealTimeGridDailyRainfall: "@Url.Action("GetRealTimeGridDailyRainfall", "RainfallSituation")",
+            GetRealTimeGridRangeRainfall : "@Url.Action("GetRealTimeGridRangeRainfall", "RainfallSituation")",
+        }
+    </script>
+}

@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNet.Identity
+@using BackendWeb.Helper
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a class="dropdown-toggle" role="button"
+                   aria-expanded="false" href="#" data-toggle="dropdown">
+                    您好，@User.Identity.GetUserName()<span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu" role="menu">
+                    @*<li class='dropdown-header'>我的最愛</li>
+                    @Html.Raw(CommonHelper.GetUserMenuHtml(User.Identity.GetUserId()))
+                    <li>@Html.ActionLink("選單設定", "Favorite", "Menu")</li>
+                    <li class='divider'></li>*@
+
+                    <li>@Html.ActionLink("變更密碼", "ChangePassword", "Manage")</li>
+                </ul>
+
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        @*<li>@Html.ActionLink("註冊", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+        <li>@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

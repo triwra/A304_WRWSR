@@ -1,0 +1,36 @@
+﻿@import "../../../theme/element/IconStyle.scss";
+
+#datatable {
+    td.dataVal {
+        min-width: 50px !important;
+    }
+
+
+}
+.bootstrap-table.bootstrap4 {
+    .fixed-columns-right,.fixed-columns {
+        transition-duration: 0.3s;
+    }
+
+    .fixed-columns.scroll-now {
+        box-shadow: 1px 0px 5px 0px #c1c1c1;
+    }
+
+    .fixed-columns-right.scroll-now {
+        box-shadow: -1px 0px 5px 0px #c1c1c1;
+    }
+}
+#QuerySection .datePickerGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+#RainfallHistoryChart .datePickerGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}

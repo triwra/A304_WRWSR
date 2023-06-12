@@ -1,0 +1,114 @@
+﻿.widget.e5 {
+
+    .wrwsr-body {
+        .content-part {
+            width: 100%;
+
+            .info-part {
+                background: #F3F5F7;
+                border-radius: 10px;
+
+                .info-group {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-content: center;
+
+                    .info-title {
+                        font-weight: 700;
+                        font-size: 125%;
+                        color: #000;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: .25rem;
+
+                        span {
+                            font-size: 85%;
+                            color: #757681;
+                            align-self: self-end;
+                            line-height: initial;
+                        }
+                    }
+
+                    .info-sub-title {
+                        font-weight: 500;
+                        font-size: 110%;
+                        color: #757681;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        flex-direction: column;
+
+                        div:nth-child(1) {
+                            color: #000;
+
+                            span {
+                                font-size: 85%;
+                                color: #757681;
+                                align-self: self-end;
+                                line-height: initial;
+                            }
+                        }
+
+                        div:nth-child(2) {
+                            padding: 2px 5px 2px 8px;
+                            border-radius: 100px;
+                            display: flex;
+                            align-items: center;
+                            flex-direction: row;
+                            align-content: center;
+                            margin-top: .25rem;
+
+                            &.up {
+                                background: #ADE2FF;
+                            }
+
+                            &.down {
+                                background: #FFD6E4;
+                            }
+
+                            span {
+                                font-size: 100%;
+                                color: #000;
+                            }
+                        }
+                    }
+
+                    .info-block {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        align-items: center;
+
+                        .block-title {
+                            font-weight: 700;
+                            font-size: 125%;
+                            line-height: 1.5;
+                            color: #000000;
+                            align-self: center;
+                        }
+
+                        .block-value {
+                            align-self: flex-end;
+                            font-size: 18px;
+
+                            span:nth-of-type(1) {
+                                font-weight: 700;
+                            }
+
+                            span:nth-of-type(2) {
+                                font-size: 16px;
+                                line-height: 19px;
+                                color: #000000;
+                                align-self: end;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

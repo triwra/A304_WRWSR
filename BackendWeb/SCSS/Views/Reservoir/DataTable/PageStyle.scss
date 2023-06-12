@@ -1,0 +1,26 @@
+﻿@import "../../../CheckBox";
+@import "../../../Element/PopoverStyle";
+
+#DateTimeSelectionPart, #DateTimeSelectionPart1, #TenDaysSelectionPart, #MonthSelectionPart {
+    display: flex;
+    align-items: center;
+    margin: 5px 0px;
+
+    .cbk-elem {
+        margin-right: 10px;
+    }
+
+    .sub-title {
+        color: #666666;
+    }
+
+    .datePickerGroup {
+        width: 200px;
+        margin: 0px 15px;
+    }
+}
+
+.Query-Part {
+    display: flex;
+    justify-content: flex-end;
+}

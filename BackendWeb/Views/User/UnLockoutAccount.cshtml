@@ -1,0 +1,32 @@
+﻿@using DBClassLibrary.DomainLayer.UserModel
+@model UserData
+@{
+    ViewBag.Title = "解除鎖定使用者";
+}
+
+<h3>解除鎖定使用者 :</h3>
+
+@using (Html.BeginForm("UnLockoutAccount", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="card-block alert alert-danger">
+        @Html.HiddenFor(m => m.UserName)
+        @Html.HiddenFor(m => m.RealName)
+        @Html.HiddenFor(m => m.Email)
+        解除鎖定使用者 : @Model.UserName<br />
+        解除後此使用者將可以登入系統。
+    </div>
+
+    <div class="tw-block-btn">
+        <input type="submit" class="btn btn-primary" value="解除鎖定" />
+        @Html.ActionLink("取消", "LockoutList", "User", null, new { @class = "btn btn-default" })
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

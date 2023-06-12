@@ -1,0 +1,193 @@
+﻿@using DBClassLibrary.UserDomainLayer.UserInterfaceModel
+@{
+    var ReservoirOptList = ViewBag.ReservoirOptList;
+}
+
+@section header{
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet">
+    <link href="~/JSLib/datepicker-master/datepicker.css" rel="stylesheet" />
+    <link href="~/SCSS/Views/Reservoir/DataTable/PageStyle.min.css?@DateTime.Now.Ticks" rel="stylesheet" />
+}
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <!--PageContent-->
+            <!--設定-->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="d-flex align-items-center font-weight-bold">
+                            <h3 class="card-title">設定</h3>
+                        </div>
+
+
+                        <div class="row g-2 align-items-center mb-3">
+                            <div class="col-12 col-xl-1 w-auto font-weight-bold">區域選擇</div>
+                            <div class="col-12 col-xl-2 ">
+                                <select id="BoundaryType" class="form-select">
+                                    <option value="1">水庫</option>
+                                    @*<option value="3">管理處</option>*@
+                                </select>
+                            </div>
+                            <div class="col-12 col-xl-2 ">
+                                <select id="BoundaryID" class="form-select">
+                                    @foreach (SelectOption option in ReservoirOptList)
+                                    {
+                                        <option value="@option.Value">@option.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <!--比較年份-->
+                        <div class="row g-2 align-items-center mb-3">
+                            <div class="col-12 col-xl-1 w-auto font-weight-bold">統計範圍</div>
+                            <div class="col-12 col-xl-1 col-sm-4 col-md-2 col-xl">
+                                <div class="input-icon">
+                                    <input class="form-control" placeholder="Select a date" id="StartMDDate" readonly="readonly">
+                                </div>
+                            </div>
+                            <span class="w-4" style="text-align:center;">至</span>
+                            <div class="col-12 col-xl-1 col-sm-4 col-md-2 col-xl">
+                                <div class="input-icon">
+                                    <input class="form-control " placeholder="Select a date" id="EndMDDate" readonly="readonly">
+                                </div>
+                            </div>
+                        </div>
+                        <!--比較年份-->
+                        <div class="row g-2 align-items-center mb-3">
+                            <div class="col-12 col-xl-1 w-auto font-weight-bold">比較年份</div>
+                            <div class="col-12 col-xl-1 col-sm-4 col-md-2 col-xl">
+                                <label class="form-check d-flex align-items-center">
+                                    <input class="col-2 form-check-input" type="radio" name="dataRangeRadio" value="all" checked="">
+                                    <span class="col-3 w-auto me-2 ms-2 form-check-label text-center setting-normal-text">歷年</span>
+                                </label>
+                            </div>
+                            <div class="col-12 col-xl-1 col-sm-4 col-md-2 col-xl">
+                                <label class="form-check d-flex align-items-center">
+                                    <input class="col-2 form-check-input" type="radio" name="dataRangeRadio" value="range">
+                                    <span class="col-3 w-auto me-2 ms-2 form-check-label text-center setting-normal-text">指定範圍</span>
+                                </label>
+                            </div>
+                            <div class="col-12 col-xl-1 col-sm-4 col-md-2 col-xl">
+                                <div class="input-icon">
+                                    <input class="form-control " placeholder="Select a date" id="DataRangeStartY" readonly="readonly">
+                                </div>
+                            </div>
+                            <span class="w-4" style="text-align:center;">至</span>
+                            <div class="col-12 col-xl-1 col-sm-4 col-md-2 col-xl">
+                                <div class="input-icon">
+                                    <input class="form-control " placeholder="Select a date" id="DataRangeEndY" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-2 ">
+                                <div class="form-selectgroup">
+                                    <label class="form-selectgroup-item">
+                                        <input id="Query" type="button" name="icons" value="home" class="form-selectgroup-input" checked="">
+                                        <span class="form-selectgroup-label">
+                                            查詢
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--圖表-->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="">
+                            <div class="chart-Part m-b-30 ">
+                                <div class="echarts" style="width: 100%;height:400px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="">
+                            <table id="datatable"></table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-zh-TW.min.js"></script>
+    @*<script src="~/JSLib/datepicker-master/datepicker.min.js"></script>*@
+    <script src="~/JSLib/datepicker-master/ROCdatepicker.js?@DateTime.Now.Ticks"></script>
+    @*<script src="~/JSLib/datepicker-master/datepicker.js"></script>*@
+    <script src="~/JSLib/datepicker-master/datepicker.zh-CN.js?@DateTime.Now.Ticks"></script>
+
+    <script src="~/JSLib/LINQ/JSLINQ.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    @*<script src="~/Scripts/MyTool/MyDateTool.js"></script>*@
+    <script src="~/Scripts/MyTool/MyDataTool.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/MyTool/MyPopoverTool.js?@DateTime.Now.Ticks"></script>
+
+    <script src="~/Scripts/View/WaterSituation/Common/Ajax.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/WaterSituation/Common/Chart.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/WaterSituation/InflowRanking/main.js?@DateTime.Now.Ticks"></script>
+    <script>
+        let ReservoirOptList = @Html.Raw(Json.Encode(@ReservoirOptList));
+        var ajax_src = {
+            GetDateRangeReservoirInflowRankData: "@Url.Action("GetDateRangeReservoirInflowRankData", "WaterSituation")",
+        }
+        let datatype = 3;
+        //$('#TenDaysSelectionPart #StartDate').popover({
+        //    animation: false,
+        //    html: true,
+        //    sanitize: false,
+        //    placement: 'bottom',
+        //    trigger: 'click',
+        //    content: '<button type="button" id="button-image" class="btn btn-primary"><i class="mdi mdi-edit">1</i></button> <br><button type="button" id="button-clear" class="btn btn-danger"><i class="mdi mdi-trash-can-outline">2</i></button>',
+        //})
+        let mydatetool = new MyDateTool();
+        let mypopovertool = new MyPopoverTool(mydatetool.GetPopoverMonthTxtValArry(3, 4));
+        let option = {
+            title:'月份',
+            animation: false,
+            html: true,
+            sanitize: false,
+            placement: 'bottom',
+            trigger: 'click',
+            content: mypopovertool.CreateContenHtml(),
+        }
+        mypopovertool.popover('#MonthSelectionPart #StartDate', option, 'MonthSelectionPart-popover')
+
+        let mypopovertool2 = new MyPopoverTool(mydatetool.GetPopoverTenDaysTxtValArry(3, 4, 3));
+        let option2 = {
+            title: '旬期',
+            animation: false,
+            html: true,
+            sanitize: false,
+            placement: 'bottom',
+            trigger: 'click',
+            content: mypopovertool2.CreateContenHtml(),
+        }
+        mypopovertool2.popover('#TenDaysSelectionPart #StartDate', option2, 'TenDaysSelectionPart-popover')
+
+    </script>
+}

@@ -1,0 +1,92 @@
+﻿@using DBClassLibrary.UserDomainLayer.PageModel
+@model PageContent
+
+@{
+    var action = ViewContext.RouteData.Values["action"].ToString();
+    var controller = ViewContext.RouteData.Values["controller"].ToString();
+    var typeList = (SelectList)ViewBag.PageContentTypeList;
+}
+
+@using (Html.BeginForm(action, controller, FormMethod.Post, new { @class = "form-horizontal page-edit", id = "formInput", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("Category", (PageContentCategory)ViewBag.PageCategory)
+    <table class="data-input">
+        <tbody>
+            <tr>
+                <th style="width: 110px;">
+                    啟用狀態
+                </th>
+                <td>
+                    @Html.CheckBoxFor(m => m.Enabled, new { data_toggle = "toggle", data_onstyle = "info", data_size = "mini", data_on = " ", data_off = " " })
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    標題
+                </th>
+                <td>
+                    @Html.TextAreaFor(m => m.Title, new { @class = "form-control", rows = "2" })
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    發布單位
+                </th>
+                <td>
+                    @Html.TextBoxFor(m => m.Unit, htmlAttributes: new { @class = "form-control", })
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    發布時間
+                </th>
+                <td>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        @Html.EditorFor(m => m.ReleaseTime, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    縮圖代碼
+                </th>
+                <td>
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.Thumbnail, htmlAttributes: new { @class = "form-control", })
+                        <span class="input-group-addon"><i class="viewThumbnail glyphicon glyphicon-search"></i></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    內容類型
+                </th>
+                <td>
+                    @Html.DropDownListFor(m => m.ContentType, typeList, null, htmlAttributes: new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr id="trUrl" class="hide">
+                <th>
+                    網頁連結
+                </th>
+                <td>
+                    @Html.TextAreaFor(m => m.Url, new { @class = "form-control", rows = "3" })
+                </td>
+            </tr>
+            <tr id="trContents" class="hide">
+                <th>
+                    網頁內容
+                </th>
+                <td class="note-content">
+                    @Html.TextAreaFor(m => m.Contents, new { @class = "form-control" })
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="tw-block-btn">
+        <input type="submit" class="btn btn-primary" value="確定" />
+        @Html.ActionLink("取消", "Content", "Page", new { page = -1, category = ViewBag.PageCategory }, new { @class = "btn btn-default" })
+    </div>
+}

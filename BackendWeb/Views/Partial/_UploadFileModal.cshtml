@@ -1,0 +1,71 @@
+﻿@using BackendWeb.Helper
+@{
+    string title = (string)ViewBag.UploadTitle;
+    string fileType = (string)ViewBag.UploadFileType;
+    var validateMsg = "請選擇檔案";
+
+    if (string.IsNullOrWhiteSpace(title) == true)
+    {
+        title = "檔案上傳";
+    }
+
+    var action = (string)ViewBag.UploadAction;
+    //var action = ViewContext.RouteData.Values["action"].ToString();
+    var controller = ViewContext.RouteData.Values["controller"].ToString();
+
+    switch (fileType)
+    {
+        case CommonHelper.FileTypePDF: validateMsg = "請選擇 PDF 檔案"; break;
+        case CommonHelper.FileTypeExcel: validateMsg = "請選擇 Excel 檔案"; break;
+        case CommonHelper.FileTypeWord: validateMsg = "請選擇 Word 檔案"; break;
+        case CommonHelper.FileTypeImage: validateMsg = "請選擇圖片檔案"; break;
+        default: break;
+    }
+}
+
+@using (Html.BeginForm(
+    action,
+    controller,
+    FormMethod.Post,
+    new
+    {
+        @class = "form-horizontal",
+        id = "formInput",
+        role = "form",
+        enctype = "multipart/form-data"
+    }))
+{
+
+    @Html.AntiForgeryToken()
+    <div class="modal fade modal-operate" id="modalUpload" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">
+                        <span class="glyphicon glyphicon-file"></span>
+                        <span id="modalUploadTitle"> @title </span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-group">
+                        <div class="panel panel-default tw-panel">
+                            <div class="panel-body">
+                                @Html.Hidden("Id")
+                                @Html.Hidden("Type")
+                                <input type="file" name="File" id="File" class="filestyle" data-buttonText="選擇檔案"
+                                       accept="@fileType" data-val="true" data-val-required="@validateMsg"
+                                       data-val-filetype="@validateMsg" data-val-filetype-exts="@fileType">
+                                @Html.ValidationMessage("File", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="上傳" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

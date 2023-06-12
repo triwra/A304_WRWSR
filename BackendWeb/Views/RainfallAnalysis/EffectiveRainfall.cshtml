@@ -1,0 +1,143 @@
+﻿@{
+
+    var IAList = (SelectList)ViewBag.IAList;
+    //var GBERROCYearList = (SelectList)ViewBag.GBERROCYearList;
+    var Date = DateTime.Now.Ticks;
+
+}
+
+@section header {
+    <link href="~/Content/bootstrap-toggle.min.css" rel="stylesheet" />
+    <link href="~/JSLib/datepicker-master/datepicker.css" rel="stylesheet" />
+
+}
+
+<div class="page-body">
+    <div class="row row-cards">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row g-2 align-items-center mb-0">
+
+                        <div class="col-12 col-xl-1">
+                            <input id="DispalyType" checked type="checkbox" data-toggle="toggle"
+                                   data-onstyle="lime2"
+                                   data-offstyle="lime2"
+                                   data-style="android"
+                                   data-on="實際"
+                                   data-off="計畫">
+                        </div>
+
+                        <div class="col-12 col-xl-1 w-auto query-field-title">選擇管理處</div>
+                        <div class="col-12 col-xl-1">
+                            @Html.DropDownList("IANoSelection", IAList, null,
+                                htmlAttributes: new
+                                {
+                                    @id = "IANoSelection",
+                                    @name = "select",
+                                    @style = "display:inline-block",
+                                    @class = "col-md-auto form-select query-field-select"
+                                })
+                        </div>
+
+                        <div class="col-12 col-xl-1 w-auto query-field-title ActualOption">統計時間</div>
+                        <div class="col-12 col-xl-1 ActualOption">
+                            <div class="input-icon">
+                                <input class="form-control" placeholder="ROCYear" id="DataYearSelection">
+                                <span class="input-icon-addon">
+                                    <i class="ti ti-calendar"></i>
+                                </span>
+                            </div>
+
+                            @*@Html.DropDownList("DataYearSelection", GBERROCYearList, null,
+                                htmlAttributes: new
+                                {
+                                    @id = "DataYearSelection",
+                                    @name = "select",
+                                    @style = "display:inline-block",
+                                    @class = "col-md-auto form-select query-field-select"
+                                })*@
+                        </div>
+
+                        <div class="col-12 col-xl-1 ActualOption">
+                            <select id="PeriodTypeSelection" name="select"
+                                    class="col-md-auto form-select query-field-select">
+                                <option value="Month">月</option>
+                                <option value="Tendays">旬</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-12 col-xl-2">
+                            <div id="btnQuery" class="btn btn-green w-auto">查詢</div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 table-part">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="col-12 col-xl-1 ms-auto PeriodNoOption">
+                        <input id="PeriodNo" checked type="checkbox" data-toggle="toggle"
+                               data-onstyle="lime2"
+                               data-offstyle="lime2"
+                               data-style="android"
+                               data-on="一期作"
+                               data-off="二期作">
+                        
+                    </div>
+                    <div style="padding:5px;"></div>
+                    <table id="tblData"></table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-Part m-b-30 ">
+                        <div id="echarts" class="echarts" style="width: 100%;height:500px;"></div>
+
+                        <div id="data-time-realtime" style="text-align:right;">
+                            <h6 class="text">資料更新至: @ViewBag.DataDate</h6>
+                        </div>
+                        <div id="data-time" style="text-align:right;">
+                            <h6 class="text">計畫有效雨量統計期距: @ViewBag.StartYear ~ @ViewBag.EndYear 年</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script src="~/Scripts/bootstrap-toggle.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    <script src="~/JSLib/datepicker-master/ROCdatepicker.js"></script>
+
+    <script src="~/Scripts/View/RainfallAnalysis/EffectiveRainfall/AjaxClass.js"></script>
+    <script src="~/Scripts/View/RainfallAnalysis/EffectiveRainfall/Index.js?v=@Date"></script>
+
+    <script>
+        var ajax_src = {
+            GetWorkstation_GBPER_MonthData: "@Url.Action("GetWorkstation_GBPER_MonthData", "RainfallAnalysis")",
+            GetWorkstation_GBER_MonthData: "@Url.Action("GetWorkstation_GBER_MonthData", "RainfallAnalysis")",
+            GetWorkstation_GBER_TendaysData: "@Url.Action("GetWorkstation_GBER_TendaysData", "RainfallAnalysis")",
+
+        }
+
+
+    </script>
+}

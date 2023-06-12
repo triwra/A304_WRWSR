@@ -1,0 +1,150 @@
+﻿
+.light {
+    --switch-color: rgb(216, 216, 216);
+    --background-color-alternate: rgb(30,30,30);
+}
+
+.dark {
+    --switch-color: rgb(68, 68, 68);
+    --background-color-alternate: rgb(245, 245, 245);
+}
+
+.SwitchControl {
+    border-radius: 10px;
+    background: #30b079;
+    width: 130px;
+    height: 60px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+.SwitchControl .SwitchControl--slider {
+    z-index: 1;
+    width: 130px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    /* left: calc(50% - 250px); */
+    transition: all .3s cubic-bezier(.56,.045,0,1) !important;
+}
+
+.SwitchControl .SwitchControl--slider .SwitchControl--knob {
+    width: 65px;
+    height: 55px;
+    background: #707070b5;
+    position: absolute;
+    left: calc(50% - 50px);
+    top: 0;
+    border-radius: 10px;
+    margin: 2px;
+}
+
+/*.SwitchControl .SwitchControl--slider .SwitchControl--icon_left, .SwitchControl .SwitchControl--slider .SwitchControl--icon_right {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 25px;
+}*/
+
+/*.SwitchControl .SwitchControl--slider .SwitchControl--icon_left *, .SwitchControl .SwitchControl--slider .SwitchControl--icon_right * {
+    fill: var(--background-color-alternate) !important;
+}*/
+
+/*.SwitchControl .SwitchControl--slider .SwitchControl--icon_left {
+    left: 90px;
+}
+
+.SwitchControl .SwitchControl--slider .SwitchControl--icon_right {
+    right: 90px;
+}*/
+
+.SwitchControl.on .SwitchControl--slider {
+    transform: translateX(45px);
+}
+
+.SwitchControl.off .SwitchControl--slider {
+    transform: translateX(-13px);
+}
+
+.SwitchControl--icon_left {
+    fill: white;
+    z-index: 9;
+}
+.SwitchControl--icon_right {
+    fill: white;
+    z-index: 9;
+    margin-left: 15px;
+}
+
+.SimuCaseSettingPanelArea {
+    *,
+    *:before,
+    *:after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, ".SFNSText-Regular", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+    }
+
+    .toggle {
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .toggle-switch {
+        display: inline-block;
+        background: #ccc;
+        border-radius: 16px;
+        width: 58px;
+        height: 32px;
+        position: relative;
+        vertical-align: middle;
+        transition: background 0.25s;
+    }
+
+    .toggle-switch:before, .toggle-switch:after {
+        content: "";
+    }
+
+    .toggle-switch:before {
+        display: block;
+        background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        transition: left 0.25s;
+    }
+
+    .toggle:hover .toggle-switch:before {
+        background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+    }
+
+    .toggle-checkbox:checked + .toggle-switch {
+        background: #56c080;
+    }
+
+    .toggle-checkbox:checked + .toggle-switch:before {
+        left: 30px;
+    }
+
+    .toggle-checkbox {
+        position: absolute;
+        visibility: hidden;
+    }
+
+    .toggle-label {
+        margin-left: 5px;
+        position: relative;
+        top: 2px;
+    }
+}

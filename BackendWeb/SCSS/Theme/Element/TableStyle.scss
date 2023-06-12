@@ -1,0 +1,77 @@
+﻿.bootstrap-table {
+    .fixed-table-container {
+        .fixed-table-header {
+            border-bottom: 1px solid #a7a7a7;
+
+            thead {
+                th {
+                    padding: .2rem .2rem !important;
+                }
+            }
+        }
+    }
+
+    .table {
+        thead {
+            th {
+                border: 1px solid #a7a7a7;
+                background-color: #5e975d;
+                color: #ffffff;
+                padding: .2rem .2rem !important;
+
+                .th-inner {
+                    font-size: 18px;
+                    font-family: 微軟正黑體;
+                    padding: .2rem !important;
+                    text-transform: initial;
+                }
+            }
+        }
+
+        tbody {
+            tr[data-has-detail-view="true"] {
+                text-align: center;
+            }
+
+            tr {
+                td {
+                    border: 1px solid #d1d1d1;
+                    font-size: 16px;
+                    font-family: 微軟正黑體;
+                    padding: 0.5rem .2rem;
+
+                    .state-label {
+                        color: white;
+                        text-align: center;
+                        font-size: 16px;
+                        font-weight: 900;
+                        width: fit-content;
+                        padding: 3px 18px;
+                        border-radius: 5px;
+                        margin: auto;
+
+                        &.yellow {
+                            background-color: #ffc107;
+                        }
+
+                        &.red {
+                            background-color: #f44336;
+                        }
+                    }
+                    /*a {
+                        background-color: #607D8B;
+                        color: white;
+                        padding: 5px 15px;
+                        border-radius: 5px;
+                        font-size: 15px;
+                        transition-duration:0.3s;
+                        &:hover {
+                            background-color: #859ba6;
+                            
+                        }
+                    }*/
+                }
+            }
+        }
+    }
+}

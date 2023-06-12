@@ -1,0 +1,100 @@
+﻿@{
+
+    var ReservoirList = (SelectList)ViewBag.ReservoirList;
+    var Date = DateTime.Now.Ticks;
+
+}
+
+@section header {
+
+
+}
+
+<div class="page-body">
+    <div class="row row-cards">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row g-2 align-items-center mb-0">
+
+                        <div class="col-12 col-xl-1 w-auto query-field-title">選擇區域</div>
+                        <div class="col-12 col-xl-2">
+                            @Html.DropDownList("StationNoSelection", ReservoirList, null,
+                                htmlAttributes: new
+                                {
+                                    @id = "StationNoSelection",
+                                    @name = "select",
+                                    @style = "display:inline-block",
+                                    @class = "col-md-auto form-select query-field-select"
+                                })
+                        </div>
+
+                        <div class="col-12 col-xl-1 w-auto query-field-title">初始蓄水量</div>
+                        <div class="col-12 col-xl-1">
+                            <input class="form-control"
+                                   placeholder="15000" id="StorageSelection" value="15000">
+                        </div>
+                        <div class="col-12 col-xl-1 w-auto query-field-title">萬噸</div>
+
+                        <div class="w-auto card-OptionItem align-items-center">
+                            <div class="input-group align-items-center card-OptionItem-Text">
+                                <div class="query-field-title">供灌面積</div>
+                                <input class="form-control" style="width:80px"
+                                       placeholder="15000" id="AreaSelection">
+                                <div class="query-field-title">公頃</div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl-1">
+                            <div id="btnQuery" class="btn btn-green w-auto">查詢</div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-Part m-b-30 ">
+                        <div id="echarts" class="echarts" style="width: 100%;height:500px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+
+                <div class="card-body">
+                    <ol style="font-size: 18px;">
+                        <li>風險評估初始時間為1月1日，評估至5月31日止。</li>
+                        <li>石門水庫1月1日蓄水量依運轉規線上限、下限、嚴重下限值，分別為19500, 17500, 9000 萬噸。</li>
+                    </ol>
+                </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+
+    <script src="~/Scripts/View/WaterOperation/ReservoirInflowToRisk/AjaxClass.js"></script>
+    <script src="~/Scripts/View/WaterOperation/ReservoirInflowToRisk/Index.js?v=@Date"></script>
+
+    <script>
+        var ajax_src = {
+            GetReservoirInflowToRisk: "@Url.Action("GetReservoirInflowToRisk", "WaterOperation")",
+
+        }
+
+
+    </script>
+}

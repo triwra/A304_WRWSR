@@ -1,0 +1,171 @@
+﻿
+main {
+    width: 100%;
+    max-width: 50em;
+    margin: 1.5em auto;
+
+    .selection {
+        background: rgba(46, 115, 252, 0.11);
+        border-radius: 0.1em;
+        border: 2px solid rgba(98, 155, 255, 0.81);
+    }
+
+    section.demo {
+        /*width: 710px;*/
+
+        .box-wrap {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 2px solid rgba(66, 68, 90, 0.075);
+            border-radius: 0.15em;
+            /*padding: 1em 0;*/
+        }
+
+        .box-wrap::after {
+            display: block;
+            content: "";
+            clear: both;
+        }
+
+        .boxes {
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 3.42em;
+                width: 3.42em;
+                margin: 0.2em;
+                background: rgba(66, 68, 90, 0.075);
+                border: 2px solid transparent;
+                border-radius: 0.15em;
+                transition: all 0.3s;
+                cursor: pointer;
+            }
+
+            div.zero-position, div.x-header, div.y-header {
+                height: auto;
+                text-align: center;
+                pointer-events: none;
+                font-weight: 800;
+                font-family: 微軟正黑體;
+            }
+
+            div.y-header {
+                width: 27px !important;
+            }
+        }
+
+        .boxes.green {
+            div.selected {
+                background: #7febc2;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+        }
+        /*.boxes.blue {
+            div.selected {
+                background: #7fa0eb;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+        }*/
+        .boxes.blue {
+            div.selected.Q95 {
+                background: #E94560;
+                color: white;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+
+            div.selected.Q90 {
+                background: #EE6D82;
+                color: white;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+
+            div.selected.Q85 {
+                background: #F291A2;
+                color: white;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+
+            div.selected.Q80 {
+                background: #FAAF35;
+                color: white;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+
+            div.selected.Q75 {
+                background: #FBBF60;
+                color: white;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+
+            div.selected.Q70 {
+                background: #FCCF88;
+                color: white;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+
+            div.selected.Q60 {
+                background: #4279F0;
+                color: white;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+
+            div.selected.Q50 {
+                background: #114ED5;
+                color: white;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+        }
+
+        .boxes.red {
+            div.selected {
+                background: #eb8181;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+
+    main {
+        .boxes {
+            margin: 0 0.5em;
+
+            div {
+                height: 1.75em;
+                width: 1.75em;
+            }
+        }
+    }
+}
+
+/* details */
+
+/*main section.demo .box-wrap.green,
+main section.demo .box-wrap.blue {
+    margin-bottom: 3em;
+}*/
+
+/*main section.demo .box-wrap.red {
+    display: grid;
+    grid-template-columns: repeat(28, 1fr);
+    grid-gap: 0.4em;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-height: 25em;
+    overflow: auto;
+    padding: 0.5em;
+    margin-bottom: 3em;
+}*/
+
+/*main section.demo .box-wrap.red > div {
+    margin: 0;
+}*/
+
+
+
+

@@ -1,0 +1,88 @@
+﻿@charset "UTF-8";
+.wrwsr-panel.sty1 .wrwsr-header .title-part .text-part {
+  font-family: "Inter";
+  font-style: normal;
+}
+.wrwsr-panel.sty1 .wrwsr-header .title-part .text-part .main-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: #39A771;
+}
+.wrwsr-panel.sty1 .wrwsr-header .title-part .text-part .sub-title {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  /* 灰/文字預設 */
+  color: #757681;
+}
+.wrwsr-panel.sty1 .wrwsr-header .link-part .link-btn {
+  padding: 9px;
+  gap: 10px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background: #F3F5F7;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.wrwsr-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+.wrwsr-panel.sty2 .wrwsr-body .title-part .text-part {
+  font-family: "Inter";
+  font-style: normal;
+}
+.wrwsr-panel.sty2 .wrwsr-body .title-part .text-part .main-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: #39A771;
+}
+.wrwsr-panel.sty2 .wrwsr-body .title-part .text-part .sub-title {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  /* 灰/文字預設 */
+  color: #757681;
+}
+.wrwsr-panel.sty2 .wrwsr-body .link-part .link-btn {
+  padding: 9px;
+  gap: 10px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background: #F3F5F7;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .mobile-on-block {
+    display: block !important;
+  }
+  .mobile-on-flex {
+    display: flex !important;
+  }
+  .mobile-off {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) {
+  .mobile-on-block {
+    display: none !important;
+  }
+  .mobile-on-flex {
+    display: none !important;
+  }
+  .mobile-off {
+    display: initial;
+  }
+}

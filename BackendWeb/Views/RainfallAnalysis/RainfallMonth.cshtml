@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "即時雨量";
+}
+
+@section header {
+    <link href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.css">
+    <link href="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="~/JSLib/BootstrapDatetimepickerMaster/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/SCSS/Views/RainfallAnalysis/RainfallHistory/PageStyle.min.css" rel="stylesheet" />
+    @*<link href="~/SCSS/Views/Home/index/ReservoirTable.min.css" rel="stylesheet" />*@
+    @*<link href="~/SCSS/Views/Home/index/PageStyle.min.css" rel="stylesheet" />*@
+}
+
+<div id="RainfallRealTimeAvg" class="card col-xl-12 p-l-0 p-r-0">
+    <div class="card-header">
+        <h5 style="font-size: 20px;font-family: 微軟正黑體;">平均雨量</h5>
+        <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                @*<i class="fas fa-compress" title="全螢幕"></i>
+                    <i class="fas fa-sliders-h" title="選項"></i>*@
+                <li><i class="feather minimize-card icon-plus" title="展開"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-block">
+        <div class="QuerySection" style="display:flex">
+            <div id="DateTimeSelectionPart" class="option row col-xl-4 m-0" style="align-items: baseline; flex-wrap: nowrap;">
+                <h4 class="sub-title w4" style="align-self: center;">
+                    日期時間：
+                </h4>
+                <div class="datePickerGroup w-100">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                        @Html.Editor("DatePicker", new { htmlAttributes = new { data_toggle = "datepicker", @id = "DatePicker", @class = "form-control", @autocomplete = "off" } })
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0 " style="justify-content: flex-end;">
+                <div id="BtnQuery" class="btn btn-primary pull-right clearfix" style=" float: right;">查詢</div>
+            </div>
+        </div>
+        <hr>
+        <div id="data-time" style="text-align:right;font-family: 微軟正黑體;"><h6 class="text"></h6></div>
+        <table id="datatable"></table>
+    </div>
+</div>
+
+<div id="RainfallRealTimeEffect" class="card col-xl-12 p-l-0 p-r-0">
+    <div class="card-header">
+        <h5 style="font-size: 20px;font-family: 微軟正黑體;">有效雨量</h5>
+        <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                @*<i class="fas fa-compress" title="全螢幕"></i>
+                    <i class="fas fa-sliders-h" title="選項"></i>*@
+                <li><i class="feather minimize-card icon-plus" title="展開"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-block">
+        <div class="QuerySection" style="display:flex">
+            <div id="DateTimeSelectionPart" class="option row col-xl-4 m-0" style="align-items: baseline; flex-wrap: nowrap;">
+                <h4 class="sub-title w4" style="align-self: center;">
+                    日期時間：
+                </h4>
+                <div class="datePickerGroup w-100">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                        @Html.Editor("DatePicker", new { htmlAttributes = new { data_toggle = "datepicker", @id = "DatePicker", @class = "form-control", @autocomplete = "off" } })
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0 " style="justify-content: flex-end;">
+                <div id="BtnQuery" class="btn btn-primary pull-right clearfix" style=" float: right;">查詢</div>
+            </div>
+        </div>
+        <hr>
+        <div id="data-time" style="text-align:right;font-family: 微軟正黑體;"><h6 class="text"></h6></div>
+        <table id="datatable"></table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/sticky-header/bootstrap-table-sticky-header.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+    <script src="~/JSLib/BootstrapDatetimepickerMaster/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/JSLib/BootstrapDatetimepickerMaster/js/locales/bootstrap-datetimepicker.zh-TW.js"></script>
+    <script src="~/JSLib/LINQ/JSLINQ.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <!---------------------------------------------------------------------------------------->
+    <script src="~/Scripts/View/RainfallAnalysis/AjaxClass.js"></script>
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/View/RainfallAnalysis/RainfallMonth/PageScript.js"></script>
+    <script>
+        var ajax_src = {
+            GetAreaAverageRainValueRealTime: "@Url.Action("GetAreaAverageRainValueRealTime", "RainfallAnalysis")",
+            GetAreaAverageRainValueReal: "@Url.Action("GetAreaAverageRainValueReal", "RainfallAnalysis")",
+            GetAreaEffectiveRainValueReal: "@Url.Action("GetAreaEffectiveRainValueReal", "RainfallAnalysis")",
+            GetRainfallRealTimeInfo : "@Url.Action("GetRainfallRealTimeInfo", "RainfallAnalysis")",
+        }
+    </script>
+}
+

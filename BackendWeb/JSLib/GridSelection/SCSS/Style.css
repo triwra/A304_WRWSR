@@ -1,0 +1,135 @@
+﻿main {
+  width: 100%;
+  max-width: 50em;
+  margin: 1.5em auto;
+}
+main .selection {
+  background: rgba(46, 115, 252, 0.11);
+  border-radius: 0.1em;
+  border: 2px solid rgba(98, 155, 255, 0.81);
+}
+main section.demo {
+  /*width: 710px;*/
+  /*.boxes.blue {
+            div.selected {
+                background: #7fa0eb;
+                border: 2px solid rgba(0, 0, 0, 0.075);
+            }
+        }*/
+}
+main section.demo .box-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 2px solid rgba(66, 68, 90, 0.075);
+  border-radius: 0.15em;
+  /*padding: 1em 0;*/
+}
+main section.demo .box-wrap::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+main section.demo .boxes div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.42em;
+  width: 3.42em;
+  margin: 0.2em;
+  background: rgba(66, 68, 90, 0.075);
+  border: 2px solid transparent;
+  border-radius: 0.15em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+main section.demo .boxes div.zero-position,
+main section.demo .boxes div.x-header,
+main section.demo .boxes div.y-header {
+  height: auto;
+  text-align: center;
+  pointer-events: none;
+  font-weight: 800;
+  font-family: 微軟正黑體;
+}
+main section.demo .boxes div.y-header {
+  width: 27px !important;
+}
+main section.demo .boxes.green div.selected {
+  background: #7febc2;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q95 {
+  background: #e53935;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q90 {
+  background: #e53935;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q85 {
+  background: #ff9b07;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q80 {
+  background: #ff9b07;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q75 {
+  background: #ff9b07;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q70 {
+  background: #03A9F4;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q60 {
+  background: #03A9F4;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.blue div.selected.Q50 {
+  background: #03A9F4;
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+main section.demo .boxes.red div.selected {
+  background: #eb8181;
+  border: 2px solid rgba(0, 0, 0, 0.075);
+}
+@media only screen and (max-width: 1000px) {
+  main .boxes {
+    margin: 0 0.5em;
+  }
+  main .boxes div {
+    height: 1.75em;
+    width: 1.75em;
+  }
+}
+/* details */
+/*main section.demo .box-wrap.green,
+main section.demo .box-wrap.blue {
+    margin-bottom: 3em;
+}*/
+/*main section.demo .box-wrap.red {
+    display: grid;
+    grid-template-columns: repeat(28, 1fr);
+    grid-gap: 0.4em;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-height: 25em;
+    overflow: auto;
+    padding: 0.5em;
+    margin-bottom: 3em;
+}*/
+/*main section.demo .box-wrap.red > div {
+    margin: 0;
+}*/

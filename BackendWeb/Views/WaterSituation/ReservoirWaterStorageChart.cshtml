@@ -1,0 +1,148 @@
+﻿@using DBClassLibrary.UserDomainLayer.UserInterfaceModel
+@{
+    ViewBag.Title = "Index";
+    var ReservoirList = ViewBag.ReservoirList;
+    var ReservoirYearList = ViewBag.ReservoirYearList;
+    var ReservoirYearList2 = ViewBag.ReservoirYearList;
+}
+
+@section header {
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin="" />
+    <link href="~/JSLib/datepicker-master/datepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
+          integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link href="~/SCSS/Views/RainfallSituation/DroughtMonitoring/PageStyle.min.css?@DateTime.Now.Ticks" rel="stylesheet" />
+    <style>
+        #map {
+            height: 750px;
+        }
+    </style>
+}
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <!--PageContent-->
+            <!--設定-->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="d-flex align-items-center font-weight-bold">
+                            <h3 class="card-title">設定</h3>
+                        </div>
+
+
+                        <div class="row g-2 align-items-center mb-3">
+                            <div class="col-12 col-xl-1 w-auto font-weight-bold">區域選擇</div>
+                            <div class="col-12 col-xl-2 ">
+                                <select id="StationNo" class="form-select">
+                                    @foreach (SelectOption option in ReservoirList)
+                                    {
+                                        <option value="@option.Value">@option.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 col-xl-1 w-auto font-weight-bold">分析期距選擇</div>
+                            <div class="col-12 col-xl-6 col-sm-4 col-md-2 col-xl">
+                                <select id="SelectedYears" class="selectpicker" multiple aria-label="size 3 select example">
+                                    @foreach (SelectOption option in ReservoirYearList)
+                                    {
+                                        <option @(ReservoirYearList[0] == option ? "selected" : "") value="@option.Value">@option.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 col-xl-2 ">
+                                <div class="form-selectgroup">
+                                    <label class="form-selectgroup-item">
+                                        <input id="Query" type="button" name="icons" value="home" class="form-selectgroup-input" checked="">
+                                        <span class="form-selectgroup-label">
+                                            查詢
+                                        </span>
+                                    </label>
+                                    <a href="#" class="btn-action" id="refresh_multi_select">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/refresh -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--圖表-->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="d-flex align-items-center mb-3">
+                            @*<h3 class="card-title">Traffic summary</h3>*@
+                            <div class="ms-auto lh-1">
+                                <!--<div class="card-actions btn-actions">
+                                    <a href="#" class="btn-action">-->
+                                <!-- Download SVG icon from http://tabler-icons.io/i/refresh -->
+                                <!--<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path></svg>
+                                </a>
+                                <a href="#" class="btn-action">-->
+                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
+                                <!--<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><polyline points="6 15 12 9 18 15"></polyline></svg>
+                                </a>
+                                <a href="#" class="btn-action">-->
+                                <!-- Download SVG icon from http://tabler-icons.io/i/dots-vertical -->
+                                <!--<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle><circle cx="12" cy="5" r="1"></circle></svg>
+                                </a>
+                                <a href="#" class="btn-action">-->
+                                <!-- Download SVG icon from http://tabler-icons.io/i/x -->
+                                <!--<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                    </a>
+                                </div>-->
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="chart-Part m-b-30 ">
+                                <div class="echarts" style="width: 100%;height:600px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/4.0.2/moment-range.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-zh-TW.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.3.1/decimal.min.js"
+            integrity="sha512-Ou4M+sSU8oa+mE3juYqR3JmW633MUpMhe1cd+IusOtfjkMo8I3zXs4fRmjmCFqpRg5RK/geqoXBY8XRwFY2Rsg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
+            integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    @*<script src="~/Scripts/MyTool/MyDateTool.js"></script>*@
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/View/WaterSituation/Common/Ajax.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/WaterSituation/Common/Chart.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/WaterSituation/ReservoirWaterStorageChart/main.js?@DateTime.Now.Ticks"></script>
+
+    <script>
+        var ajax_src = {
+            GetReservoirWaterStorageData: "@Url.Action("GetReservoirWaterStorageData", "WaterSituation")",
+            GetReservoirRuleDay: "@Url.Action("GetReservoirRuleDay", "WaterSituation")",
+        }
+        window['moment-range'].extendMoment(moment);
+    </script>
+}

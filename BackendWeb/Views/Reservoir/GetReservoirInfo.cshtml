@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    @*<script src="https://d3js.org/d3.v3.min.js" language="JavaScript"></script>*@
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/d3.v3.5.17.min.js"></script>
+    <script src="~/Scripts/View/Reservoir/screen.js"></script>
+    @*<script src="~/Scripts/d3.v7.min.js"></script>*@
+    <script src="~/Scripts/View/Reservoir/liquidFillGauge.js"></script>
+    <style>
+        .liquidFillGaugeText {
+            font-family: Helvetica;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <svg id="fillgauge1" preserveAspectRatio="xMinYMin meet" viewBox="0,0,1890,1890" onclick="gauge1.update(NewValue());"></svg>
+    <script>
+        let StationName = '@Model.StationName';
+        let PercentageOfStorage  = '@Model.PercentageOfStorage';
+    </script>
+    <script src="~/Scripts/View/Reservoir/Reservoir.js"></script>
+</body>
+</html>

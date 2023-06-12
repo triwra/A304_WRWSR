@@ -1,0 +1,14 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "已鎖定";
+    Layout = "~/Views/Shared/_LayoutLoginPage.cshtml";
+}
+
+<div class="alert alert-danger">
+    <hgroup>
+        <h1 class="text-danger">已鎖定。</h1>
+        <h2 class="text-danger">此帳戶已遭鎖定，請稍後再試一次，或聯絡系統管理人員。</h2>
+        @Html.ActionLink("重新登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </hgroup>
+</div>

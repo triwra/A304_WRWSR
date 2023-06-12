@@ -1,0 +1,24 @@
+﻿.dropdown.bootstrap-select.show-tick {
+  width: 100% !important;
+}
+
+#SPIDateRange + button {
+  display: block;
+  width: 100%;
+  padding: 0.4375rem 2.25rem 0.4375rem 0.75rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4285714286;
+  color: inherit;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #d9dbde;
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

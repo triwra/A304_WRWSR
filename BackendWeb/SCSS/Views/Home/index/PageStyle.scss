@@ -1,0 +1,105 @@
+﻿.gauge-container {
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    justify-content: center;
+    padding: 0px 0px 15px 0px;
+    margin-bottom: 15px;
+
+    .gauge {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 25px;
+        /*float: left;*/
+        span {
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            font-family: 微軟正黑體;
+        }
+    }
+
+    .gauge-group {
+        .gauge {
+            margin-bottom: 0px;
+        }
+
+        .gauge.left {
+            width: 185px;
+            justify-content: center;
+            max-width: 185px;
+            min-width: 185px;
+        }
+
+        .gauge.right {
+            width: 185px;
+            justify-content: center;
+            max-width: 185px;
+            min-width: 185px;
+        }
+    }
+
+    @media (max-width:450px) {
+        .gauge {
+            width: 100%;
+            float: none;
+            min-width: 100px;
+            max-width: 250px;
+            min-height: 100px;
+            max-height: 250px;
+        }
+    }
+
+    #fillgauge2 {
+        min-width: 100px;
+        max-width: 250px;
+        min-height: 100px;
+        max-height: 250px;
+    }
+
+    #fillgauge3, #fillgauge4 {
+        min-width: 100px;
+        max-width: 170px;
+        min-height: 100px;
+        max-height: 170px;
+    }
+
+    .gauge-group {
+        align-self: flex-end;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        #fillgauge3, #fillgauge4 {
+            max-width: 175px;
+            max-height: 175px;
+            min-width: 50px;
+            min-height: 50px;
+        }
+    }
+}
+
+
+
+
+.tip_msg {
+    padding: 5px 15px;
+    border: 2px solid rgba(0,150,136,90%);
+    border-radius: 15px;
+    text-align: center;
+    background-color: rgba(255,255,255,0.8);
+    box-shadow: 5px 5px 6px 3px rgb(200,200,200);
+    font-family:微軟正黑體;
+    .AreaName {
+        font-size: 22px;
+        color: #009688;
+        font-weight: 600;
+    }
+
+    .D1 {
+        font-size: 16px;
+        color: #4e4e4e;
+    }
+}

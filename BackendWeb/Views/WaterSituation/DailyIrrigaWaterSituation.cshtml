@@ -1,0 +1,98 @@
+﻿
+@{
+
+}
+
+@section header {
+    <link href="~/SCSS/Views/WaterSituation/DailyIrrigaWaterSituation/PageStyle.min.css?@DateTime.Now.Ticks" rel="stylesheet" />
+}
+
+<div class="page-body RealtimeReservoirInformation">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <!--PageContent-->
+            <!--分頁-->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-title mb-3">
+                            @(DateTime.Now.Year-1911)年@(DateTime.Now.Month)月@(DateTime.Now.Day)日水資源競用區重要農業相關水庫水情分析
+                        </div>
+                        <div class="wrwsr-table-container">
+                            <table id="datatable" class="desktop">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">管理處</th>
+                                        <th rowspan="2">灌區</th>
+                                        <th colspan="3">灌區累積降雨(毫米)<br>(歷史同期平均)</th>
+                                        <th colspan="3">水庫有效蓄水量(萬噸)</th>
+                                    </tr>
+                                    <tr class="month-header">
+                                        <th>@(DateTime.Now.AddMonths(-2).Month)月</th>
+                                        <th>@(DateTime.Now.AddMonths(-1).Month)月</th>
+                                        <th>@(DateTime.Now.AddMonths(-2).Month)-@(DateTime.Now.AddMonths(-1).Month)月</th>
+                                        <th>現況</th>
+                                        <th>歷史<br>同期平均</th>
+                                        <th>歷史<br>枯旱排名</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <div id="datatable" class="mobile"> </div>
+
+
+                        </div>
+                        <div class="table-note mt-2 mb-3" style=" font-size: 115%;">
+                            <ol>
+                                <li>
+                                    有效蓄水量的統計期間為 92~111年，其中寶山為95年至111年。
+                                </li>
+                                <li>
+                                    歷史枯旱排名為有效蓄水量由小至大到排序。
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/4.0.2/moment-range.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-zh-TW.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.3.1/decimal.min.js"
+            integrity="sha512-Ou4M+sSU8oa+mE3juYqR3JmW633MUpMhe1cd+IusOtfjkMo8I3zXs4fRmjmCFqpRg5RK/geqoXBY8XRwFY2Rsg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
+            integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script src="~/JSLib/datepicker-master/datepicker.js" charset="big5"></script>
+    <script src="~/JSLib/datepicker-master/datepicker.zh-CN.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    @*<script src="~/Scripts/MyTool/MyDateTool.js"></script>*@
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/d3.v3.5.17.min.js"></script>
+    <script src="~/JSLib/liquidFillGauge.js"></script>
+    <script src="~/Scripts/View/WaterSituation/Common/Ajax.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/WaterSituation/Common/Chart.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/WaterSituation/DailyIrrigaWaterSituation/main.js?@DateTime.Now.Ticks"></script>
+
+    <script>
+        var ajax_src = {
+            //水庫總覽
+            GetIARainfallAndReservoirSummary: "@Url.Action("GetIARainfallAndReservoirSummary", "WaterSituation")",
+        }
+        window['moment-range'].extendMoment(moment);
+    </script>
+}

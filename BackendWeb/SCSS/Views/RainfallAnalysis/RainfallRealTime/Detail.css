@@ -1,0 +1,174 @@
+﻿@charset "UTF-8";
+ul.nav-tabs[role=tablist].tab-col-1 .nav-item, ul.nav-tabs[role=tablist].tab-col-1 .slide {
+  width: calc(100%/1);
+}
+ul.nav-tabs[role=tablist].tab-col-1 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-1 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+ul.nav-tabs[role=tablist].tab-col-2 .nav-item, ul.nav-tabs[role=tablist].tab-col-2 .slide {
+  width: calc(100%/2);
+}
+ul.nav-tabs[role=tablist].tab-col-2 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-2 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+ul.nav-tabs[role=tablist].tab-col-3 .nav-item, ul.nav-tabs[role=tablist].tab-col-3 .slide {
+  width: calc(100%/3);
+}
+ul.nav-tabs[role=tablist].tab-col-3 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-3 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+ul.nav-tabs[role=tablist].tab-col-4 .nav-item, ul.nav-tabs[role=tablist].tab-col-4 .slide {
+  width: calc(100%/4);
+}
+ul.nav-tabs[role=tablist].tab-col-4 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-4 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+ul.nav-tabs[role=tablist].tab-col-5 .nav-item, ul.nav-tabs[role=tablist].tab-col-5 .slide {
+  width: calc(100%/5);
+}
+ul.nav-tabs[role=tablist].tab-col-5 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-5 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+ul.nav-tabs[role=tablist].tab-col-6 .nav-item, ul.nav-tabs[role=tablist].tab-col-6 .slide {
+  width: calc(100%/6);
+}
+ul.nav-tabs[role=tablist].tab-col-6 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-6 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+ul.nav-tabs[role=tablist].tab-col-7 .nav-item, ul.nav-tabs[role=tablist].tab-col-7 .slide {
+  width: calc(100%/7);
+}
+ul.nav-tabs[role=tablist].tab-col-7 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-7 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+ul.nav-tabs[role=tablist].tab-col-8 .nav-item, ul.nav-tabs[role=tablist].tab-col-8 .slide {
+  width: calc(100%/8);
+}
+ul.nav-tabs[role=tablist].tab-col-8 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-8 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+ul.nav-tabs[role=tablist].tab-col-9 .nav-item, ul.nav-tabs[role=tablist].tab-col-9 .slide {
+  width: calc(100%/9);
+}
+ul.nav-tabs[role=tablist].tab-col-9 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-9 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+ul.nav-tabs[role=tablist].tab-col-10 .nav-item, ul.nav-tabs[role=tablist].tab-col-10 .slide {
+  width: calc(100%/10);
+}
+ul.nav-tabs[role=tablist].tab-col-10 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-10 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+ul.nav-tabs[role=tablist].tab-col-11 .nav-item, ul.nav-tabs[role=tablist].tab-col-11 .slide {
+  width: calc(100%/11);
+}
+ul.nav-tabs[role=tablist].tab-col-11 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-11 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+ul.nav-tabs[role=tablist].tab-col-12 .nav-item, ul.nav-tabs[role=tablist].tab-col-12 .slide {
+  width: calc(100%/12);
+}
+ul.nav-tabs[role=tablist].tab-col-12 .nav-item .nav-link {
+  font-size: 18px;
+  font-family: 微軟正黑體;
+  padding: 10px 0px;
+}
+ul.nav-tabs[role=tablist].tab-col-12 .nav-item .nav-link.active {
+  border: 1px solid #dddddd;
+  border-radius: 0.5rem;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+.icon .info.fas {
+  color: #17629f;
+  font-size: 16px;
+}
+.icon .info.fas .clickable {
+  cursor: pointer;
+}
+
+.row {
+  margin: 0;
+}

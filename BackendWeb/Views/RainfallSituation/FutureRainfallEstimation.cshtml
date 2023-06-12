@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+
+    var startDate1 = ViewBag.startDate1;
+    var endDate1 = ViewBag.endDate1;
+    var startDate2 = ViewBag.startDate2;
+    var endDate2 = ViewBag.endDate2;
+}
+
+@section header {
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin="" />
+    <link href="~/JSLib/datepicker-master/datepicker.css" rel="stylesheet" />
+    <link href="~/SCSS/Views/RainfallSituation/FutureRainfallEstimation/PageStyle.min.css?@DateTime.Now.Ticks" rel="stylesheet" />
+    <style>
+        [id $= "map"] {
+            height: 750px;
+        }
+    </style>
+}
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-cards">
+            <!--PageContent-->
+            <!--台灣地圖-->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="p-3 d-flex flex-column align-items-center">
+                            <h1 class="mb-0">第一週</h1>
+                            <h2> @startDate1 ~ @endDate1</h2>
+                        </div>
+                        <div class="">
+                            <div id="week1_map" style="background-color:white;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div  class="p-3 d-flex flex-column align-items-center">
+                            <h1 class="mb-0">第二週</h1>
+                            <h2>@startDate2 ~ @endDate2</h2>
+                        </div>
+                        <div class="">
+                            <div id="week2_map" style="background-color:white;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-zh-TW.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.3.1/decimal.min.js"
+            integrity="sha512-Ou4M+sSU8oa+mE3juYqR3JmW633MUpMhe1cd+IusOtfjkMo8I3zXs4fRmjmCFqpRg5RK/geqoXBY8XRwFY2Rsg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@3.0.8/dist/esri-leaflet.js"
+            integrity="sha512-E0DKVahIg0p1UHR2Kf9NX7x7TUewJb30mxkxEm2qOYTVJObgsAGpEol9F6iK6oefCbkJiA4/i6fnTHzM6H1kEA=="
+            crossorigin=""></script>
+
+    <!-- Load Esri Leaflet Vector from CDN -->
+    <script src="https://unpkg.com/esri-leaflet-vector@3.1.4/dist/esri-leaflet-vector.js"
+            integrity="sha512-qqHFNDWxGD6JBy4qQ0M6ehco1Eob19SyxL0uetMwtid3BQthgTpGkNRokO+/gPU2oWmfty5Dg3wTHt7IwJQMCA=="
+            crossorigin=""></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/6.5.0/turf.min.js"></script>
+
+    @*<script src="~/JSLib/LINQ/JSLINQ.js"></script>*@
+    <script src="~/JSLib/datepicker-master/datepicker.js"></script>
+    @*<script src="~/JSLib/datepicker-master/datepicker.min.js"></script>*@
+    <script src="~/JSLib/datepicker-master/ROCdatepicker.js"></script>
+    @*<script src="~/JSLib/datepicker-master/datepicker.js"></script>*@
+    <script src="~/JSLib/datepicker-master/datepicker.zh-CN.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    @*<script src="~/Scripts/MyTool/MyDateTool.js"></script>*@
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/View/RainfallSituation/FutureRainfallEstimation/Ajax.js?@DateTime.Now.Ticks"></script>
+    <script src="~/Scripts/View/RainfallSituation/FutureRainfallEstimation/main.js?@DateTime.Now.Ticks"></script>
+
+    <script>
+        var ajax_src = {
+
+            GetFutureWeekGridRainfall: "@Url.Action("GetFutureWeekGridRainfall", "RainfallSituation")",
+        }
+    </script>
+}

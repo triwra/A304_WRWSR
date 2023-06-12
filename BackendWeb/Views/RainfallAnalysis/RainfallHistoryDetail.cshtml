@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "歷史雨量";
+    var datatime = ViewBag.datatime;
+    var QYear = ViewBag.QYear;
+    var QMonth = ViewBag.QMonth;
+    var AreaID = ViewBag.AreaID;
+    var AreaOptionList = (SelectList)ViewBag.AreaOptionList;
+}
+
+@section header {
+    <link href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.css">
+    <link href="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="~/JSLib/BootstrapDatetimepickerMaster/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/SCSS/Views/RainfallAnalysis/RainfallHistory/PageStyle.min.css" rel="stylesheet" />
+    @*<link href="~/SCSS/Views/Home/index/PageStyle.min.css" rel="stylesheet" />*@
+}
+
+<div id="RainfallHistoryAvg" class="card">
+    <div class="card-header">
+        <h5 style="font-size: 20px;font-family: 微軟正黑體;">日雨量</h5>
+        <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                <li><i class="feather minimize-card icon-plus" title="展開"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-block">
+        <div class="col-sm-12 col-md-12 col-xl-12 m-b-30 m-t-30 row m-l-0 m-r-0 ">
+            <div id="FarmSelectionPart" class="row col-xl-4 m-0" style="flex-wrap: nowrap;">
+                <h4 class="sub-title w4" style="align-self: center;">
+                    區處選擇：
+                </h4>
+                <div class="selection-elem w-100">
+                    @Html.DropDownList("AreaOptionList", AreaOptionList, null, htmlAttributes: new { @id = "AreaOptionList", @name = "select", @class = "col-md-auto form-control form-control-primary w-100" })
+                </div>
+            </div>
+            <div id="DateTimeSelectionPart" class="option row col-xl-4 m-0" style="align-items: baseline; flex-wrap: nowrap;">
+                <h4 class="sub-title w4" style="align-self: center;">
+                    日期時間：
+                </h4>
+                <div class="datePickerGroup w-100">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                        @Html.Editor("DatePicker", new { htmlAttributes = new { data_toggle = "datepicker", @id = "DatePicker", @class = "form-control", @autocomplete = "off" } })
+                    </div>
+                </div>
+                <div class="icon MaxMinDateHint">
+                    <i class="info fas fa-info-circle clickable" style="pointer-events: none;" type="button" disabled></i>
+                </div>
+            </div>
+            <div class="row m-0 col-xl-12 w-100" style="justify-content: flex-end;">
+                <div id="BtnQuery" class="btn btn-primary pull-right clearfix" style=" float: right;">查詢</div>
+            </div>
+        </div>
+        <hr>
+        <div id="data-time" style="text-align:right;font-family: 微軟正黑體;" class="clearfix"><h6 class="text"></h6></div>
+        <table id="datatable"></table>
+    </div>
+
+</div>
+<div id="RainfallHistoryChart" class="card">
+    <div class="card-header">
+        <h5 style="font-size: 20px;font-family: 微軟正黑體;">有效雨量</h5>
+        <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                <li><i class="feather minimize-card icon-plus" title="展開"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-block">
+        <div class="col-sm-12 col-md-12 col-xl-12 m-b-30 m-t-30 row m-l-0 m-r-0 ">
+            <div id="DateTimeSelectionPart" class="option row col-xl-4 m-0" style="align-items: baseline; flex-wrap: nowrap;">
+                <h4 class="sub-title w2" style="align-self: center;">
+                    年度：
+                </h4>
+                <div class="datePickerGroup w-100 ">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                        @Html.Editor("DatePicker", new { htmlAttributes = new { data_toggle = "datepicker", @id = "DatePicker", @class = "form-control", @autocomplete = "off" } })
+                    </div>
+                    <div class="icon MaxMinDateHint">
+                        <i class="info fas fa-info-circle clickable" style="pointer-events: none;" type="button" disabled></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0 col-xl-12 w-100" style="justify-content: flex-end;">
+                <div id="BtnQuery" class="btn btn-primary pull-right clearfix" style=" float: right;">查詢</div>
+            </div>
+        </div>
+        <hr>
+        <div class="chart-Part m-b-30 ">
+            <div class="echarts" style="width: 100%;height:400px;"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/sticky-header/bootstrap-table-sticky-header.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+    <script src="~/JSLib/LINQ/JSLINQ.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    <script src="~/JSLib/BootstrapDatetimepickerMaster/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/JSLib/BootstrapDatetimepickerMaster/js/locales/bootstrap-datetimepicker.zh-TW.js"></script>
+    <!---------------------------------------------------------------------------------------->
+    <script src="~/Scripts/View/RainfallAnalysis/AjaxClass.js"></script>
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/View/RainfallAnalysis/RainfallHistory/ChartBuilderClass.js"></script>
+    <script src="~/Scripts/View/RainfallAnalysis/RainfallHistory/Detail.js"></script>
+    <script>
+        var QYear = "@QYear";
+        var QMonth = "@QMonth";
+        var AreaID = @AreaID;
+        $('#AreaOptionList').val(AreaID);
+        $('#DatePicker').val(QYear + '-' + QMonth);
+        $('#RainfallHistoryChart #DatePicker').val(QYear);
+        var ajax_src = {
+            GetRainfallHistoryInfo: "@Url.Action("GetRainfallHistoryInfo", "RainfallAnalysis")",
+            GetRainfallHistoryTimeSeriesInfo: "@Url.Action("GetRainfallHistoryTimeSeriesInfo", "RainfallAnalysis")",
+        }
+        
+    </script>
+}
+
+
+

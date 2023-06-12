@@ -1,0 +1,110 @@
+﻿@{
+
+    var IAList = (SelectList)ViewBag.IAList;
+    var IrrigationPlanDataYearList = (SelectList)ViewBag.IrrigationPlanDataYearList;
+    var Date = DateTime.Now.Ticks;
+
+}
+
+@section header {
+    <link href="~/Content/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css" rel="stylesheet" />
+}
+
+<div class="page-body">
+    <div class="row row-cards">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row g-2 align-items-center mb-0">
+
+                        <div class="col-12 col-xl-1 w-auto query-field-title">選擇管理處</div>
+                        <div class="col-12 col-xl-1">
+                            @Html.DropDownList("IANoSelection", IAList, null,
+                                 htmlAttributes: new
+                                 {
+                                     @id = "IANoSelection",
+                                     @name = "select",
+                                     @style = "display:inline-block",
+                                     @class = "col-md-auto form-select query-field-select"
+                                 })
+                        </div>
+
+                        <div class="col-12 col-xl-1 w-auto query-field-title">作物別</div>
+                        <div class="col-12 col-xl-1">
+                            <select id="CropTypeSelection" name="select"
+                                    class="col-md-auto form-select query-field-select">
+                                <option value="TR">水稻</option>
+                                <option value="TS">甘蔗</option>
+                                <option value="TM">雜作</option>
+                                @*<option value="TL">幹線消秏量</option>*@
+                            </select>
+                        </div>
+                        <div class="col-12 col-xl-2">
+                            <select id="PeriodNoSelection" name="select"
+                                    class="col-md-auto form-select query-field-select">
+                                <option value="1">一期作</option>
+                                <option value="2">二期作</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-xl-1 w-auto query-field-title">統計時間</div>
+                        <div class="col-12 col-xl-1">
+                            @Html.DropDownList("DataYearSelection", IrrigationPlanDataYearList, null,
+                                 htmlAttributes: new
+                                 {
+                                     @id = "DataYearSelection",
+                                     @name = "select",
+                                     @style = "display:inline-block",
+                                     @class = "col-md-auto form-select query-field-select"
+                                 })
+                        </div>
+
+                        <div class="col-12 col-xl-2">
+                            <div id="btnQuery" class="btn btn-green w-auto">查詢</div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 table-part">
+            <div class="card">
+                <div class="card-body">
+                    <table id="tblData"></table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-Part m-b-30 ">
+                        <div id="echarts" class="echarts" style="width: 100%;height:500px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+
+    <script src="~/Scripts/View/Irrigation/IrrigationPlanTendays/AjaxClass.js"></script>
+    <script src="~/Scripts/View/Irrigation/IrrigationPlanTendays/Index.js?v=@Date"></script>
+
+    <script>
+        var ajax_src = {
+            GetIrrigationPlanManageData: "@Url.Action("GetIrrigationPlanManageDataByTendays", "Irrigation")",
+        }
+
+    </script>
+
+}

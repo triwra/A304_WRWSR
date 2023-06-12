@@ -1,0 +1,51 @@
+﻿.bootstrap-table {
+    .fixed-table-container {
+        .fixed-table-header {
+            border-bottom: 1px solid #a7a7a7;
+
+            thead {
+                th {
+                    padding: .2rem .2rem !important;
+                }
+            }
+        }
+    }
+
+
+
+    .table {
+        thead {
+            th {
+                border: 1px solid #a7a7a7;
+                background-color: blue;
+                padding: .2rem .2rem !important;
+
+                .th-inner {
+                    font-size: 18px;
+                    font-family: 微軟正黑體;
+                    padding: .2rem !important;
+                }
+            }
+        }
+
+        tbody {
+            background-color:firebrick;
+            tr[data-has-detail-view="true"] {
+                text-align: center;
+            }
+
+            tr {
+                td {
+                    border: 1px solid #d1d1d1;
+                    font-size: 16px;
+                    font-family: 微軟正黑體;
+                    padding: .75rem .2rem !important;
+
+                    a{
+                        font-size:16px;
+                    }
+                }
+            }
+        }
+    }
+}

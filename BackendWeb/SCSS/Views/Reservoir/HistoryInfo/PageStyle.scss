@@ -1,0 +1,282 @@
+﻿@import '../../../CheckBox.scss';
+/*@import "../../../BootstrapTable-StickyHeader.scss";*/
+
+*:focus {
+    outline: none;
+}
+
+#OptionCard #BtnQuery {
+    margin-bottom: 15px;
+}
+
+.option-container > div {
+    padding: 0px 60px;
+}
+
+.pcoded-main-container {
+    background: #f4f4f4;
+}
+
+.option-part.card-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    padding: 0px 10%;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+}
+
+.card {
+    font-family: 微軟正黑體;
+    overflow: hidden;
+
+    .card-block {
+
+
+
+
+        .sub-title {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            min-width: 150px;
+        }
+
+        #FarmSelectionPart, #DateTimeSelectionPart, #ValueRangePart {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            /*flex-wrap: wrap;*/
+        }
+
+        #DateTimeSelectionPart, #ValueRangePart {
+            .sub-title {
+                align-self: flex-end;
+            }
+
+            .datePickerGroup, valueInputGroup {
+                flex-grow: 0.5;
+            }
+
+            .datePickerGroup:nth-of-type(2), valueInputGroup:nth-of-type(2) {
+                padding-left: 15px;
+            }
+
+            .datePickerGroup:nth-of-type(1), valueInputGroup:nth-of-type(1) {
+                padding-right: 15px;
+            }
+        }
+    }
+
+    select {
+        flex-grow: 1;
+        /*max-width: 520px;*/
+    }
+
+    .ms-container {
+        width: auto;
+        /*padding-top: 30px;
+        padding-bottom: 30px;*/
+        .ms-list {
+            height: 160px;
+        }
+
+        .ms-selectable li.ms-elem-selectable,
+        .ms-selection li.ms-elem-selection {
+            /* border-bottom: 1px #eee solid; */
+            border-bottom: none;
+            padding: 8px 10px;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .ms-selectable .ms-selected {
+            display: block !important;
+            background: #e3e3e3;
+            color: #c1c1c1 !important;
+            cursor: not-allowed;
+        }
+
+        .ms-selectable .ms-selected:hover {
+            background: #e3e3e3 !important;
+        }
+
+        .ms-selectable li.ms-elem-selectable:hover,
+        .ms-selection li.ms-elem-selection:hover {
+            background: #01a9ac;
+            color: white;
+        }
+    }
+
+    .card-block {
+        .sub-title {
+            min-width: 90px;
+        }
+
+        #chartPart {
+            background: white;
+        }
+    }
+}
+
+.datePickerGroup-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    #datePickerPart {
+        display: flex;
+        margin: 30px 15px;
+
+        .datePickerGroup {
+            display: flex;
+            margin-right: 15px;
+
+            .title {
+                margin-right: 5px;
+                width: 35%;
+                align-self: center;
+                font-size: 16px;
+            }
+
+            .input-group {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+
+.popover-block-container {
+    .popover-icon {
+        background: none;
+        color: none;
+        border: none;
+        padding: 0;
+        outline: none;
+        cursor: pointer;
+
+        i {
+            color: #04a0b2;
+            text-align: center;
+            margin-top: 4px;
+        }
+    }
+}
+
+.popover-header {
+    display: none;
+}
+
+.popover {
+    max-width: 306.6px;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 0 0 6px 1px #eee;
+}
+
+.popover-body {
+    border: none;
+    padding: 20px 49.4px 24px 24px;
+    color: #5f6976;
+    font-size: 15px;
+    font-style: italic;
+    z-index: 2;
+    line-height: 1.53;
+    letter-spacing: 0.1px;
+
+    .popover-close {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        opacity: 1;
+
+        .material-icons {
+            font-size: 16px;
+            font-weight: bold;
+            color: #04a0b2;
+        }
+    }
+}
+
+
+ul[role="tablist"] {
+    display: flex;
+
+    .nav-item {
+        width: calc(100%/8);
+        text-align: center;
+        min-width: 70px;
+
+        .slide {
+            width: calc(100%/8);
+            text-align: center;
+            min-width: 70px;
+        }
+    }
+}
+
+
+.tab-content {
+    .tab-pane#EffectiveStorage {
+        #StartDate {
+            /*min-width: 427px;*/
+        }
+    }
+
+    .tab-pane {
+        .serach-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+
+            .option-container {
+                display: flex;
+                flex-wrap: wrap;
+                flex-grow: 1;
+
+                #DateTimeSelectionPart, #ValueRangePart {
+                    align-items: baseline;
+                    flex-grow: 1;
+
+                    #DateTimeSelectionPart > h4.sub-title {
+                        min-width: 150px;
+                        align-self: flex-end;
+                        font-size: 16px;
+                        font-weight: 600;
+                        letter-spacing: 1px;
+                    }
+
+                    #ValueRangePart > h4.sub-title {
+                        min-width: 150px;
+                    }
+
+                    .datePickerGroup-container, .valueInputGroup-conatiner {
+                        flex-grow: 1;
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        .datePickerGroup, .valueInputGroup {
+                            padding: 0px 15px;
+                            flex-grow: 1;
+
+                            #StartValue, #EndValue {
+                                min-width: 217px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #BtnQuery {
+                align-self: center;
+            }
+        }
+    }
+}
+
+@media (max-width:568px) {
+    .tab-content.card-block {
+        padding: 1.25rem 0;
+    }
+}

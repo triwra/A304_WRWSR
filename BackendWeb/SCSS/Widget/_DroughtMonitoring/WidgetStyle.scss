@@ -1,0 +1,71 @@
+﻿.widget.e2 {
+
+    .wrwsr-body {
+        .content-part {
+            width: 100%;
+
+            .info-part {
+                background: #F3F5F7;
+                border-radius: 10px;                
+
+                .info-group {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    min-height: 150px;
+
+                    .info-title {
+                        font-weight: 700;
+                        font-size: 125%;
+                        color: #000;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .info-sub-title {
+                        font-weight: 500;
+                        font-size: 110%;
+                        color: #757681;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .info-block {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        align-items: center;
+
+                        .block-title {
+                            font-weight: 700;
+                            font-size: 125%;
+                            line-height: 1.5;
+                            color: #000000;
+                            align-self: center;
+                        }
+
+                        .block-value {
+                            align-self: flex-end;
+                            font-size: 18px;
+
+                            span:nth-of-type(1) {
+                                font-weight: 700;
+                            }
+
+                            span:nth-of-type(2) {
+                                font-size: 16px;
+                                line-height: 19px;
+                                color: #000000;
+                                align-self: end;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

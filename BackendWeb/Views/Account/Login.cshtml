@@ -1,0 +1,89 @@
+﻿@using BackendWeb.Models
+@model LoginViewModel
+@{Layout = null;}
+@{
+    ViewBag.Title = "登入 農業水資源智慧決策支援平台";
+    //Layout = "~/Views/Shared/_LayoutLoginPage.cshtml";
+}
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>登入 農業水資源智慧決策支援平台</title>
+    <!-- CSS files -->
+
+    <link href="~/Content/Tabler/dist/css/tabler.min.css" rel="stylesheet" />
+    <link href="~/Content/Tabler/dist/css/tabler-flags.min.css" rel="stylesheet" />
+    <link href="~/Content/Tabler/dist/css/tabler-payments.min.css" rel="stylesheet" />
+    <link href="~/Content/Tabler/dist/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="~/Content/Tabler/dist/css/demo.css" rel="stylesheet" />
+
+    @*@Styles.Render("~/Adminty/css")*@
+</head>
+<style>
+    #loginForm {
+        background-image: url('../../Images/background.JPG') !important;
+        background-size: cover;
+        background-position: bottom;
+    }
+</style>
+<body id="loginForm" class=" border-top-wide border-primary d-flex flex-column">
+    <div class="page page-center">
+        <div class="container-tight py-4">
+            <div class="text-center mb-4">
+                <a href="/" class="navbar-brand navbar-brand-autodark">
+                    <img src="~/Img/WRWSR_LOGO.svg" alt="">
+                </a>
+            </div>
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "card card-md", role = "form", autocomplete = "off" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Login to your account</h2>
+                    <div class="mb-3">
+
+                        @Html.TextBoxFor(m => m.UserName, 
+                            new { @class = "form-control", @placeholder = "輸入帳號", autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-2">
+                        @*<label class="form-label">
+                            <span class="form-label-description">
+                                <a href="./forgot-password.html">忘記密碼？</a>
+                            </span>
+                        </label>*@
+                        <div class="mb-3">
+
+                            @Html.PasswordFor(m => m.Password, 
+                                new { @type = "password", @class = "form-control", @placeholder = "輸入密碼", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-check">
+                            <input type="checkbox" class="form-check-input" />
+                            <span class="form-check-label">記住我</span>
+                        </label>
+                    </div>
+                    <div class="form-footer">
+                        <div class="mb-4">
+                            @Html.ValidationSummary(true, "", new { @class = "alert-danger" })
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">登入</button>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+    <!-- Libs JS -->
+    <!-- Tabler Core -->
+    <script src="~/Content/Tabler/dist/js/demo.min.js"></script>
+    <script src="~/Content/Tabler/dist/js/tabler.min.js"></script>
+</body>
+

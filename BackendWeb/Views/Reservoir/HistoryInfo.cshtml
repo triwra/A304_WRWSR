@@ -1,0 +1,453 @@
+﻿
+@{
+    ViewBag.Title = "當日水情";
+}
+
+@section header {
+    @*<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">*@
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link href="~/JSLib/datepicker-master/datepicker.css" rel="stylesheet" />
+    <link href="~/JSLib/lou-multi-select/css/multi-select.css" rel="stylesheet" />
+    <link href="~/SCSS/Demo2/Demo2.min.css" rel="stylesheet" />
+}
+
+<div class="card" style="font-family: 微軟正黑體;">
+    <div class="header-part">
+        <div class="card-header">
+            <div class="title-part">
+                <h5 class="title">圖表範圍設定</h5>
+            </div>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li><i class="feather minimize-card icon-minus"></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-block option-part" style="display: flex; flex-wrap: wrap; justify-content: flex-end;">
+        <div class="col-sm-12 col-md-12 col-xl-12 m-b-30 m-t-30  ">
+            @*<h4 class="sub-title">
+                    排名查詢：
+                </h4>*@
+            <div id="FarmSelectionPart">
+                <h4 class="sub-title">
+                    期作選擇：
+                </h4>
+                <select id="FarmSelection" name="select" class="col-md-auto form-control form-control-primary">
+                    <option value="1">一期作</option>
+                    <option value="2">二期作</option>
+                </select>
+            </div>
+            <div id="DateTimeSelectionPart" class="option" style="align-items: baseline; ">
+                <h4 class="sub-title">
+                    日期範圍：
+                </h4>
+                <div class="datePickerGroup">
+                    <span class="title">開始時間</span>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                        @Html.Editor("StartDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "StartDate", @class = "form-control", @autocomplete = "off", onfocus = "this.blur();" } })
+                    </div>
+                </div>
+                <div class="datePickerGroup">
+                    <span class="title">結束時間</span>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                        @Html.Editor("EndDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "EndDate", @class = "form-control", @autocomplete = "off", onfocus = "this.blur();" } })
+                    </div>
+                </div>
+            </div>
+            <div id="BtnQuery" class="cndss btn--default btn btn-primary pull-right">設定</div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div id="EffectiveStorageCard" class="card">
+    <div class="header-part">
+        <div class="card-header">
+            <div class="title-part">
+                <h5 class="title">水庫蓄水量(曾文-烏山頭二庫合計)</h5>
+            </div>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <i class="fas fa-compress" title="全螢幕"></i>
+                    <i class="fas fa-sliders-h" title="選項"></i>
+                    <a href="../Reservoir/DataTable?type=1"><i class="fas fa-table" title="表格"></i></a>
+                    <li><i class="feather minimize-card icon-plus" title="展開"></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-block" style="display:none;">
+        <div id="chartPart">
+            <div class="echarts" style="width: 100%;height:400px;"></div>
+        </div>
+        <div class="chart-setting">
+            <div class="card-setting-container">
+                <div class="sub-title">資料設定</div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs md-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#basic" role="tab" aria-expanded="true">當日水情</a>
+                        <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#History" role="tab" aria-expanded="false">歷史資料</a>
+                        <div class="slide"></div>
+                    </li>
+                    @*<li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#RuleValue" role="tab" aria-expanded="false">水庫規線</a>
+                        <div class="slide"></div>
+                    </li>*@
+
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content card-block">
+                    <div class="tab-pane active" id="basic" role="tabpanel" aria-expanded="true">
+                        <div class="datePickerGroup">
+                            <span class="title">開始時間</span>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                                @Html.Editor("StartDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "StartDate", @class = "form-control", @autocomplete = "off" } })
+                            </div>
+                        </div>
+                        <div class="datePickerGroup">
+                            <span class="title">結束時間</span>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                                @Html.Editor("EndDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "EndDate", @class = "form-control", @autocomplete = "off" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="History" role="tabpanel" aria-expanded="false">
+                        <select class="myselect" multiple="multiple" id="History-select" name="my-select[]"></select>
+                    </div>
+                    <div class="tab-pane" id="RuleValue" role="tabpanel" aria-expanded="false">
+                        <div>
+                            <input class="inp-cbx" id="cbx2" type="checkbox" style="display: none;" value="LowerLimit" label="下限" checked>
+                            <label class="cbx" for="cbx2">
+                                <span>
+                                    <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span><span>下限</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input class="inp-cbx" id="cbx3" type="checkbox" style="display: none;" value="SeriousLowerLimit" label="嚴重下限" checked>
+                            <label class="cbx" for="cbx3">
+                                <span>
+                                    <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span><span>嚴重下限</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input class="inp-cbx" id="EffectiveStorage-Avaerage" type="checkbox" style="display: none;" value="LowerLimit" label="當日水情">
+                            <label class="cbx" for="EffectiveStorage-Avaerage">
+                                <span>
+                                    <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span><span>平均蓄水量</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+            <div class="ChartSettingBtn btn btn-primary pull-right" style=" float: right;">更新</div>
+        </div>
+    </div>
+</div>
+
+<div id="InflowCard" class="card">
+    <div class="header-part">
+        <div class="card-header">
+            <div class="title-part">
+                <h5 class="title">水庫入流量</h5>
+            </div>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <i class="fas fa-compress" title="全螢幕"></i>
+                    <i class="fas fa-sliders-h" title="選項"></i>
+                    <a href="../Reservoir/DataTable?type=3"><i class="fas fa-table" title="表格"></i></a>
+                    <li><i class="feather minimize-card icon-plus" title="展開"></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-block" style="display:none;">
+        <div id="chartPart">
+            <div class="echarts" style="width: 100%;height:400px;"></div>
+        </div>
+        <div class="chart-setting">
+            <div class="card-setting-container">
+                <div class="sub-title">資料設定</div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs md-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#basic2" role="tab" aria-expanded="true">當日水情</a>
+                        <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#History2" role="tab" aria-expanded="false">歷史水情</a>
+                        <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#QValue2" role="tab" aria-expanded="false">入流量統計</a>
+                        <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#Stat2" role="tab" aria-expanded="false">同期累計</a>
+                        <div class="slide"></div>
+                    </li>
+
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content card-block">
+                    <div class="tab-pane active" id="basic2" role="tabpanel" aria-expanded="true">
+                        <div class="datePickerGroup">
+                            <span class="title">開始時間</span>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                                @Html.Editor("StartDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "StartDate", @class = "form-control", @autocomplete = "off" } })
+                            </div>
+                        </div>
+                        <div class="datePickerGroup">
+                            <span class="title">結束時間</span>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                                @Html.Editor("EndDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "EndDate", @class = "form-control", @autocomplete = "off", onfocus = "this.blur();" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="History2" role="tabpanel" aria-expanded="false">
+                        <select class="myselect" multiple="multiple" id="History-select" name="my-select[]"></select>
+                    </div>
+                    <div class="tab-pane" id="QValue2" role="tabpanel" aria-expanded="false">
+                        <select class="myselect" multiple="multiple" id="QValue-select" name="my-select[]"></select>
+                    </div>
+                    <div class="tab-pane" id="Stat2" role="tabpanel" aria-expanded="false">
+                        <div>
+                            <input class="inp-cbx" id="Stat2-cbx1" type="checkbox" style="display: none;" value="LowerLimit" label="當日水情">
+                            <label class="cbx" for="Stat2-cbx1">
+                                <span>
+                                    <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span><span>當日水情</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input class="inp-cbx" id="Stat2-cbx2" type="checkbox" style="display: none;" value="SeriousLowerLimit" label="歷史水情">
+                            <label class="cbx" for="Stat2-cbx2">
+                                <span>
+                                    <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span><span>歷史水情</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input class="inp-cbx" id="Stat2-cbx3" type="checkbox" style="display: none;" value="SeriousLowerLimit" label="歷史平均">
+                            <label class="cbx" for="Stat2-cbx3">
+                                <span>
+                                    <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span><span>歷史平均</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class=" ChartSettingBtn btn btn-primary pull-right" style=" float: right;">更新</div>
+        </div>
+    </div>
+</div>
+
+<div id="AccumulatedRainfallCard" class="card">
+    <div class="header-part">
+        <div class="card-header">
+            <div class="title-part">
+                <h5 class="title">集水區雨量</h5>
+            </div>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <i class="fas fa-compress" title="全螢幕"></i>
+                    <i class="fas fa-sliders-h" title="選項"></i>
+                    <a href="../Reservoir/DataTable?type=2"><i class="fas fa-table" title="表格"></i></a>
+                    <li><i class="feather minimize-card icon-plus" title="展開"></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-block" style="display:none;">
+        <div id="chartPart">
+            <div class="echarts" style="width: 100%;height:400px;"></div>
+        </div>
+        <div class="chart-setting">
+            <div class="card-setting-container">
+                <div class="sub-title">資料設定</div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs md-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#RainfallToday" role="tab" aria-expanded="true">當日累積雨量</a>
+                        <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#RainfallHistory" role="tab" aria-expanded="true">歷史水情</a>
+                        <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#RainfallStat" role="tab" aria-expanded="true">降雨量統計</a>
+                        <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#RainfallAcc" role="tab" aria-expanded="true">同期累計</a>
+                        <div class="slide"></div>
+                    </li>
+
+
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content card-block">
+                    <div class="tab-pane active" id="RainfallToday" role="tabpanel" aria-expanded="true">
+                        <div class="datePickerGroup">
+                            <span class="title">開始時間</span>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                                @Html.Editor("StartDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "StartDate", @class = "form-control", @autocomplete = "off" } })
+                            </div>
+                        </div>
+                        <div class="datePickerGroup">
+                            <span class="title">結束時間</span>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                                @Html.Editor("EndDate", new { htmlAttributes = new { data_toggle = "datepicker", @id = "EndDate", @class = "form-control", @autocomplete = "off" } })
+                            </div>
+                        </div>
+                        <div>
+                            @*<input class="inp-cbx" id="Rainfall-Avaerage" type="checkbox" style="display: none;" value="LowerLimit" label="當日水情">
+                                <label class="cbx" for="Rainfall-Avaerage">
+                                    <span>
+                                        <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                        </svg>
+                                    </span><span>平均雨量</span>
+                                </label>*@
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="RainfallHistory" role="tabpanel" aria-expanded="false">
+                        <select class="myselect" multiple="multiple" id="History-select" name="my-select[]"></select>
+                    </div>
+                    <div class="tab-pane" id="RainfallStat" role="tabpanel" aria-expanded="false">
+                        <select class="myselect" multiple="multiple" id="Stat-select" name="my-select[]"></select>
+                    </div>
+                    <div class="tab-pane" id="RainfallAcc" role="tabpanel" aria-expanded="false">
+                        <div>
+                            <input class="inp-cbx" id="Rainfall-Today" type="checkbox" style="display: none;" value="LowerLimit" label="當日水情">
+                            <label class="cbx" for="Rainfall-Today">
+                                <span>
+                                    <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span><span>當日水情</span>
+                            </label>
+                        </div>
+                        @*<div>
+                                <input class="inp-cbx" id="Rainfall-Avg" type="checkbox" style="display: none;" value="LowerLimit" label="當日水情">
+                                <label class="cbx" for="Rainfall-Avaerage">
+                                    <span>
+                                        <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                        </svg>
+                                    </span><span>平均雨量</span>
+                                </label>
+                            </div>*@
+                        <div>
+                            <input class="inp-cbx" id="Rainfall-History" type="checkbox" style="display: none;" value="SeriousLowerLimit" label="歷史水情">
+                            <label class="cbx" for="Rainfall-History">
+                                <span>
+                                    <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span><span>歷史水情</span>
+                            </label>
+                        </div>
+                        <div>
+                            <input class="inp-cbx" id="Rainfall-Avg" type="checkbox" style="display: none;" value="SeriousLowerLimit" label="平均雨量">
+                            <label class="cbx" for="Rainfall-Avg">
+                                <span>
+                                    <svg width="12px" height="10px" viewBox="0 0 12 10">
+                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                    </svg>
+                                </span><span>平均雨量</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class=" ChartSettingBtn btn btn-primary pull-right" style=" float: right;">更新</div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript" src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/4.0.2/moment-range.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/5.0.2/screenfull.min.js"></script>
+    <script src="~/JSLib/echart/echarts.min.js"></script>
+    <script src="~/JSLib/echart/echarts-theme.js"></script>
+    @*<script src="~/JSLib/datepicker-master/datepicker.min.js"></script>*@
+    <script src="~/JSLib/datepicker-master/ROCdatepicker.js"></script>
+    @*<script src="~/JSLib/datepicker-master/datepicker.js"></script>*@
+    <script src="~/JSLib/datepicker-master/datepicker.zh-CN.js"></script>
+    <script src="~/JSLib/LINQ/JSLINQ.js"></script>
+    <script src="~/JSLib/LINQ/linq.min.js"></script>
+    <script src="~/JSLib/lou-multi-select/js/jquery.multi-select.js"></script>
+    <!---------------------------------------------------------------------------------------->
+    <script src="~/Scripts/View/Reservoir/RealTimeInfo/ChartBuilderClass.js"></script>
+    @*<script src="~/Scripts/MyTool/MyDateTool.js"></script>*@
+    <script src="~/Scripts/MyTool/MyDataTool.js"></script>
+    <script src="~/Scripts/View/Reservoir/RealTimeInfo/Demo2AjaxClass.js"></script>
+    <script src="~/Scripts/View/Reservoir/PageScript.js"></script>
+
+    <script>
+        var ajax_src = {
+            GetReservoirData : "@Url.Action("GetReservoirData", "Demo")",
+            GetCombineReservoirData : "@Url.Action("GetCombineReservoirData", "Demo")",
+            GetReservoirRule : "@Url.Action("GetReservoirRule", "Demo")",
+            GetHistoryReservoirData : "@Url.Action("GetHistoryReservoirData", "Demo")",
+            GetReservoirPiValue : "@Url.Action("GetReservoirPiValue", "Demo")",
+            GetReservoirYearRank : "@Url.Action("GetReservoirYearRank", "Demo")",
+            GetReservoirDayAverageData: "@Url.Action("GetReservoirDayAverageData", "Demo")",
+
+            GetRealTimeReservoirTimeSeriesData : "@Url.Action("GetRealTimeReservoirTimeSeriesData", "Reservoir")",
+            GetReservoirRuleTimeSeriesData : "@Url.Action("GetReservoirRuleTimeSeriesData", "Reservoir")",
+            GetPiValueTimeSeriesData : "@Url.Action("GetPiValueTimeSeriesData", "Reservoir")",
+            GetHistoryReservoirTimeSeriesDataSet : "@Url.Action("GetHistoryReservoirTimeSeriesDataSet", "Reservoir")",
+            GetReservoirAverageTimeSeriesData: "@Url.Action("GetReservoirAverageTimeSeriesData", "Reservoir")",
+            GetHistoryReservoirDataRank: "@Url.Action("GetHistoryReservoirDataRank", "Reservoir")",
+        }
+        window['moment-range'].extendMoment(moment);
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#EffectiveStorageCard .myselect').multiSelect();
+            $('#InflowCard #History2 .myselect').multiSelect();
+            $('#InflowCard #QValue2 .myselect').multiSelect();
+            $('#AccumulatedRainfallCard .myselect').multiSelect();
+
+        });
+    </script>
+}

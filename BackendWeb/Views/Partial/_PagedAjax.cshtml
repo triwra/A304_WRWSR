@@ -1,0 +1,26 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+<div class="pagination">
+    @Html.PagedListPager((IPagedList)ViewBag.PagerData, page => Url.Action("Index", new { page }))
+
+</div>
+<div class="pagination">
+    @Html.PagedListPager((IPagedList)ViewBag.PagerData, page => Url.Action("Index", new { page }),
+                            new PagedListRenderOptions
+                            {
+                                DisplayLinkToIndividualPages = false,
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                                DisplayLinkToNextPage = PagedListDisplayMode.Never,
+                                DisplayItemSliceAndTotal = true,
+                                ItemSliceAndTotalFormat = "共 {2} 項"
+                            }
+                        )
+
+</div>
+
+
+
+

@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "_DroughtMonitoring";
+}
+<link href="~/SCSS/Widget/_DroughtMonitoring/WidgetStyle.min.css" rel="stylesheet" />
+<style>
+    .wrwsr-panel.sty1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+    }
+
+        .wrwsr-panel.sty1 .widget.e2 {
+            background: white;
+            width: 100%;
+            min-height: calc(243px + 1rem);            
+            border-radius: 10px;
+            box-shadow: 0px 12px 20px rgba(14, 31, 53, 0.12);
+        }
+</style>
+
+<div class="wrwsr-panel sty1 mb-3">
+    <div class="widget e2 p-3 p-lg-3">
+        <div class="wrwsr-container">
+            <div class="wrwsr-header d-flex col-12 mt-3">
+                <div class="title-part d-flex">
+                    <div class="icon-part pe-1 ps-1">
+                        @Html.Partial("~/Views/Partial/SVG/_WiperIcon.cshtml")
+                    </div>
+                    <div class="text-part">
+                        <div class="main-title">乾旱監測</div>
+                        <div id="updatetime" class="sub-title mt-1">更新時間：<span></span></div>
+                    </div>
+
+                </div>
+                <div class="option-part flex-grow-1 ms-3 me-3">
+
+                </div>
+                <div class="link-part">
+                    <a href="/RainfallSituation/DroughtMonitoring" class="link-btn">
+                        @Html.Partial("~/Views/Partial/SVG/_OutLink.cshtml")
+                    </a>
+                </div>
+            </div>
+            <div class="wrwsr-body col-12 d-flex">
+                <div class="content-part d-flex mt-3">
+                    @*<div class="col-xl-3">
+                            <div class="info-part ms-2 me-2">
+                                <div class="info-group ms-3 me-3">
+                                    <div class="info-title mt-3 ">石門水庫</div>
+                                    <div class="info-sub-title">灌區</div>
+                                    <div class="info-block mt-3 mb-3">
+                                        @Html.Partial("~/Views/Partial/SVG/_LightBulbIcon.cshtml")
+                                    </div>
+                                    <div class="info-block  mb-3">
+                                        <div class="block-title">輕度</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3">
+                            <div class="info-part ms-2 me-2">
+                                <div class="info-group ms-3 me-3">
+                                    <div class="info-title mt-3 ">石門水庫</div>
+                                    <div class="info-sub-title">灌區</div>
+                                    <div class="info-block mt-3 mb-3">
+                                        @Html.Partial("~/Views/Partial/SVG/_LightBulbIcon.cshtml")
+                                    </div>
+                                    <div class="info-block  mb-3">
+                                        <div class="block-title">輕度</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3">
+                            <div class="info-part ms-2 me-2">
+                                <div class="info-group ms-3 me-3">
+                                    <div class="info-title mt-3 ">石門水庫</div>
+                                    <div class="info-sub-title">灌區</div>
+                                    <div class="info-block mt-3 mb-3">
+                                        @Html.Partial("~/Views/Partial/SVG/_LightBulbIcon.cshtml")
+                                    </div>
+                                    <div class="info-block  mb-3">
+                                        <div class="block-title">輕度</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3">
+                            <div class="info-part ms-2 me-2">
+                                <div class="info-group ms-3 me-3">
+                                    <div class="info-title mt-3 ">石門水庫</div>
+                                    <div class="info-sub-title">灌區</div>
+                                    <div class="info-block mt-3 mb-3">
+                                        @Html.Partial("~/Views/Partial/SVG/_LightBulbIcon.cshtml")
+                                    </div>
+                                    <div class="info-block  mb-3">
+                                        <div class="block-title">輕度</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+            <div class="wrwsr-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="~/Scripts/Widget/_DroughtMonitoring/WidgetScript.js"></script>

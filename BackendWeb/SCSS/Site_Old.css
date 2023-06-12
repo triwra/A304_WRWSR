@@ -1,0 +1,47 @@
+﻿@charset "UTF-8";
+/*@import "../SCSS/Theme/Color.scss";
+@import "../SCSS/Theme/Layout/LayoutStyle.scss";
+@import "../SCSS/Theme/Layout/MainManu.scss";
+@import "../SCSS/Theme/Element/CardStyle";
+@import "../SCSS/Theme/Element/TableStyle.scss";
+@import "../SCSS/Theme/Element/ButtonStyle";
+.card {
+
+
+    .card-header {
+        padding: 5px 15px;
+        .card-header-right{
+            top:3px;
+        }
+        h1, h2, h3, h4, h5 {
+            font-family: 微軟正黑體;
+            font-weight: 800;
+            font-size: 22px;
+        }
+    }
+
+    .card-block {
+        .sub-title {
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            font-family: 微軟正黑體;
+            border: none;
+            margin-bottom: 0;
+            padding: 5px 0px;
+        }
+
+        .sub-title.w2 {
+            min-width: 60px;
+        }
+
+        .sub-title.w4 {
+            min-width: 90px;
+        }
+
+        .input-group {
+            margin-bottom: 0;
+        }
+    }
+}
+*/

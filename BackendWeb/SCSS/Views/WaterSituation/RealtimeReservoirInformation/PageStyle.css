@@ -1,0 +1,84 @@
+﻿body .RealtimeReservoirInformation .gauge-part-container .reservoir-block-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center; }
+  body .RealtimeReservoirInformation .gauge-part-container .reservoir-block-group .reservoir-block {
+    /*padding-top: 1.5rem;*/ }
+    body .RealtimeReservoirInformation .gauge-part-container .reservoir-block-group .reservoir-block .reservoir-name {
+      /*                        font-size: 1.3rem;
+                        font-weight: 600;
+                        padding: 0.2rem;*/
+      padding: 20px 0px 15px 0px;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 28px;
+      text-align: center;
+      color: #000000; }
+    body .RealtimeReservoirInformation .gauge-part-container .reservoir-block-group .reservoir-block .waterVal-title {
+      padding: 20px 0px 5px 0px;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      color: #000000; }
+    body .RealtimeReservoirInformation .gauge-part-container .reservoir-block-group .reservoir-block .waterVal-txt {
+      /* font-size: 1rem;
+                        padding: 0.3rem;*/
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 19px;
+      text-align: center;
+      color: #007AB5; }
+    body .RealtimeReservoirInformation .gauge-part-container .reservoir-block-group .reservoir-block .waterVal-unit {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      color: #757681; }
+  body .RealtimeReservoirInformation .gauge-part-container .reservoir-block-group .reservoir-gauge {
+    width: 195px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center; }
+
+body .SingleReservoirInformation .gauge-part-container .reservoir-block-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center; }
+  body .SingleReservoirInformation .gauge-part-container .reservoir-block-group .reservoir-block .reservoir-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 0.2rem; }
+  body .SingleReservoirInformation .gauge-part-container .reservoir-block-group .reservoir-block .waterVal-txt {
+    font-size: 1rem;
+    padding: 0.3rem; }
+  body .SingleReservoirInformation .gauge-part-container .reservoir-block-group .reservoir-gauge {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center; }
+
+body .SingleReservoirInformation .table-part .card {
+  height: 100%; }
+  body .SingleReservoirInformation .table-part .card .card-body {
+    display: flex;
+    align-items: center; }
+    body .SingleReservoirInformation .table-part .card .card-body div {
+      width: 100%; }
